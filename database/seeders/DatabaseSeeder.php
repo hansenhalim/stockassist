@@ -2,8 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Enums\MeasurementUnit;
 use App\Models\Admin;
+use App\Models\Ingredient;
 use App\Models\Owner;
+use App\Models\Recipe;
 use App\Models\Shop;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -86,6 +89,87 @@ class DatabaseSeeder extends Seeder
                 $admin->shop()->associate($shop);
 
                 $admin->save();
+
+                $recipe = new Recipe(['name' => 'HUMBA']);
+
+                $recipe->shop()->associate($shop);
+
+                $recipe->save();
+
+                $ingredients = [
+                    [
+                        'name' => 'Vegetable Oil',
+                        'description' => '',
+                        'quantity' => 15,
+                        'unit_of_measure' => MeasurementUnit::MILLILITER,
+                    ], [
+                        'name' => 'Pork Liempo',
+                        'description' => 'Cut into 2" cubes',
+                        'quantity' => 550,
+                        'unit_of_measure' => MeasurementUnit::GRAM,
+                    ], [
+                        'name' => 'Garlic',
+                        'description' => 'Minced',
+                        'quantity' => 35,
+                        'unit_of_measure' => MeasurementUnit::GRAM,
+                    ], [
+                        'name' => 'Water',
+                        'description' => '',
+                        'quantity' => 500,
+                        'unit_of_measure' => MeasurementUnit::MILLILITER,
+                    ], [
+                        'name' => 'Black Peppercorn',
+                        'description' => 'Whole',
+                        'quantity' => 3,
+                        'unit_of_measure' => MeasurementUnit::GRAM,
+                    ], [
+                        'name' => 'Star Anise',
+                        'description' => '5 pcs',
+                        'quantity' => 1,
+                        'unit_of_measure' => MeasurementUnit::GRAM,
+                    ], [
+                        'name' => 'Bay Leaf',
+                        'description' => '4 pcs',
+                        'quantity' => 0.2,
+                        'unit_of_measure' => MeasurementUnit::PIECES,
+                    ], [
+                        'name' => 'Bango Kecap Manis',
+                        'description' => '',
+                        'quantity' => 130,
+                        'unit_of_measure' => MeasurementUnit::MILLILITER,
+                    ], [
+                        'name' => 'Banana Blossoms',
+                        'description' => '',
+                        'quantity' => 35,
+                        'unit_of_measure' => MeasurementUnit::GRAM,
+                    ], [
+                        'name' => 'Roasted Reanuts',
+                        'description' => 'Skinless',
+                        'quantity' => 40,
+                        'unit_of_measure' => MeasurementUnit::GRAM,
+                    ], [
+                        'name' => 'Cornstarch',
+                        'description' => 'Dissolved in 45&nbsp;ml water (also called SLURRY)',
+                        'quantity' => 10,
+                        'unit_of_measure' => MeasurementUnit::GRAM,
+                    ],
+                ];
+
+                foreach ($ingredients as $array) {
+                    $ingredient = new Ingredient([
+                        'name' => $array['name'],
+                        'unit_of_measure' => $array['unit_of_measure'],
+                    ]);
+
+                    $ingredient->shop()->associate($shop);
+
+                    $ingredient->save();
+
+                    $ingredient->recipes()->attach($recipe, [
+                        'quantity' => $array['quantity'],
+                        'description' => $array['description'],
+                    ]);
+                }
             }
         }
     }
