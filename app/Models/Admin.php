@@ -2,19 +2,17 @@
 
 namespace App\Models;
 
+use App\Traits\BelongsToShop;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Admin extends User
 {
+    use BelongsToShop;
+
     public $timestamps = false;
 
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
-    }
-
-    public function shop(): BelongsTo
-    {
-        return $this->belongsTo(Shop::class);
     }
 }
