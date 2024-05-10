@@ -12,7 +12,7 @@ class IngredientController extends Controller
 
         $ingredients = $owner->selectedShop->ingredients;
 
-        return view('ingredients.index')
+        return view('ingredient.index')
             ->with('ingredients', $ingredients);
     }
 

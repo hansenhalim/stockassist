@@ -1,5 +1,5 @@
 <x-app-layout>
-    <form action="{{ route('shop.switch', absolute: false) }}" method="post">
+    <form action="{{ route('shop.switch') }}" method="post">
         @csrf
 
         <md-outlined-select name="shop_id" onchange="this.form.submit()">

@@ -3,7 +3,7 @@
         @forelse ($ingredients as $ingredient)
             <li>{{ $ingredient->name }}</li>
         @empty
-            <md-outlined-button href="{{ route('ingredients.create', absolute: false) }}">
+            <md-outlined-button href="{{ route('ingredients.create') }}">
                 Create Ingredient
                 <svg slot="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
                     class="w-5 h-5">

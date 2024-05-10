@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreRecipeRequest;
+use App\Http\Requests\UpdateRecipeRequest;
+use App\Models\Recipe;
 use Illuminate\Http\Request;
 
 class RecipeController extends Controller
@@ -12,37 +15,63 @@ class RecipeController extends Controller
 
         $recipes = $owner->selectedShop->recipes;
 
-        return view('recipes.index')
+        return view('recipe.index')
             ->with('recipes', $recipes);
     }
 
     public function create()
     {
-        //
+        return view('recipe.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreRecipeRequest $request)
     {
-        //
+        $owner = $request->user()->authenticable;
+
+        $recipe = new Recipe;
+
+        $recipe->shop()->associate($owner->selectedShop);
+
+        $recipe->name = $request->input('name');
+
+        if ($request->file('photo')) {
+            $recipe->photo = $request->file('photo')->store('recipes');
+        }
+
+        $recipe->save();
+
+        return back();
     }
 
-    public function show(string $id)
+    public function show(Recipe $recipe)
     {
-        //
+        return view('recipe.show')
+            ->with('recipe', $recipe);
     }
 
-    public function edit(string $id)
+    public function edit(Recipe $recipe)
     {
-        //
+        return view('recipe.edit')
+            ->with('recipe', $recipe);
     }
 
-    public function update(Request $request, string $id)
+    public function update(UpdateRecipeRequest $request, Recipe $recipe)
     {
-        //
+        $recipe->name = $request->input('name');
+
+        if ($request->file('photo')) {
+            $recipe->photo = $request->file('photo')->store('recipes');
+        }
+
+        $recipe->save();
+
+        return back();
     }
 
-    public function destroy(string $id)
+    public function destroy(Recipe $recipe)
     {
-        //
+        $recipe->delete();
+
+        return redirect()->route('recipes.index');
     }
 }

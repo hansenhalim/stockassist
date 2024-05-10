@@ -10,7 +10,7 @@ class ShopController extends Controller
     {
         $owner = $request->user()->authenticable;
 
-        return view('shops.index')
+        return view('shop.index')
             ->with('shops', $owner->shops)
             ->with('selectedShop', $owner->selectedShop);
     }
