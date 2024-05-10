@@ -6,9 +6,14 @@ use Illuminate\Http\Request;
 
 class IngredientController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return view('ingredients.index');
+        $owner = $request->user()->authenticable;
+
+        $ingredients = $owner->selectedShop->ingredients;
+
+        return view('ingredients.index')
+            ->with('ingredients', $ingredients);
     }
 
     public function create()

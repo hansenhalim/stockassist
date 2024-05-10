@@ -1,10 +1,10 @@
 <x-app-layout>
-    <div class="flex justify-between">
+    <div class="flex justify-between items-center">
         <div>Welcome, {{ auth()->user()->name }}!</div>
 
-        <form action="{{ route('logout') }}" method="post">
+        <form action="{{ route('logout', absolute: false) }}" method="post">
             @csrf
-            <button class="underline font-semibold text-red-500" type="submit">Logout</button>
+            <md-filled-button>Logout</md-filled-button>
         </form>
     </div>
 </x-app-layout>

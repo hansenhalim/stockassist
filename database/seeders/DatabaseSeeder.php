@@ -77,6 +77,10 @@ class DatabaseSeeder extends Seeder
 
             $shop->save();
 
+            $owner->selectedShop()->associate($shop);
+
+            $owner->save();
+
             if ($index === 0) {
                 $user = User::factory()->create([
                     'name' => 'Hansen Halim',

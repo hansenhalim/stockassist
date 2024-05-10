@@ -8,10 +8,11 @@ class ShopController extends Controller
 {
     public function index(Request $request)
     {
-        $shops = $request->user()->authenticable->shops;
+        $owner = $request->user()->authenticable;
 
         return view('shops.index')
-            ->with('shops', $shops);
+            ->with('shops', $owner->shops)
+            ->with('selectedShop', $owner->selectedShop);
     }
 
     public function create()
