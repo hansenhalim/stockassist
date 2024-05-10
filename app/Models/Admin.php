@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Traits\BelongsToShop;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 class Admin extends User
 {
@@ -11,8 +11,8 @@ class Admin extends User
 
     public $timestamps = false;
 
-    public function user(): BelongsTo
+    public function user(): MorphOne
     {
-        return $this->belongsTo(User::class);
+        return $this->morphOne(User::class, 'authenticable');
     }
 }

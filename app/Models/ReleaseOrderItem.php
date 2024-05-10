@@ -9,7 +9,8 @@ class ReleaseOrderItem extends Model
 {
     public $timestamps = false;
 
-    public function releaseOrder() : BelongsTo {
+    public function releaseOrder(): BelongsTo
+    {
         return $this->belongsTo(ReleaseOrder::class);
     }
 }

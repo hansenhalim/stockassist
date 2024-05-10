@@ -1,9 +1,10 @@
 <x-app-layout>
-    <label>
-        Material 3
-        <md-checkbox checked></md-checkbox>
-    </label>
+    <div class="flex justify-between">
+        <div>Welcome, {{ auth()->user()->name }}!</div>
 
-    <md-outlined-button>Back</md-outlined-button>
-    <md-filled-button>Next</md-filled-button>
+        <form action="{{ route('logout') }}" method="post">
+            @csrf
+            <button class="underline font-semibold text-red-500" type="submit">Logout</button>
+        </form>
+    </div>
 </x-app-layout>

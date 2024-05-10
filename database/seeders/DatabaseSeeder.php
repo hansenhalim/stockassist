@@ -63,9 +63,9 @@ class DatabaseSeeder extends Seeder
                 'email' => $business['owner_email'],
             ]);
 
-            $owner->user()->associate($user);
-
             $owner->save();
+
+            $owner->user()->save($user);
 
             $shop = new Shop([
                 'name' => $business['shop_name'],
@@ -85,10 +85,11 @@ class DatabaseSeeder extends Seeder
 
                 $admin = new Admin(['pin' => '123456']);
 
-                $admin->user()->associate($user);
                 $admin->shop()->associate($shop);
 
                 $admin->save();
+
+                $admin->user()->save($user);
 
                 $recipe = new Recipe(['name' => 'HUMBA']);
 
