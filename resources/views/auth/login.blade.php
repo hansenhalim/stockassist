@@ -2,48 +2,39 @@
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
-    <form method="POST" action="{{ route('login') }}">
+    <form method="POST" action="{{ route('login') }}" autocomplete="on">
         @csrf
 
         <!-- Email Address -->
         <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required
-                autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+            @error('email')
+                <md-outlined-text-field class="w-full" type="email" name="email" value="{{ old('email') }}" label="Email"
+                    error error-text="{{ $message }}"></md-outlined-text-field>
+            @else
+                <md-outlined-text-field class="w-full" type="email" name="email" value="{{ old('email') }}"
+                    label="Email"></md-outlined-text-field>
+            @enderror
         </div>
 
         <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required
-                autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
+        @error('password')
+            <md-outlined-text-field class="w-full mt-4" type="password" name="password" label="Password" error
+                error-text="{{ $message }}"></md-outlined-text-field>
+        @else
+            <md-outlined-text-field class="w-full mt-4" type="password" name="password"
+                label="Password"></md-outlined-text-field>
+        @enderror
 
         <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox"
-                    class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800"
-                    name="remember">
-                <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
-            </label>
-        </div>
+        <label class="flex items-center mt-2">
+            <md-checkbox touch-target="wrapper" name="remember"></md-checkbox>
+            Remember me
+        </label>
 
         <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
-                    href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
+            <md-text-button href="{{ route('password.request') }}">Forgot your password?</md-text-button>
 
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
+            <md-filled-button class="ms-1">Log in</md-filled-button>
         </div>
     </form>
 </x-guest-layout>
