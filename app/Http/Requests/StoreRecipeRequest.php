@@ -14,8 +14,8 @@ class StoreRecipeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|max:255',
-            'photo' => 'nullable|image|max:2048',
+            'name' => ['required', 'max:255'],
+            'photo' => ['nullable', 'image', 'max:2048'],
         ];
     }
 }

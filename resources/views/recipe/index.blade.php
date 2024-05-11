@@ -1,5 +1,6 @@
 <x-app-layout>
     <a class="border" href="{{ route('recipes.create') }}">Create Recipe</a>
+
     @if ($recipes->isEmpty())
         <md-outlined-button href="{{ route('recipes.create') }}">
             Create Recipe
@@ -11,7 +12,7 @@
     @else
         <md-list style="max-width: 300px;">
             @foreach ($recipes as $recipe)
-                <md-list-item href="{{ route('recipes.show', $recipe, false) }}">
+                <md-list-item href="{{ route('recipes.show', $recipe) }}">
                     {{ $recipe->name }}
                     <img slot="start" style="width: 56px" src="{{ url('storage/' . $recipe->photo) }}">
                 </md-list-item>
