@@ -14,7 +14,11 @@
             @foreach ($ingredients as $ingredient)
                 <md-list-item href="{{ route('ingredients.show', $ingredient) }}">
                     {{ $ingredient->name }}
-                    <img slot="start" style="width: 56px" src="{{ url('storage/' . $ingredient->photo) }}">
+                    @if ($ingredient->photo)
+                        <img slot="start" style="width: 56px" src="{{ url('storage/' . $ingredient->photo) }}">
+                    @else
+                        <img slot="start" style="width: 56px" src="{{ asset('img/no_img.png') }}">
+                    @endif
                 </md-list-item>
                 @if (!$loop->last)
                     <md-divider></md-divider>
