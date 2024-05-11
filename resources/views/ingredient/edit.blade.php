@@ -5,14 +5,15 @@
 
         <md-outlined-text-field label="Name" name="name" value="{{ $ingredient->name }}"></md-outlined-text-field>
         <md-outlined-text-field label="Barcode" name="barcode" value="{{ $ingredient->barcode }}"></md-outlined-text-field>
-        <md-outlined-text-field label="Description" name="description" value="{{ $ingredient->description }}"></md-outlined-text-field>
+        <md-outlined-text-field label="Description" name="description"
+            value="{{ $ingredient->description }}"></md-outlined-text-field>
 
         <img src="{{ url('storage/' . $ingredient->photo) }}">
 
         <input type="file" name="photo">
 
         @foreach ($measurement_units as $measurement_unit)
-            @if($measurement_unit === $ingredient->unit_of_measure)
+            @if ($measurement_unit === $ingredient->unit_of_measure)
                 <md-radio id="{{ $measurement_unit }}" checked name="unit_of_measure"
                     value="{{ $measurement_unit }}"></md-radio>
             @else

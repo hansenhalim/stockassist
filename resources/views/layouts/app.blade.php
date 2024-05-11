@@ -18,7 +18,13 @@
 
 <body class="flex justify-center font-sans antialiased">
     <div class="relative min-h-screen w-full max-w-md border">
-        @include('layouts.navigation')
+        <!-- Navigation -->
+        @if (request()->routeIs('home') ||
+                request()->routeIs('recipes.index') ||
+                request()->routeIs('ingredients.index') ||
+                request()->routeIs('shops.index'))
+            @include('layouts.navigation')
+        @endif
 
         <!-- Page Heading -->
         @if (isset($header))

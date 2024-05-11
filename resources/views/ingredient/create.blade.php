@@ -9,8 +9,7 @@
         <input type="file" name="photo">
 
         @foreach ($measurement_units as $measurement_unit)
-            <md-radio id="{{ $measurement_unit }}" name="unit_of_measure"
-                value="{{ $measurement_unit }}"></md-radio>
+            <md-radio id="{{ $measurement_unit }}" name="unit_of_measure" value="{{ $measurement_unit }}"></md-radio>
             <label for="{{ $measurement_unit }}">{{ $measurement_unit }}</label>
         @endforeach
 
