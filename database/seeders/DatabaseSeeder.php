@@ -96,7 +96,7 @@ class DatabaseSeeder extends Seeder
                 $admin->user()->save($user);
 
                 $recipe = new Recipe([
-                    'name' => 'Fried rice',
+                    'name' => 'Fried Rice',
                     'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel mollis massa. Cras euismod vehicula est, in placerat libero volutpat quis. Donec ut sapien non magna dictum imperdiet id sit amet tellus. Proin in porttitor est, eu imperdiet sapien posuere.',
                 ]);
 
@@ -106,12 +106,12 @@ class DatabaseSeeder extends Seeder
 
                 $ingredients = [
                     [
-                        'name' => 'Vegetable oil',
+                        'name' => 'Vegetable Oil',
                         'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel mollis massa. Cras euismod vehicula est, in placerat libero volutpat quis. Donec ut sapien non magna dictum imperdiet id sit amet tellus. Proin in porttitor est, eu imperdiet sapien posuere.',
                         'quantity' => 15,
                         'unit_of_measure' => MeasurementUnit::MILLILITER,
                     ], [
-                        'name' => 'Pork liempo',
+                        'name' => 'Pork Liempo',
                         'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel mollis massa. Cras euismod vehicula est, in placerat libero volutpat quis. Donec ut sapien non magna dictum imperdiet id sit amet tellus. Proin in porttitor est, eu imperdiet sapien posuere.',
                         'quantity' => 550,
                         'unit_of_measure' => MeasurementUnit::GRAM,
@@ -126,32 +126,32 @@ class DatabaseSeeder extends Seeder
                         'quantity' => 500,
                         'unit_of_measure' => MeasurementUnit::MILLILITER,
                     ], [
-                        'name' => 'Black peppercorn',
+                        'name' => 'Black Peppercorn',
                         'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel mollis massa. Cras euismod vehicula est, in placerat libero volutpat quis. Donec ut sapien non magna dictum imperdiet id sit amet tellus. Proin in porttitor est, eu imperdiet sapien posuere.',
                         'quantity' => 3,
                         'unit_of_measure' => MeasurementUnit::GRAM,
                     ], [
-                        'name' => 'Star anise',
+                        'name' => 'Star Anise',
                         'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel mollis massa. Cras euismod vehicula est, in placerat libero volutpat quis. Donec ut sapien non magna dictum imperdiet id sit amet tellus. Proin in porttitor est, eu imperdiet sapien posuere.',
                         'quantity' => 1,
                         'unit_of_measure' => MeasurementUnit::GRAM,
                     ], [
-                        'name' => 'Bay leaf',
+                        'name' => 'Bay Leaf',
                         'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel mollis massa. Cras euismod vehicula est, in placerat libero volutpat quis. Donec ut sapien non magna dictum imperdiet id sit amet tellus. Proin in porttitor est, eu imperdiet sapien posuere.',
                         'quantity' => 0.2,
                         'unit_of_measure' => MeasurementUnit::PIECES,
                     ], [
-                        'name' => 'Bango kecap manis',
+                        'name' => 'Bango Kecap Manis',
                         'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel mollis massa. Cras euismod vehicula est, in placerat libero volutpat quis. Donec ut sapien non magna dictum imperdiet id sit amet tellus. Proin in porttitor est, eu imperdiet sapien posuere.',
                         'quantity' => 130,
                         'unit_of_measure' => MeasurementUnit::MILLILITER,
                     ], [
-                        'name' => 'Banana blossoms',
+                        'name' => 'Banana Blossoms',
                         'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel mollis massa. Cras euismod vehicula est, in placerat libero volutpat quis. Donec ut sapien non magna dictum imperdiet id sit amet tellus. Proin in porttitor est, eu imperdiet sapien posuere.',
                         'quantity' => 35,
                         'unit_of_measure' => MeasurementUnit::GRAM,
                     ], [
-                        'name' => 'Roasted reanuts',
+                        'name' => 'Roasted Reanuts',
                         'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel mollis massa. Cras euismod vehicula est, in placerat libero volutpat quis. Donec ut sapien non magna dictum imperdiet id sit amet tellus. Proin in porttitor est, eu imperdiet sapien posuere.',
                         'quantity' => 40,
                         'unit_of_measure' => MeasurementUnit::GRAM,

@@ -14,6 +14,27 @@
                 <md-filled-button>Logout</md-filled-button>
             </form>
         </div>
+
+        <div class="swiper rounded-xl shadow-md mt-6">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="{{ asset('assets/img/info-1.jpg') }}" alt="">
+                </div>
+                <div class="swiper-slide">
+                    <img src="{{ asset('assets/img/info-2.jpg') }}" alt="">
+                </div>
+                <div class="swiper-slide">
+                    <img src="{{ asset('assets/img/info-3.jpg') }}" alt="">
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+
+        @if (true)
+            <div class="mt-4">
+                LOW STOCK ALERT!
+            </div>
+        @endif
     </div>
 
 </x-app-layout>

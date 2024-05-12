@@ -68,6 +68,19 @@ import "@material/web/textfield/outlined-text-field.js";
 
 import { styles as typescaleStyles } from "@material/web/typography/md-typescale-styles.js";
 
+import Swiper from "swiper/bundle";
+import "swiper/css/bundle";
+
+new Swiper(".swiper", {
+    loop: true,
+
+    pagination: {
+        el: ".swiper-pagination",
+    },
+
+    autoplay: true,
+});
+
 document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
 
 window.Alpine = Alpine;
