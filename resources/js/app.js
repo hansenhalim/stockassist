@@ -28,7 +28,7 @@ import "@material/web/fab/branded-fab.js";
 // import "@material/web/field/filled-field.js";
 // import "@material/web/field/outlined-field.js";
 
-import "@material/web/focus/md-focus-ring.js";
+// import "@material/web/focus/md-focus-ring.js";
 
 // import "@material/web/icon/icon.js";
 
@@ -68,10 +68,13 @@ import "@material/web/textfield/outlined-text-field.js";
 
 import { styles as typescaleStyles } from "@material/web/typography/md-typescale-styles.js";
 
-import Swiper from "swiper/bundle";
-import "swiper/css/bundle";
+import Swiper from "swiper";
+import { Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
 
 new Swiper(".swiper", {
+    modules: [Pagination],
     loop: true,
 
     pagination: {

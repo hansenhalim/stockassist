@@ -32,7 +32,7 @@
 
         @if (true)
             <div class="mt-4">
-                LOW STOCK ALERT!
+                LOW STOCK ALERT!!!
             </div>
         @endif
     </div>
