@@ -17,7 +17,6 @@ return new class extends Migration
             $table->foreignIdFor(Ingredient::class);
             $table->foreignIdFor(Recipe::class);
             $table->unsignedBigInteger('quantity');
-            $table->string('description')->nullable();
         });
     }
 

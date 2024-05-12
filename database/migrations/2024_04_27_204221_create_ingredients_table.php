@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('barcode')->nullable();
             $table->string('description')->nullable();
             $table->enum('unit_of_measure', MeasurementUnit::values())->nullable();
-            $table->string('photo')->nullable();
             $table->bigInteger('remaining_amount')->default(0);
+            $table->string('photo')->nullable();
             $table->timestamps();
         });
     }

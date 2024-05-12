@@ -15,6 +15,7 @@ class StoreRecipeRequest extends FormRequest
     {
         return [
             'name' => ['required', 'max:255'],
+            'description' => ['nullable', 'max:255'],
             'photo' => ['nullable', 'image', 'max:2048'],
         ];
     }

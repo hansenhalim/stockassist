@@ -8,22 +8,42 @@
         </div>
     </x-slot>
 
-    <form action="{{ route('recipes.store') }}" method="post" enctype="multipart/form-data">
-        @csrf
+    <div class="mx-auto px-4">
+        <label for="photo">
+            <div class="relative rounded-3xl shadow-md overflow-hidden">
+                <div class="h-56 bg-center" style="background-image: url('{{ asset('assets/img/no_img.png') }}');"></div>
+                <div class="bg-black opacity-50 absolute top-0 w-full h-full"></div>
+                <div
+                    class="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 text-white md-typescale-title-small">
+                    Upload</div>
+            </div>
+        </label>
 
-        <md-outlined-text-field label="Name" name="name"></md-outlined-text-field>
+        <form action="{{ route('recipes.store') }}" method="post" enctype="multipart/form-data">
+            @csrf
 
-        <input type="file" name="photo">
+            <input id="photo" type="file" accept="image/*" name="photo" class="hidden">
 
-        <md-outlined-button>Create</md-outlined-button>
-    </form>
-    @if ($errors->any())
-        <div class="text-red-500">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+            @error('name')
+                <md-outlined-text-field name="name" value="{{ old('name') }}" label="Name" class="mt-8 w-full" error
+                    error-text="{{ $message }}"></md-outlined-text-field>
+            @else
+                <md-outlined-text-field name="name" value="{{ old('name') }}" label="Name"
+                    class="mt-8 w-full"></md-outlined-text-field>
+            @enderror
+
+            @error('description')
+                <md-outlined-text-field name="description" value="{{ old('description') }}" label="Description"
+                    class="mt-4 w-full" error error-text="{{ $message }}"></md-outlined-text-field>
+            @else
+                <md-outlined-text-field name="description" value="{{ old('description') }}" label="Description"
+                    class="mt-4 w-full"></md-outlined-text-field>
+            @enderror
+
+            <div class="flex items-center justify-between mt-6">
+                <md-outlined-button onclick="history.back()">Back</md-outlined-button>
+                <md-filled-button>Save</md-filled-button>
+            </div>
+        </form>
+    </div>
 </x-app-layout>

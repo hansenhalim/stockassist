@@ -95,7 +95,10 @@ class DatabaseSeeder extends Seeder
 
                 $admin->user()->save($user);
 
-                $recipe = new Recipe(['name' => 'HUMBA']);
+                $recipe = new Recipe([
+                    'name' => 'Fried rice',
+                    'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel mollis massa. Cras euismod vehicula est, in placerat libero volutpat quis. Donec ut sapien non magna dictum imperdiet id sit amet tellus. Proin in porttitor est, eu imperdiet sapien posuere.',
+                ]);
 
                 $recipe->shop()->associate($shop);
 
@@ -103,58 +106,58 @@ class DatabaseSeeder extends Seeder
 
                 $ingredients = [
                     [
-                        'name' => 'Vegetable Oil',
-                        'description' => '',
+                        'name' => 'Vegetable oil',
+                        'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel mollis massa. Cras euismod vehicula est, in placerat libero volutpat quis. Donec ut sapien non magna dictum imperdiet id sit amet tellus. Proin in porttitor est, eu imperdiet sapien posuere.',
                         'quantity' => 15,
                         'unit_of_measure' => MeasurementUnit::MILLILITER,
                     ], [
-                        'name' => 'Pork Liempo',
-                        'description' => 'Cut into 2" cubes',
+                        'name' => 'Pork liempo',
+                        'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel mollis massa. Cras euismod vehicula est, in placerat libero volutpat quis. Donec ut sapien non magna dictum imperdiet id sit amet tellus. Proin in porttitor est, eu imperdiet sapien posuere.',
                         'quantity' => 550,
                         'unit_of_measure' => MeasurementUnit::GRAM,
                     ], [
                         'name' => 'Garlic',
-                        'description' => 'Minced',
+                        'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel mollis massa. Cras euismod vehicula est, in placerat libero volutpat quis. Donec ut sapien non magna dictum imperdiet id sit amet tellus. Proin in porttitor est, eu imperdiet sapien posuere.',
                         'quantity' => 35,
                         'unit_of_measure' => MeasurementUnit::GRAM,
                     ], [
                         'name' => 'Water',
-                        'description' => '',
+                        'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel mollis massa. Cras euismod vehicula est, in placerat libero volutpat quis. Donec ut sapien non magna dictum imperdiet id sit amet tellus. Proin in porttitor est, eu imperdiet sapien posuere.',
                         'quantity' => 500,
                         'unit_of_measure' => MeasurementUnit::MILLILITER,
                     ], [
-                        'name' => 'Black Peppercorn',
-                        'description' => 'Whole',
+                        'name' => 'Black peppercorn',
+                        'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel mollis massa. Cras euismod vehicula est, in placerat libero volutpat quis. Donec ut sapien non magna dictum imperdiet id sit amet tellus. Proin in porttitor est, eu imperdiet sapien posuere.',
                         'quantity' => 3,
                         'unit_of_measure' => MeasurementUnit::GRAM,
                     ], [
-                        'name' => 'Star Anise',
-                        'description' => '5 pcs',
+                        'name' => 'Star anise',
+                        'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel mollis massa. Cras euismod vehicula est, in placerat libero volutpat quis. Donec ut sapien non magna dictum imperdiet id sit amet tellus. Proin in porttitor est, eu imperdiet sapien posuere.',
                         'quantity' => 1,
                         'unit_of_measure' => MeasurementUnit::GRAM,
                     ], [
-                        'name' => 'Bay Leaf',
-                        'description' => '4 pcs',
+                        'name' => 'Bay leaf',
+                        'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel mollis massa. Cras euismod vehicula est, in placerat libero volutpat quis. Donec ut sapien non magna dictum imperdiet id sit amet tellus. Proin in porttitor est, eu imperdiet sapien posuere.',
                         'quantity' => 0.2,
                         'unit_of_measure' => MeasurementUnit::PIECES,
                     ], [
-                        'name' => 'Bango Kecap Manis',
-                        'description' => '',
+                        'name' => 'Bango kecap manis',
+                        'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel mollis massa. Cras euismod vehicula est, in placerat libero volutpat quis. Donec ut sapien non magna dictum imperdiet id sit amet tellus. Proin in porttitor est, eu imperdiet sapien posuere.',
                         'quantity' => 130,
                         'unit_of_measure' => MeasurementUnit::MILLILITER,
                     ], [
-                        'name' => 'Banana Blossoms',
-                        'description' => '',
+                        'name' => 'Banana blossoms',
+                        'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel mollis massa. Cras euismod vehicula est, in placerat libero volutpat quis. Donec ut sapien non magna dictum imperdiet id sit amet tellus. Proin in porttitor est, eu imperdiet sapien posuere.',
                         'quantity' => 35,
                         'unit_of_measure' => MeasurementUnit::GRAM,
                     ], [
-                        'name' => 'Roasted Reanuts',
-                        'description' => 'Skinless',
+                        'name' => 'Roasted reanuts',
+                        'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel mollis massa. Cras euismod vehicula est, in placerat libero volutpat quis. Donec ut sapien non magna dictum imperdiet id sit amet tellus. Proin in porttitor est, eu imperdiet sapien posuere.',
                         'quantity' => 40,
                         'unit_of_measure' => MeasurementUnit::GRAM,
                     ], [
                         'name' => 'Cornstarch',
-                        'description' => 'Dissolved in 45&nbsp;ml water (also called SLURRY)',
+                        'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel mollis massa. Cras euismod vehicula est, in placerat libero volutpat quis. Donec ut sapien non magna dictum imperdiet id sit amet tellus. Proin in porttitor est, eu imperdiet sapien posuere.',
                         'quantity' => 10,
                         'unit_of_measure' => MeasurementUnit::GRAM,
                     ],
@@ -170,10 +173,7 @@ class DatabaseSeeder extends Seeder
 
                     $ingredient->save();
 
-                    $ingredient->recipes()->attach($recipe, [
-                        'quantity' => $array['quantity'],
-                        'description' => $array['description'],
-                    ]);
+                    $ingredient->recipes()->attach($recipe, ['quantity' => $array['quantity']]);
                 }
             }
         }

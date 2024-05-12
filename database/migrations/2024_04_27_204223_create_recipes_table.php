@@ -16,6 +16,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Shop::class);
             $table->string('name');
+            $table->string('description')->nullable();
             $table->string('photo')->nullable();
             $table->timestamps();
         });

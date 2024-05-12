@@ -19,8 +19,8 @@ class UpdateIngredientRequest extends FormRequest
             'name' => ['required', 'max:255'],
             'barcode' => ['nullable', 'max:255'],
             'description' => ['nullable', 'max:255'],
-            'photo' => ['nullable', 'image', 'max:2048'],
             'unit_of_measure' => ['required', Rule::enum(MeasurementUnit::class)],
+            'photo' => ['nullable', 'image', 'max:2048'],
         ];
     }
 }

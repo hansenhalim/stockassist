@@ -54,7 +54,7 @@
                     <md-radio id="{{ $measurement_unit }}"
                         name="unit_of_measure"value="{{ $measurement_unit }}"></md-radio>
                     <label for="{{ $measurement_unit }}"
-                        class="ms-2">{{ $measurement_unit->display() }}&nbsp;({{ $measurement_unit }})</label>
+                        class="ms-3">{{ $measurement_unit->display() }}&nbsp;({{ $measurement_unit }})</label>
                 </div>
             @endforeach
 
