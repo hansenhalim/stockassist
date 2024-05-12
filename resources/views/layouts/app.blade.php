@@ -11,6 +11,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet">
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -24,6 +25,15 @@
                 request()->routeIs('ingredients.index') ||
                 request()->routeIs('shops.index'))
             @include('layouts.navigation')
+        @endif
+
+        <!-- Page Heading -->
+        @if (isset($header))
+            <header class="bg-white">
+                <div class="mx-auto py-6 px-4">
+                    {{ $header }}
+                </div>
+            </header>
         @endif
 
         <!-- Page Content -->

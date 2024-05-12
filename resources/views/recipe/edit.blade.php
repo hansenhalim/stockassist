@@ -9,7 +9,7 @@
 
         <input type="file" name="photo">
 
-        <md-outlined-button>Update</md-outlined-button>
+        <md-outlined-button>Save</md-outlined-button>
     </form>
     @if ($errors->any())
         <div class="text-red-500">

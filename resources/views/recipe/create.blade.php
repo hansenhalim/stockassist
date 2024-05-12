@@ -1,4 +1,13 @@
 <x-app-layout>
+    <x-slot name="header">
+        <div class="flex items-center">
+            <md-icon-button onclick="history.back()" class="me-2">
+                <md-icon class="material-icons">arrow_back</md-icon>
+            </md-icon-button>
+            <div class="md-typescale-title-large">Create Recipe</div>
+        </div>
+    </x-slot>
+
     <form action="{{ route('recipes.store') }}" method="post" enctype="multipart/form-data">
         @csrf
 

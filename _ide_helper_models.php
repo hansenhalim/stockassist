@@ -93,8 +93,9 @@ namespace App\Models{
  * @property string $name
  * @property string|null $barcode
  * @property string|null $description
- * @property string|null $unit_of_measure
+ * @property \App\Enums\MeasurementUnit|null $unit_of_measure
  * @property string|null $photo
+ * @property int $remaining_amount
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Recipe> $recipes
@@ -109,6 +110,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Ingredient whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Ingredient whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Ingredient wherePhoto($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Ingredient whereRemainingAmount($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Ingredient whereShopId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Ingredient whereUnitOfMeasure($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Ingredient whereUpdatedAt($value)

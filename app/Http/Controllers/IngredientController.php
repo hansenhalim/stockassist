@@ -5,16 +5,24 @@ namespace App\Http\Controllers;
 use App\Enums\MeasurementUnit;
 use App\Http\Requests\StoreIngredientRequest;
 use App\Http\Requests\UpdateIngredientRequest;
+use App\Models\Admin;
 use App\Models\Ingredient;
+use App\Models\Owner;
 use Illuminate\Http\Request;
 
 class IngredientController extends Controller
 {
     public function index(Request $request)
     {
-        $owner = $request->user()->authenticable;
+        $authenticable = $request->user()->authenticable;
 
-        $ingredients = $owner->selectedShop->ingredients;
+        if ($authenticable instanceof Owner) {
+            $ingredients = $authenticable->selectedShop->ingredients;
+        }
+
+        if ($authenticable instanceof Admin) {
+            $ingredients = $authenticable->shop->ingredients;
+        }
 
         return view('ingredient.index')
             ->with('ingredients', $ingredients);
@@ -23,7 +31,7 @@ class IngredientController extends Controller
     public function create()
     {
         return view('ingredient.create')
-            ->with('measurement_units', MeasurementUnit::values());
+            ->with('measurement_units', MeasurementUnit::cases());
     }
 
     public function store(StoreIngredientRequest $request)
@@ -61,7 +69,7 @@ class IngredientController extends Controller
     {
         return view('ingredient.edit')
             ->with('ingredient', $ingredient)
-            ->with('measurement_units', MeasurementUnit::values());
+            ->with('measurement_units', MeasurementUnit::cases());
     }
 
     public function update(UpdateIngredientRequest $request, Ingredient $ingredient)

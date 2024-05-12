@@ -1,6 +1,6 @@
 <div class="flex justify-evenly fixed z-10 bottom-0 w-full max-w-md surface-container bg-green-50">
     @if (request()->routeIs('home'))
-        <div class="text-center p-2">
+        <div class="text-center py-3">
             <div class="bg-green-100 rounded-full w-16 flex justify-center py-1">
                 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
                     <path d="M160-120v-480l320-240 320 240v480H560v-280H400v280H160Z" />
@@ -10,7 +10,7 @@
         </div>
     @else
         <a href="{{ route('home') }}">
-            <div class="text-center p-2">
+            <div class="text-center py-3">
                 <div class="w-16 flex justify-center py-1">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
                         fill="#5f6368">
@@ -23,7 +23,7 @@
         </a>
     @endif
     @if (request()->routeIs('recipes.index'))
-        <div class="text-center p-2">
+        <div class="text-center py-3">
             <div class="bg-green-100 rounded-full w-16 flex justify-center py-1">
                 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
                     <path
@@ -34,7 +34,7 @@
         </div>
     @else
         <a href="{{ route('recipes.index') }}">
-            <div class="text-center p-2">
+            <div class="text-center py-3">
                 <div class="w-16 flex justify-center py-1">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
                         fill="#5f6368">
@@ -47,7 +47,7 @@
         </a>
     @endif
     @if (request()->routeIs('ingredients.index'))
-        <div class="text-center p-2">
+        <div class="text-center py-3">
             <div class="bg-green-100 rounded-full w-16 flex justify-center py-1">
                 <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -58,7 +58,7 @@
         </div>
     @else
         <a href="{{ route('ingredients.index') }}">
-            <div class="text-center p-2">
+            <div class="text-center py-3">
                 <div class="w-16 flex justify-center py-1">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
                         fill="#5f6368">
@@ -71,7 +71,7 @@
         </a>
     @endif
     @if (request()->routeIs('shops.index'))
-        <div class="text-center p-2">
+        <div class="text-center py-3">
             <div class="bg-green-100 rounded-full w-16 flex justify-center py-1">
                 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
                     <path
@@ -82,7 +82,7 @@
         </div>
     @else
         <a href="{{ route('shops.index') }}">
-            <div class="text-center p-2">
+            <div class="text-center py-3">
                 <div class="w-16 flex justify-center py-1">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
                         fill="#5f6368">

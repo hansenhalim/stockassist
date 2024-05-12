@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreRecipeRequest;
 use App\Http\Requests\UpdateRecipeRequest;
+use App\Models\Admin;
+use App\Models\Owner;
 use App\Models\Recipe;
 use Illuminate\Http\Request;
 
@@ -11,9 +13,15 @@ class RecipeController extends Controller
 {
     public function index(Request $request)
     {
-        $owner = $request->user()->authenticable;
+        $authenticable = $request->user()->authenticable;
 
-        $recipes = $owner->selectedShop->recipes;
+        if ($authenticable instanceof Owner) {
+            $recipes = $authenticable->selectedShop->recipes;
+        }
+
+        if ($authenticable instanceof Admin) {
+            $recipes = $authenticable->shop->recipes;
+        }
 
         return view('recipe.index')
             ->with('recipes', $recipes);
