@@ -22,12 +22,12 @@
         </div>
 
         <div class="flex justify-between items-center mt-4">
-            <div class="md-typescale-title-large">{{ $ingredient->name }}</div>
-            <div class="md-typescale-label-large">
+            <div class="md-typescale-title-medium">{{ $ingredient->name }}</div>
+            <div class="md-typescale-title-medium">
                 {{ $ingredient->remaining_amount }}&nbsp;{{ $ingredient->unit_of_measure }}</div>
         </div>
 
-        <div class="md-typescale-body-medium mt-1">{{ $ingredient->description ?? 'No description' }}</div>
+        <div class="md-typescale-body-medium mt-2">{{ $ingredient->description ?? 'No description' }}</div>
 
         <div class="flex justify-between mt-8">
             <md-outlined-button type="button" onclick="history.back()">Back</md-outlined-button>

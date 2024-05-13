@@ -21,13 +21,11 @@
             @endif
         </div>
 
-        <div class="flex justify-between items-center mt-4">
-            <div class="md-typescale-title-large">{{ $recipe->name }}</div>
-            <div class="md-typescale-label-large">
-                {{ $recipe->remaining_amount }}&nbsp;{{ $recipe->unit_of_measure }}</div>
+        <div class="mt-4">
+            <div class="md-typescale-title-medium">{{ $recipe->name }}</div>
         </div>
 
-        <div class="md-typescale-body-medium mt-1">{{ $recipe->description ?? 'No description' }}</div>
+        <div class="md-typescale-body-medium mt-2">{{ $recipe->description ?? 'No description' }}</div>
 
         <div class="md-typescale-label-large mt-4">Ingredients</div>
 
@@ -50,8 +48,7 @@
                         @method('DELETE')
                         <md-text-button>Delete</md-text-button>
                     </form>
-                    <md-filled-button href="{{ route('recipes.edit', $recipe) }}"
-                        class="ms-1">Edit</md-filled-button>
+                    <md-filled-button href="{{ route('recipes.edit', $recipe) }}" class="ms-1">Edit</md-filled-button>
                 </div>
             @endif
         </div>
