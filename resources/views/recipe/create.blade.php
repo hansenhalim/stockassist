@@ -8,7 +8,7 @@
         </div>
     </x-slot>
 
-    <div class="mx-auto px-4">
+    <div class="mx-auto px-4 mb-8">
         <label for="photo">
             <div class="relative rounded-3xl shadow-md overflow-hidden">
                 <div class="h-56 bg-center bg-cover"

@@ -45,28 +45,28 @@
         <md-list>
             <md-list-item href="/news/1">
                 <div class="md-typescale-label-small" style="color: var(--md-sys-color-secondary);">
-                    Thu, Dec 25, 1975 2:15 PM
+                    Jumat, 10 Mei 2024 21:30 WIB
                 </div>
                 <div slot="headline" class="md-typescale-title-medium line-clamp-2">
-                    H-1 Lebaran Harga Daging Sapi hingga Cabai Makin Mahal!
+                    Harga Cabai Rawit Merah Turun Jadi Segini
                 </div>
                 <img slot="start" class="rounded w-16" src="{{ asset('assets/img/article-thumb-1.jpg') }}">
             </md-list-item>
             <md-list-item href="/news/2">
                 <div class="md-typescale-label-small" style="color: var(--md-sys-color-secondary);">
-                    Thu, Dec 25, 1975 2:15 PM
+                    Senin, 15 Apr 2024 12:15 WIB
                 </div>
                 <div slot="headline" class="md-typescale-title-medium line-clamp-2">
-                    Harga Sembako Jogja Hari Ini 3 April 2024: Telur dan Cabai Merah Turun
+                    Lebaran Telah Usai, Harga Cabai hingga Daging Sapi Mulai Turun
                 </div>
                 <img slot="start" class="rounded w-16" src="{{ asset('assets/img/article-thumb-2.jpg') }}">
             </md-list-item>
             <md-list-item href="/news/3">
                 <div class="md-typescale-label-small" style="color: var(--md-sys-color-secondary);">
-                    Thu, Dec 25, 1975 2:15 PM
+                    Selasa, 19 Mar 2024 12:19 WIB
                 </div>
                 <div slot="headline" class="md-typescale-title-medium line-clamp-2">
-                    Menteri Perdagangan Zulhas Prediksi Harga Bawang Merah Turun dalam Waktu Sepekan
+                    Harga Bahan Pokok Jogja Hari Ini 19 Maret 2024: Cabai Turun, Minyak Naik!
                 </div>
                 <img slot="start" class="rounded w-16" src="{{ asset('assets/img/article-thumb-3.jpg') }}">
             </md-list-item>
