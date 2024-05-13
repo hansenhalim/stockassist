@@ -69,12 +69,14 @@ import "@material/web/textfield/outlined-text-field.js";
 import { styles as typescaleStyles } from "@material/web/typography/md-typescale-styles.js";
 
 import Swiper from "swiper";
-import { Pagination } from "swiper/modules";
+import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
+import "swiper/css/autoplay";
 
 new Swiper(".swiper", {
-    modules: [Pagination],
+    modules: [Pagination, Autoplay],
+
     loop: true,
 
     pagination: {

@@ -12,6 +12,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::view('/news/1', 'article.1');
+Route::view('/news/2', 'article.2');
+Route::view('/news/3', 'article.3');
+
 Route::middleware('auth')->group(function () {
     Route::get('/home', Home::class)->name('home');
 

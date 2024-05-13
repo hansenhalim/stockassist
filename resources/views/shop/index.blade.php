@@ -39,12 +39,7 @@
                         <img slot="start" style="width: 56px" class="rounded-full"
                             src="{{ asset('assets/img/no_img.png') }}">
                     @endif
-
                 </md-list-item>
-
-                @if (!$loop->last)
-                    <md-divider></md-divider>
-                @endif
             @endforeach
         </md-list>
     </div>

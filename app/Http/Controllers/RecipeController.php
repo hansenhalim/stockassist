@@ -42,6 +42,8 @@ class RecipeController extends Controller
 
         $recipe->name = $request->input('name');
 
+        $recipe->description = $request->input('description');
+
         if ($request->file('photo')) {
             $recipe->photo = $request->file('photo')->store('recipes');
         }
@@ -66,6 +68,8 @@ class RecipeController extends Controller
     public function update(UpdateRecipeRequest $request, Recipe $recipe)
     {
         $recipe->name = $request->input('name');
+
+        $recipe->description = $request->input('description');
 
         if ($request->file('photo')) {
             $recipe->photo = $request->file('photo')->store('recipes');

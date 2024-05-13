@@ -1,10 +1,12 @@
 <x-app-layout>
     <x-slot name="header">
         <div class="flex items-center justify-between">
-            <div class="md-typescale-title-large">Ingredient</div>
-            <md-icon-button href="{{ route('ingredients.create') }}">
-                <md-icon class="material-icons">add</md-icon>
-            </md-icon-button>
+            <div class="md-typescale-title-large">Stock</div>
+            @if (auth()->user()->authenticable instanceof App\Models\Owner)
+                <md-icon-button href="{{ route('ingredients.create') }}">
+                    <md-icon class="material-icons">add</md-icon>
+                </md-icon-button>
+            @endif
         </div>
     </x-slot>
 
@@ -27,15 +29,12 @@
                             <img slot="start" style="width: 56px" src="{{ asset('assets/img/no_img.png') }}">
                         @endif
                     </md-list-item>
-                    @if (!$loop->last)
-                        <md-divider></md-divider>
-                    @endif
                 @endforeach
             </md-list>
         @endif
 
         <a href="{{ route('home') }}">
-            <md-fab label="Incoming" variant="primary" class="fixed bottom-24 right-4">
+            <md-fab label="Incoming" variant="primary" class="fixed bottom-28 right-4">
                 <md-icon slot="icon" class="material-icons-outlined">archive</md-icon>
             </md-fab>
         </a>
