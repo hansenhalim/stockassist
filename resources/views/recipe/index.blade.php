@@ -3,22 +3,27 @@
         <div class="flex items-center justify-between">
             <div class="md-typescale-title-large">Recipe</div>
             @if (auth()->user()->authenticable instanceof App\Models\Owner)
-                <md-icon-button href="{{ route('recipes.create') }}">
-                    <md-icon class="material-icons">add</md-icon>
-                </md-icon-button>
+                @unless ($recipes->isEmpty())
+                    <md-icon-button href="{{ route('recipes.create') }}">
+                        <md-icon class="material-icons">add</md-icon>
+                    </md-icon-button>
+                @endunless
             @endif
         </div>
     </x-slot>
 
     <div class="mx-auto px-4 mb-24">
         @if ($recipes->isEmpty())
-            <div class="grid border">
-                <md-outlined-button href="{{ route('recipes.create') }}" class="w-fit">
-                    Create Recipe
+            <div class="flex flex-col justify-center items-center h-[77vh]">
+                <div class="md-typescale-headline-medium" style="color: var(--md-sys-color-on-primary-container);">
+                    No recipes found
+                </div>
+                <md-filled-tonal-button href="{{ route('recipes.create') }}" class="mt-4">
+                    Create recipe
                     <div slot="icon" class="w-6 h-6">
                         <md-icon class="material-icons">add</md-icon>
                     </div>
-                </md-outlined-button>
+                </md-filled-tonal-button>
             </div>
         @else
             <md-list>

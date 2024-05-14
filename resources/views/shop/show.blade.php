@@ -39,11 +39,13 @@
             @endunless
             @if (auth()->user()->authenticable instanceof App\Models\Owner)
                 <div class="flex">
-                    <form action="{{ route('shops.destroy', $shop) }}" method="post">
-                        @csrf
-                        @method('DELETE')
-                        <md-text-button>Delete</md-text-button>
-                    </form>
+                    @unless (auth()->user()->authenticable->selectedShop == $shop)
+                        <form action="{{ route('shops.destroy', $shop) }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <md-text-button>Delete</md-text-button>
+                        </form>
+                    @endunless
                     <md-filled-button href="{{ route('shops.edit', $shop) }}" class="ms-1">Edit</md-filled-button>
                 </div>
             @endif

@@ -3,21 +3,28 @@
         <div class="flex items-center justify-between">
             <div class="md-typescale-title-large">Stock</div>
             @if (auth()->user()->authenticable instanceof App\Models\Owner)
-                <md-icon-button href="{{ route('ingredients.create') }}">
-                    <md-icon class="material-icons">add</md-icon>
-                </md-icon-button>
+                @unless ($ingredients->isEmpty())
+                    <md-icon-button href="{{ route('ingredients.create') }}">
+                        <md-icon class="material-icons">add</md-icon>
+                    </md-icon-button>
+                @endunless
             @endif
         </div>
     </x-slot>
 
     <div class="mx-auto px-4 mb-24">
         @if ($ingredients->isEmpty())
-            <md-outlined-button href="{{ route('ingredients.create') }}">
-                Create Ingredient
-                <div slot="icon" class="w-6 h-6">
-                    <md-icon class="material-icons">add</md-icon>
+            <div class="flex flex-col justify-center items-center h-[77vh]">
+                <div class="md-typescale-headline-medium" style="color: var(--md-sys-color-on-primary-container);">
+                    No stock found
                 </div>
-            </md-outlined-button>
+                <md-filled-tonal-button href="{{ route('ingredients.create') }}" class="mt-4">
+                    Create stock
+                    <div slot="icon" class="w-6 h-6">
+                        <md-icon class="material-icons">add</md-icon>
+                    </div>
+                </md-filled-tonal-button>
+            </div>
         @else
             <md-list>
                 @foreach ($ingredients as $ingredient)

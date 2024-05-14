@@ -52,6 +52,10 @@ class ShopController extends Controller
 
         $shop->save();
 
+        $owner->selectedShop()->associate($shop);
+
+        $owner->save();
+
         return back();
     }
 

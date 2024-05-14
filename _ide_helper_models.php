@@ -94,8 +94,8 @@ namespace App\Models{
  * @property string|null $barcode
  * @property string|null $description
  * @property \App\Enums\MeasurementUnit|null $unit_of_measure
- * @property string|null $photo
  * @property int $remaining_amount
+ * @property string|null $photo
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Recipe> $recipes
@@ -124,12 +124,10 @@ namespace App\Models{
  *
  * @property int $ingredient_id
  * @property int $recipe_id
- * @property int $quantity
- * @property string|null $description
+ * @property string $quantity
  * @method static \Illuminate\Database\Eloquent\Builder|IngredientRecipe newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|IngredientRecipe newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|IngredientRecipe query()
- * @method static \Illuminate\Database\Eloquent\Builder|IngredientRecipe whereDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder|IngredientRecipe whereIngredientId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|IngredientRecipe whereQuantity($value)
  * @method static \Illuminate\Database\Eloquent\Builder|IngredientRecipe whereRecipeId($value)
@@ -169,6 +167,7 @@ namespace App\Models{
  * @property int $id
  * @property int $shop_id
  * @property string $name
+ * @property string|null $description
  * @property string|null $photo
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
@@ -179,6 +178,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Recipe newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Recipe query()
  * @method static \Illuminate\Database\Eloquent\Builder|Recipe whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Recipe whereDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Recipe whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Recipe whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Recipe wherePhoto($value)
