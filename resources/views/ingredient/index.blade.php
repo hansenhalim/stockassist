@@ -14,7 +14,7 @@
 
     <div class="mx-auto px-4 mb-24">
         @if ($ingredients->isEmpty())
-            <div class="flex flex-col justify-center items-center h-[77vh]">
+            <div class="flex flex-col justify-center items-center h-[70dvh]">
                 <div class="md-typescale-headline-medium" style="color: var(--md-sys-color-on-primary-container);">
                     No stock found
                 </div>
