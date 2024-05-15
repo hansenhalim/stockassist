@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('admins', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Shop::class);
-            $table->string('pin');
+            $table->string('pin')->nullable();
         });
     }
 

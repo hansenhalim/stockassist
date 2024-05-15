@@ -14,11 +14,11 @@
 
     <div class="mx-auto px-4 mb-24">
         @if ($ingredients->isEmpty())
-            <div class="flex flex-col justify-center items-center h-[70svh]">
+            <div class="flex flex-col justify-center items-center my-[35svh]">
                 <div class="md-typescale-body-large" style="color: var(--md-sys-color-outline);">
                     No stock found
                 </div>
-                <md-filled-tonal-button href="{{ route('ingredients.create') }}" class="mt-4">
+                <md-filled-tonal-button href="{{ route('ingredients.create') }}" class="mt-2">
                     Create stock
                     <div slot="icon" class="w-6 h-6">
                         <md-icon class="material-icons">add</md-icon>

@@ -27,7 +27,8 @@
 
         <div class="flex justify-between items-center mt-4">
             <div class="md-typescale-title-medium">{{ $shop->name }}</div>
-            <div class="md-typescale-title-medium">{{ $shop->zip_code }}</div>
+            <div class="md-typescale-title-medium">
+                {{ $shop->zip_code }}</div>
         </div>
 
         <div class="md-typescale-body-medium mt-2">{{ $shop->address ?? 'No address' }}</div>

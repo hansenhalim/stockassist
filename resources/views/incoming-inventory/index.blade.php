@@ -8,9 +8,9 @@
         </div>
     </x-slot>
 
-    <div class="mx-auto px-4 mb-24">
+    <div class="mx-auto px-4">
         @if ($incomingInventories->isEmpty())
-            <div class="flex flex-col justify-center items-center h-[70svh]">
+            <div class="flex flex-col justify-center items-center my-[40svh]">
                 <div class="md-typescale-body-large" style="color: var(--md-sys-color-outline);">
                     History is empty
                 </div>

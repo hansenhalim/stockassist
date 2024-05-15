@@ -12,11 +12,11 @@
     </x-slot>
 
     <div class="mx-auto px-4 mb-8">
-        <div class="flex flex-col justify-center items-center h-[74svh]">
+        <div class="flex flex-col justify-center items-center my-[37svh]">
             <div class="md-typescale-body-large" style="color: var(--md-sys-color-outline);">
                 No item found
             </div>
-            <md-filled-tonal-button href="{{ route('incoming-inventory-items.index') }}" class="mt-4">
+            <md-filled-tonal-button href="{{ route('incoming-inventory-items.index') }}" class="mt-2">
                 Add item
                 <div slot="icon" class="w-6 h-6">
                     <md-icon class="material-icons">add</md-icon>

@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('owners', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Shop::class, 'selected_shop_id')->nullable();
-            $table->string('phone');
+            $table->string('phone')->nullable();
         });
     }
 

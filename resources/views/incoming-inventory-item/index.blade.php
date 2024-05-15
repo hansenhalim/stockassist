@@ -16,7 +16,7 @@
                 <div class="md-typescale-body-large" style="color: var(--md-sys-color-outline);">
                     You don't have a store
                 </div>
-                <md-filled-tonal-button href="{{ route('shops.create') }}" class="mt-2">
+                <md-filled-tonal-button href="{{ route('shops.create') }}" class="mt-4">
                     Create store
                     <div slot="icon" class="w-6 h-6">
                         <md-icon class="material-icons">add</md-icon>
