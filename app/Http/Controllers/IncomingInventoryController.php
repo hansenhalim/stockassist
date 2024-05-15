@@ -11,14 +11,18 @@ class IncomingInventoryController extends Controller
     {
         $shop = $request->user()->authable->shop;
 
+        $incomingInventories = $shop->incomingInventories()
+            ->whereNotNull('finalized_at')
+            ->get();
+
         return view('incoming-inventory.index')
-            ->with('incoming-inventory', $shop->incomingInventories);
+            ->with('incomingInventories', $incomingInventories);
     }
 
     public function show(IncomingInventory $incomingInventory)
     {
         return view('incoming-inventory.show')
-            ->with('incoming-inventory', $incomingInventory);
+            ->with('incomingInventory', $incomingInventory);
     }
 
     public function edit(Request $request)
@@ -31,7 +35,7 @@ class IncomingInventoryController extends Controller
 
         if ($incomingInventory) {
             return view('incoming-inventory.edit')
-                ->with('incoming-inventory', $incomingInventory);
+                ->with('incomingInventory', $incomingInventory);
         }
 
         $incomingInventory = new IncomingInventory;
@@ -41,7 +45,7 @@ class IncomingInventoryController extends Controller
         $incomingInventory->save();
 
         return view('incoming-inventory.edit')
-            ->with('incoming-inventory', $incomingInventory);
+            ->with('incomingInventory', $incomingInventory);
     }
 
     public function update(Request $request)

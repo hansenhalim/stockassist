@@ -13,7 +13,7 @@
     <div class="mx-auto px-4 mb-24">
         @if ($shops->isEmpty())
             <div class="flex flex-col justify-center items-center h-[70svh]">
-                <div class="md-typescale-headline-medium" style="color: var(--md-sys-color-on-primary-container);">
+                <div class="md-typescale-body-large" style="color: var(--md-sys-color-outline);">
                     You don't have a store
                 </div>
                 <md-filled-tonal-button href="{{ route('shops.create') }}" class="mt-4">
