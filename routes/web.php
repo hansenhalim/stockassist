@@ -1,9 +1,12 @@
 <?php
 
 use App\Http\Controllers\Home;
+use App\Http\Controllers\IncomingInventoryController;
+use App\Http\Controllers\IncomingInventoryItemController;
 use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RecipeController;
+use App\Http\Controllers\ReleaseOrderController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\SwitchShop;
 use Illuminate\Support\Facades\Route;
@@ -24,6 +27,13 @@ Route::middleware('auth')->group(function () {
     Route::resource('shops', ShopController::class);
     Route::resource('ingredients', IngredientController::class);
     Route::resource('recipes', RecipeController::class);
+
+    Route::get('/incoming-inventories', [IncomingInventoryController::class, 'index'])->name('incoming-inventories.index');
+    Route::get('/incoming-inventories/edit', [IncomingInventoryController::class, 'edit'])->name('incoming-inventories.edit');
+    Route::put('/incoming-inventories', [IncomingInventoryController::class, 'update'])->name('incoming-inventories.update');
+
+    Route::resource('incoming-inventory-items', IncomingInventoryItemController::class);
+    // Route::resource('release-orders', ReleaseOrderController::class);
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

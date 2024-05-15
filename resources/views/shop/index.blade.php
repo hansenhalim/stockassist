@@ -12,7 +12,7 @@
 
     <div class="mx-auto px-4 mb-24">
         @if ($shops->isEmpty())
-            <div class="flex flex-col justify-center items-center h-[70dvh]">
+            <div class="flex flex-col justify-center items-center h-[70svh]">
                 <div class="md-typescale-headline-medium" style="color: var(--md-sys-color-on-primary-container);">
                     You don't have a store
                 </div>
@@ -29,11 +29,14 @@
 
                 <md-outlined-select label="Currently at" name="shop_id" onchange="this.form.submit()">
                     @foreach ($shops as $shop)
-                        @if ($shop->id === $selectedShop->id)
-                            <md-select-option selected
-                                value="{{ $shop->id }}">{{ $shop->name }}</md-select-option>
+                        @if ($shop == $selectedShop)
+                            <md-select-option value="{{ $shop->id }}" selected>
+                                {{ $shop->name }}
+                            </md-select-option>
                         @else
-                            <md-select-option value="{{ $shop->id }}">{{ $shop->name }}</md-select-option>
+                            <md-select-option value="{{ $shop->id }}">
+                                {{ $shop->name }}
+                            </md-select-option>
                         @endif
                     @endforeach
                 </md-outlined-select>

@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Shop;
 use Illuminate\Http\Request;
 
 class SwitchShop extends Controller
 {
     public function __invoke(Request $request)
     {
-        $owner = $request->user()->authenticable;
+        $shop = Shop::findOrFail($request->input('shop_id'));
 
-        $owner->selectedShop()->associate($request->input('shop_id'));
+        $owner = $request->user()->authable;
+
+        $owner->selectedShop()->associate($shop);
 
         $owner->save();
 

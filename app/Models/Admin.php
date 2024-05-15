@@ -13,6 +13,6 @@ class Admin extends User
 
     public function user(): MorphOne
     {
-        return $this->morphOne(User::class, 'authenticable');
+        return $this->morphOne(User::class, 'authable');
     }
 }

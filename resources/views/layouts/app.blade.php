@@ -18,7 +18,7 @@
 </head>
 
 <body class="flex justify-center font-sans antialiased">
-    <div class="min-h-screen border-x w-full max-w-md">
+    <div class="min-h-svh border-x w-full max-w-md">
         <!-- Navigation -->
         @if (request()->routeIs('home') ||
                 request()->routeIs('recipes.index') ||

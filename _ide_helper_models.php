@@ -19,7 +19,7 @@ namespace App\Models{
  * @property int $shop_id
  * @property string $pin
  * @property mixed $password
- * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent $authenticable
+ * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent $authable
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
  * @property-read \App\Models\Shop|null $shop
@@ -40,13 +40,17 @@ namespace App\Models{
  *
  * @property int $id
  * @property int $shop_id
+ * @property \Illuminate\Support\Carbon|null $finalized_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\IncomingInventoryItem> $incomingInventoryItems
+ * @property-read int|null $incoming_inventory_items_count
  * @property-read \App\Models\Shop|null $shop
  * @method static \Illuminate\Database\Eloquent\Builder|IncomingInventory newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|IncomingInventory newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|IncomingInventory query()
  * @method static \Illuminate\Database\Eloquent\Builder|IncomingInventory whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|IncomingInventory whereFinalizedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|IncomingInventory whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|IncomingInventory whereShopId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|IncomingInventory whereUpdatedAt($value)
@@ -143,10 +147,11 @@ namespace App\Models{
  * @property int|null $selected_shop_id
  * @property string $phone
  * @property mixed $password
- * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent $authenticable
+ * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent $authable
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
  * @property-read \App\Models\Shop|null $selectedShop
+ * @property-read \App\Models\Shop|null $shop
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Shop> $shops
  * @property-read int|null $shops_count
  * @property-read \App\Models\User|null $user
@@ -194,13 +199,17 @@ namespace App\Models{
  *
  * @property int $id
  * @property int $shop_id
+ * @property \Illuminate\Support\Carbon|null $finalized_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ReleaseOrderItem> $releaseOrderItems
+ * @property-read int|null $release_order_items_count
  * @property-read \App\Models\Shop|null $shop
  * @method static \Illuminate\Database\Eloquent\Builder|ReleaseOrder newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ReleaseOrder newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ReleaseOrder query()
  * @method static \Illuminate\Database\Eloquent\Builder|ReleaseOrder whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ReleaseOrder whereFinalizedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ReleaseOrder whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ReleaseOrder whereShopId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ReleaseOrder whereUpdatedAt($value)
@@ -219,6 +228,8 @@ namespace App\Models{
  * @property string|null $recipe_photo
  * @property int $quantity
  * @property-read \App\Models\ReleaseOrder|null $releaseOrder
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ReleaseOrderItemDetail> $releaseOrderItemDetails
+ * @property-read int|null $release_order_item_details_count
  * @method static \Illuminate\Database\Eloquent\Builder|ReleaseOrderItem newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ReleaseOrderItem newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ReleaseOrderItem query()
@@ -274,6 +285,8 @@ namespace App\Models{
  * @property string|null $photo
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\IncomingInventory> $incomingInventories
+ * @property-read int|null $incoming_inventories_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Ingredient> $ingredients
  * @property-read int|null $ingredients_count
  * @property-read \App\Models\Owner|null $owner
@@ -299,8 +312,8 @@ namespace App\Models{
  * 
  *
  * @property int $id
- * @property string|null $authenticable_type
- * @property int|null $authenticable_id
+ * @property string|null $authable_type
+ * @property int|null $authable_id
  * @property string $name
  * @property string $email
  * @property \Illuminate\Support\Carbon|null $email_verified_at
@@ -308,15 +321,15 @@ namespace App\Models{
  * @property string|null $remember_token
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent $authenticable
+ * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent $authable
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
  * @method static \Database\Factories\UserFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User query()
- * @method static \Illuminate\Database\Eloquent\Builder|User whereAuthenticableId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereAuthenticableType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereAuthableId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereAuthableType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmailVerifiedAt($value)

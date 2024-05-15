@@ -37,9 +37,9 @@
             @unless (request()->routeIs('shops.index'))
                 <md-outlined-button type="button" onclick="history.back()">Back</md-outlined-button>
             @endunless
-            @if (auth()->user()->authenticable instanceof App\Models\Owner)
+            @if (auth()->user()->authable instanceof App\Models\Owner)
                 <div class="flex">
-                    @unless (auth()->user()->authenticable->selectedShop == $shop)
+                    @unless (auth()->user()->authable->selectedShop == $shop)
                         <form action="{{ route('shops.destroy', $shop) }}" method="post">
                             @csrf
                             @method('DELETE')

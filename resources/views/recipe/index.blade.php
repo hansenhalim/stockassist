@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex items-center justify-between">
             <div class="md-typescale-title-large">Recipe</div>
-            @if (auth()->user()->authenticable instanceof App\Models\Owner)
+            @if (auth()->user()->authable instanceof App\Models\Owner)
                 @unless ($recipes->isEmpty())
                     <md-icon-button href="{{ route('recipes.create') }}">
                         <md-icon class="material-icons">add</md-icon>
@@ -14,7 +14,7 @@
 
     <div class="mx-auto px-4 mb-24">
         @if ($recipes->isEmpty())
-            <div class="flex flex-col justify-center items-center h-[70dvh]">
+            <div class="flex flex-col justify-center items-center h-[70svh]">
                 <div class="md-typescale-headline-medium" style="color: var(--md-sys-color-on-primary-container);">
                     No recipes found
                 </div>

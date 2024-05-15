@@ -22,4 +22,9 @@ class Shop extends Model
     {
         return $this->hasMany(Ingredient::class);
     }
+
+    public function incomingInventories(): HasMany
+    {
+        return $this->hasMany(IncomingInventory::class);
+    }
 }

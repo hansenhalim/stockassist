@@ -5,27 +5,17 @@ namespace App\Http\Controllers;
 use App\Enums\MeasurementUnit;
 use App\Http\Requests\StoreIngredientRequest;
 use App\Http\Requests\UpdateIngredientRequest;
-use App\Models\Admin;
 use App\Models\Ingredient;
-use App\Models\Owner;
 use Illuminate\Http\Request;
 
 class IngredientController extends Controller
 {
     public function index(Request $request)
     {
-        $authenticable = $request->user()->authenticable;
-
-        if ($authenticable instanceof Owner) {
-            $ingredients = $authenticable->selectedShop->ingredients;
-        }
-
-        if ($authenticable instanceof Admin) {
-            $ingredients = $authenticable->shop->ingredients;
-        }
+        $shop = $request->user()->authable->shop;
 
         return view('ingredient.index')
-            ->with('ingredients', $ingredients);
+            ->with('ingredients', $shop->ingredients);
     }
 
     public function create()
@@ -36,11 +26,11 @@ class IngredientController extends Controller
 
     public function store(StoreIngredientRequest $request)
     {
-        $owner = $request->user()->authenticable;
+        $shop = $request->user()->authable->shop;
 
         $ingredient = new Ingredient();
 
-        $ingredient->shop()->associate($owner->selectedShop);
+        $ingredient->shop()->associate($shop);
 
         $ingredient->name = $request->input('name');
 

@@ -13,17 +13,17 @@ class ShopController extends Controller
 {
     public function index(Request $request)
     {
-        $authenticable = $request->user()->authenticable;
+        $authable = $request->user()->authable;
 
-        if ($authenticable instanceof Admin) {
+        if ($authable instanceof Admin) {
             return view('shop.show')
-                ->with('shop', $authenticable->shop);
+                ->with('shop', $authable->shop);
         }
 
-        if ($authenticable instanceof Owner) {
+        if ($authable instanceof Owner) {
             return view('shop.index')
-                ->with('shops', $authenticable->shops)
-                ->with('selectedShop', $authenticable->selectedShop);
+                ->with('shops', $authable->shops)
+                ->with('selectedShop', $authable->selectedShop);
         }
     }
 
@@ -34,7 +34,7 @@ class ShopController extends Controller
 
     public function store(StoreShopRequest $request)
     {
-        $owner = $request->user()->authenticable;
+        $owner = $request->user()->authable;
 
         $shop = new Shop;
 

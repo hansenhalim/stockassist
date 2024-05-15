@@ -41,7 +41,7 @@
 
         <div class="flex justify-between mt-8">
             <md-outlined-button type="button" onclick="history.back()">Back</md-outlined-button>
-            @if (auth()->user()->authenticable instanceof App\Models\Owner)
+            @if (auth()->user()->authable instanceof App\Models\Owner)
                 <div class="flex">
                     <form action="{{ route('recipes.destroy', $recipe) }}" method="post">
                         @csrf

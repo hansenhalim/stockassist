@@ -15,6 +15,7 @@ return new class extends Migration
         Schema::create('incoming_inventories', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Shop::class);
+            $table->timestamp('finalized_at')->nullable();
             $table->timestamps();
         });
     }

@@ -12,7 +12,7 @@ class Owner extends User
 
     public function user(): MorphOne
     {
-        return $this->morphOne(User::class, 'authenticable');
+        return $this->morphOne(User::class, 'authable');
     }
 
     public function shops(): HasMany
@@ -23,5 +23,10 @@ class Owner extends User
     public function selectedShop(): BelongsTo
     {
         return $this->belongsTo(Shop::class);
+    }
+
+    public function shop(): BelongsTo
+    {
+        return $this->selectedShop();
     }
 }
