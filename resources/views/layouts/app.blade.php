@@ -18,7 +18,7 @@
 </head>
 
 <body class="flex justify-center font-sans antialiased">
-    <div class="min-h-svh border-x w-full max-w-md">
+    <div class="min-h-svh w-full max-w-md">
         <!-- Navigation -->
         @if (request()->routeIs('home') ||
                 request()->routeIs('recipes.index') ||
@@ -30,7 +30,7 @@
         <!-- Page Heading -->
         @if (isset($header))
             <header class="bg-white">
-                <div class="mx-auto py-6 px-4">
+                <div class="mx-auto py-3 px-4">
                     {{ $header }}
                 </div>
             </header>

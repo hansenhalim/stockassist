@@ -40,10 +40,12 @@
             </md-list>
         @endif
 
-        <a href="{{ route('home') }}">
-            <md-fab label="Release" variant="primary" class="fixed bottom-28 right-4">
-                <md-icon slot="icon" class="material-icons-outlined">unarchive</md-icon>
-            </md-fab>
-        </a>
+        @unless ($recipes->isEmpty())
+            <a href="{{ route('home') }}">
+                <md-fab label="Release" variant="primary" class="fixed bottom-28 right-4">
+                    <md-icon slot="icon" class="material-icons-outlined">unarchive</md-icon>
+                </md-fab>
+            </a>
+        @endunless
     </div>
 </x-app-layout>

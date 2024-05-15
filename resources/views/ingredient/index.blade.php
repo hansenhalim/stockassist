@@ -40,10 +40,12 @@
             </md-list>
         @endif
 
-        <a href="{{ route('incoming-inventories.edit') }}">
-            <md-fab label="Incoming" variant="primary" class="fixed bottom-28 right-4">
-                <md-icon slot="icon" class="material-icons-outlined">archive</md-icon>
-            </md-fab>
-        </a>
+        @unless ($ingredients->isEmpty())
+            <a href="{{ route('incoming-inventories.edit') }}">
+                <md-fab label="Incoming" variant="primary" class="fixed bottom-28 right-4">
+                    <md-icon slot="icon" class="material-icons-outlined">archive</md-icon>
+                </md-fab>
+            </a>
+        @endunless
     </div>
 </x-app-layout>

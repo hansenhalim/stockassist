@@ -4,55 +4,45 @@
             <md-icon-button onclick="history.back()" class="me-2">
                 <md-icon class="material-icons">arrow_back</md-icon>
             </md-icon-button>
-            <div class="md-typescale-title-large">Create Store</div>
+            <div class="md-typescale-title-large">{{ $ingredient->name }}</div>
         </div>
     </x-slot>
 
     <div class="mx-auto px-4 mb-8">
-        <label for="photo">
-            <div class="relative rounded-3xl shadow-md overflow-hidden">
+        <div class="rounded-3xl shadow-md overflow-hidden">
+            @if ($ingredient->photo)
+                <div class="h-56 bg-center bg-cover"
+                    style="background-image: url('{{ url('storage/' . $ingredient->photo) }}');">
+                </div>
+            @else
                 <div class="h-56 bg-center bg-cover"
                     style="background-image: url('{{ asset('assets/img/no_img.png') }}');">
                 </div>
-                <div class="bg-black opacity-50 absolute top-0 w-full h-full"></div>
-                <div
-                    class="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 text-white md-typescale-title-small">
-                    Upload</div>
-            </div>
-        </label>
+            @endif
+        </div>
 
-        <form action="{{ route('shops.store') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('incoming-inventory-items.store', ['ingredient_id' => $ingredient]) }}" method="post">
             @csrf
 
-            <input id="photo" type="file" accept="image/*" name="photo" class="hidden">
+            <div class="flex items-center justify-center mt-8">
+                @error('quantity')
+                    <md-outlined-text-field name="quantity" min=1 value="{{ old('quantity', 1) }}" type="number"
+                        label="Quantity" class="flex-grow" error error-text="{{ $message }}"></md-outlined-text-field>
+                @else
+                    <md-outlined-text-field name="quantity" min=1 value="{{ old('quantity', 1) }}" type="number"
+                        label="Quantity" class="flex-grow"></md-outlined-text-field>
+                @enderror
+                <div class="w-14 text-center md-typescale-label-large">{{ $ingredient->unit_of_measure }}</div>
+            </div>
 
-            @error('name')
-                <md-outlined-text-field name="name" value="{{ old('name') }}" label="Name" class="mt-8 w-full" error
-                    error-text="{{ $message }}"></md-outlined-text-field>
-            @else
-                <md-outlined-text-field name="name" value="{{ old('name') }}" label="Name"
-                    class="mt-8 w-full"></md-outlined-text-field>
-            @enderror
-
-            @error('address')
-                <md-outlined-text-field name="address" value="{{ old('address') }}" label="Address" class="mt-4 w-full"
-                    error error-text="{{ $message }}"></md-outlined-text-field>
-            @else
-                <md-outlined-text-field name="address" value="{{ old('address') }}" label="Address"
-                    class="mt-4 w-full"></md-outlined-text-field>
-            @enderror
-
-            @error('zip_code')
-                <md-outlined-text-field name="zip_code" value="{{ old('zip_code') }}" label="Zip Code" class="mt-4 w-full"
-                    error error-text="{{ $message }}"></md-outlined-text-field>
-            @else
-                <md-outlined-text-field name="zip_code" value="{{ old('zip_code') }}" label="Zip Code"
-                    class="mt-4 w-full"></md-outlined-text-field>
-            @enderror
-
-            <div class="flex items-center justify-between mt-8">
+            <div class="flex justify-between mt-8">
                 <md-outlined-button type="button" onclick="history.back()">Back</md-outlined-button>
-                <md-filled-button>Save</md-filled-button>
+                <md-filled-button>
+                    Confirm
+                    <div slot="icon" class="w-6 h-6">
+                        <md-icon class="material-icons">check</md-icon>
+                    </div>
+                </md-filled-button>
             </div>
         </form>
     </div>

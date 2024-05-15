@@ -12,17 +12,47 @@
     </x-slot>
 
     <div class="mx-auto px-4 mb-8">
-        <div class="flex flex-col justify-center items-center my-[37svh]">
-            <div class="md-typescale-body-large" style="color: var(--md-sys-color-outline);">
-                No item found
-            </div>
-            <md-filled-tonal-button href="{{ route('incoming-inventory-items.index') }}" class="mt-2">
-                Add item
-                <div slot="icon" class="w-6 h-6">
-                    <md-icon class="material-icons">add</md-icon>
+        @if ($incomingInventory->incomingInventoryItems->isEmpty())
+            <div class="flex flex-col justify-center items-center my-[37svh]">
+                <div class="md-typescale-body-large" style="color: var(--md-sys-color-outline);">
+                    No item found
                 </div>
-            </md-filled-tonal-button>
-        </div>
+                <md-filled-tonal-button href="{{ route('incoming-inventory-items.index') }}" class="mt-2">
+                    Add item
+                    <div slot="icon" class="w-6 h-6">
+                        <md-icon class="material-icons">add</md-icon>
+                    </div>
+                </md-filled-tonal-button>
+            </div>
+        @else
+            <div class="grid grid-cols-2 gap-2.5">
+                @foreach ($incomingInventory->incomingInventoryItems as $incomingInventoryItem)
+                    <a href="{{ route('incoming-inventory-items.edit', $incomingInventoryItem) }}">
+                        <div class="w-full rounded-lg overflow-hidden shadow-md border"
+                            style="background-color: var(--md-sys-color-surface-container-low);">
+                            @if ($incomingInventoryItem->ingredient->photo)
+                                <div class="aspect-square bg-center bg-cover"
+                                    style="background-image: url('{{ url('storage/' . $incomingInventoryItem->ingredient->photo) }}');">
+                                </div>
+                            @else
+                                <div class="aspect-square bg-center bg-cover"
+                                    style="background-image: url('{{ asset('assets/img/no_img.png') }}');">
+                                </div>
+                            @endif
+                            <div class="p-4">
+                                <div class="md-typescale-body-large" style="color: var(--md-sys-color-on-surface);">
+                                    {{ $incomingInventoryItem->ingredient->name }}
+                                </div>
+                                <div class="md-typescale-body-medium"
+                                    style="color: var(--md-sys-color-on-surface-variant);">
+                                    {{ $incomingInventoryItem->ingredient->description }}
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                @endforeach
+            </div>
+        @endif
     </div>
 
     <div class="flex items-center justify-between fixed bottom-0 w-full max-w-md px-4 py-3"
@@ -35,11 +65,11 @@
             @csrf
             @method('PUT')
 
-            <button type="submit">
+            <div onclick="this.parentNode.submit()">
                 <md-fab variant="secondary" lowered>
                     <md-icon slot="icon" class="material-icons">check</md-icon>
                 </md-fab>
-            </button>
+            </div>
         </form>
     </div>
 </x-app-layout>

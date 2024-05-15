@@ -50,6 +50,8 @@ class IncomingInventoryController extends Controller
 
     public function update(Request $request)
     {
+        // TODO: Increment target ingredient remaining_amount
+
         $shop = $request->user()->authable->shop;
 
         $incomingInventory = $shop->incomingInventories()

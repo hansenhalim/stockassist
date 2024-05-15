@@ -1,64 +1,40 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex items-center justify-between">
-            <div class="md-typescale-title-large">Store</div>
-            @unless ($shops->isEmpty())
-                <md-icon-button href="{{ route('shops.create') }}">
-                    <md-icon class="material-icons">add</md-icon>
-                </md-icon-button>
-            @endunless
+        <div class="flex items-center">
+            <md-icon-button onclick="history.back()" class="me-2">
+                <md-icon class="material-icons">arrow_back</md-icon>
+            </md-icon-button>
+            <div class="md-typescale-title-large">Choose Stock</div>
         </div>
     </x-slot>
 
-    <div class="mx-auto px-4 mb-24">
-        @if ($shops->isEmpty())
-            <div class="flex flex-col justify-center items-center my-[35svh]">
-                <div class="md-typescale-body-large" style="color: var(--md-sys-color-outline);">
-                    You don't have a store
-                </div>
-                <md-filled-tonal-button href="{{ route('shops.create') }}" class="mt-4">
-                    Create store
-                    <div slot="icon" class="w-6 h-6">
-                        <md-icon class="material-icons">add</md-icon>
+    <div class="mx-auto px-4 mb-8">
+        <div class="grid grid-cols-2 gap-2.5">
+            @foreach ($ingredients as $ingredient)
+                <a href="{{ route('incoming-inventory-items.create', ['ingredient_id' => $ingredient]) }}">
+                    <div class="w-full rounded-lg overflow-hidden shadow-md border"
+                        style="background-color: var(--md-sys-color-surface-container-low);">
+                        @if ($ingredient->photo)
+                            <div class="aspect-square bg-center bg-cover"
+                                style="background-image: url('{{ url('storage/' . $ingredient->photo) }}');">
+                            </div>
+                        @else
+                            <div class="aspect-square bg-center bg-cover"
+                                style="background-image: url('{{ asset('assets/img/no_img.png') }}');">
+                            </div>
+                        @endif
+                        <div class="p-4">
+                            <div class="md-typescale-body-large" style="color: var(--md-sys-color-on-surface);">
+                                {{ $ingredient->name }}
+                            </div>
+                            <div class="md-typescale-body-medium"
+                                style="color: var(--md-sys-color-on-surface-variant);">
+                                {{ $ingredient->description }}
+                            </div>
+                        </div>
                     </div>
-                </md-filled-tonal-button>
-            </div>
-        @else
-            <form action="{{ route('shop.switch') }}" method="post">
-                @csrf
-
-                <md-outlined-select label="Currently at" name="shop_id" onchange="this.form.submit()">
-                    @foreach ($shops as $shop)
-                        @if ($shop == $selectedShop)
-                            <md-select-option value="{{ $shop->id }}" selected>
-                                {{ $shop->name }}
-                            </md-select-option>
-                        @else
-                            <md-select-option value="{{ $shop->id }}">
-                                {{ $shop->name }}
-                            </md-select-option>
-                        @endif
-                    @endforeach
-                </md-outlined-select>
-            </form>
-
-            <md-list>
-                @foreach ($shops as $shop)
-                    <md-list-item href="{{ route('shops.show', $shop) }}">
-                        <div slot="headline">{{ $shop->name }}</div>
-                        <div slot="supporting-text" class="line-clamp-1">{{ $shop->address }}</div>
-                        <md-icon slot="end" class="material-icons">arrow_right</md-icon>
-
-                        @if ($shop->photo)
-                            <img slot="start" style="width: 56px" class="rounded-full"
-                                src="{{ url('storage/' . $shop->photo) }}">
-                        @else
-                            <img slot="start" style="width: 56px" class="rounded-full"
-                                src="{{ asset('assets/img/no_img.png') }}">
-                        @endif
-                    </md-list-item>
-                @endforeach
-            </md-list>
-        @endif
+                </a>
+            @endforeach
+        </div>
     </div>
 </x-app-layout>
