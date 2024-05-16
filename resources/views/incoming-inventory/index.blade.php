@@ -21,9 +21,14 @@
                     <div class="md-typescale-title-small">{{ $group }}</div>
                     @foreach ($incomingInventories as $incomingInventory)
                         <md-list-item href="{{ route('incoming-inventories.show', $incomingInventory) }}">
-                            <div class="md-typescale-body-medium">
-                                {{ $incomingInventory->incomingInventoryItems()->count() }} Items
+                            <div class="md-typescale-label-medium">
+                                {{ $incomingInventory->incoming_inventory_items_count }} items
                             </div>
+
+                            <div slot="supporting-text" class="line-clamp-2">
+                                {{ $incomingInventory->supporting_text }}
+                            </div>
+
                             <md-icon slot="start" class="material-icons-outlined">archive</md-icon>
                             <div slot="trailing-supporting-text">
                                 {{ $incomingInventory->finalized_at->timezone('Asia/Jakarta')->format('g:i A') }}</div>

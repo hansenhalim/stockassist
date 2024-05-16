@@ -20,16 +20,19 @@
         @else
             <md-list>
                 @foreach ($incomingInventory->incomingInventoryItems as $incomingInventoryItem)
-                    <md-list-item href="{{ route('incoming-inventory-items.edit', $incomingInventoryItem) }}">
-                        {{ $incomingInventoryItem->ingredient->name }}
+                    <md-list-item>
+                        <div class="md-typescale-body-medium">
+                            {{ $incomingInventoryItem->ingredient->name }}
+                        </div>
                         @if ($incomingInventoryItem->ingredient->photo)
-                            <img slot="start" style="width: 56px"
+                            <img slot="start" style="width: 56px" class="rounded-md"
                                 src="{{ url('storage/' . $incomingInventoryItem->ingredient->photo) }}">
                         @else
-                            <img slot="start" style="width: 56px" src="{{ asset('assets/img/no_img.png') }}">
+                            <img slot="start" style="width: 56px" class="rounded-md"
+                                src="{{ asset('assets/img/no_img.png') }}">
                         @endif
                         <div slot="trailing-supporting-text">
-                            {{ $incomingInventoryItem->quantity }}&nbsp;{{ $incomingInventoryItem->ingredient->unit_of_measure }}
+                            &plus;{{ $incomingInventoryItem->quantity }}&nbsp;{{ $incomingInventoryItem->ingredient->unit_of_measure }}
                         </div>
                     </md-list-item>
                 @endforeach

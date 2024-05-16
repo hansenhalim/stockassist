@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\IncomingInventory;
+use App\Models\IncomingInventoryItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -13,11 +14,21 @@ class IncomingInventoryController extends Controller
         $shop = $request->user()->authable->shop;
 
         $incomingInventories = $shop->incomingInventories()
+            ->withCount('incomingInventoryItems')
             ->whereNotNull('finalized_at')
             ->latest('finalized_at')
             ->get();
 
-        $incomingInventoriesGroups = $incomingInventories->groupBy(function (IncomingInventory $incomingInventory, int $key) {
+        $incomingInventories->transform(function (IncomingInventory $incomingInventory) {
+            $incomingInventory->supporting_text = $incomingInventory->incomingInventoryItems()
+                ->take(3)
+                ->pluck('ingredient_name')
+                ->implode(', ');
+
+            return $incomingInventory;
+        });
+
+        $incomingInventoriesGroups = $incomingInventories->groupBy(function (IncomingInventory $incomingInventory) {
             $date = $incomingInventory->finalized_at->timezone('Asia/Jakarta');
 
             if ($date->isToday()) {

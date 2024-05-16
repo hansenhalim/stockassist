@@ -30,10 +30,11 @@
                     <md-list-item href="{{ route('incoming-inventory-items.edit', $incomingInventoryItem) }}">
                         {{ $incomingInventoryItem->ingredient->name }}
                         @if ($incomingInventoryItem->ingredient->photo)
-                            <img slot="start" style="width: 56px"
+                            <img slot="start" style="width: 56px" class="rounded-md"
                                 src="{{ url('storage/' . $incomingInventoryItem->ingredient->photo) }}">
                         @else
-                            <img slot="start" style="width: 56px" src="{{ asset('assets/img/no_img.png') }}">
+                            <img slot="start" style="width: 56px" class="rounded-md"
+                                src="{{ asset('assets/img/no_img.png') }}">
                         @endif
                         <div slot="trailing-supporting-text">
                             {{ $incomingInventoryItem->quantity }}&nbsp;{{ $incomingInventoryItem->ingredient->unit_of_measure }}

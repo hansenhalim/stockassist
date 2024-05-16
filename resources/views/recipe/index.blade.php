@@ -31,9 +31,11 @@
                     <md-list-item href="{{ route('recipes.show', $recipe) }}">
                         {{ $recipe->name }}
                         @if ($recipe->photo)
-                            <img slot="start" style="width: 56px" src="{{ url('storage/' . $recipe->photo) }}">
+                            <img slot="start" style="width: 56px" class="rounded-md"
+                                src="{{ url('storage/' . $recipe->photo) }}">
                         @else
-                            <img slot="start" style="width: 56px" src="{{ asset('assets/img/no_img.png') }}">
+                            <img slot="start" style="width: 56px" class="rounded-md"
+                                src="{{ asset('assets/img/no_img.png') }}">
                         @endif
                     </md-list-item>
                 @endforeach

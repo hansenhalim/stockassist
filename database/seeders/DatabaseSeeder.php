@@ -11,6 +11,7 @@ use App\Models\Shop;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Storage;
 
 class DatabaseSeeder extends Seeder
 {
@@ -96,8 +97,8 @@ class DatabaseSeeder extends Seeder
                 $admin->user()->save($user);
 
                 $recipe = new Recipe([
-                    'name' => 'Fried Rice',
-                    'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel mollis massa. Cras euismod vehicula est, in placerat libero volutpat quis. Donec ut sapien non magna dictum imperdiet id sit amet tellus. Proin in porttitor est, eu imperdiet sapien posuere.',
+                    'name' => 'Tropical Fruit Juice',
+                    'description' => 'A refreshing tropical fruit juice blend perfect for hot days. This juice combines the flavors of mango, pineapple, and orange to deliver a vitamin-packed delicious drink.',
                 ]);
 
                 $recipe->shop()->associate($shop);
@@ -106,64 +107,47 @@ class DatabaseSeeder extends Seeder
 
                 $ingredients = [
                     [
-                        'name' => 'Vegetable Oil',
-                        'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel mollis massa. Cras euismod vehicula est, in placerat libero volutpat quis. Donec ut sapien non magna dictum imperdiet id sit amet tellus. Proin in porttitor est, eu imperdiet sapien posuere.',
-                        'quantity' => 15,
+                        'name' => 'Mango',
+                        'description' => 'Rich in vitamins, minerals, and antioxidants, mango adds a creamy, tropical flavor to any juice.',
+                        'quantity' => 200,
+                        'unit_of_measure' => MeasurementUnit::GRAM,
+                        'photo_filename' => 'mango.webp',
+                    ], [
+                        'name' => 'Pineapple',
+                        'description' => 'Pineapple is a tropical fruit that provides a tart sweetness and is known for its digestive benefits.',
+                        'quantity' => 300,
+                        'unit_of_measure' => MeasurementUnit::GRAM,
+                        'photo_filename' => 'pineapple.webp',
+                    ], [
+                        'name' => 'Orange Juice',
+                        'description' => 'Freshly squeezed orange juice to add a tangy zest, boosting the vitamin C content of the drink.',
+                        'quantity' => 250,
                         'unit_of_measure' => MeasurementUnit::MILLILITER,
+                        'photo_filename' => 'orange juice.webp',
                     ], [
-                        'name' => 'Pork Liempo',
-                        'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel mollis massa. Cras euismod vehicula est, in placerat libero volutpat quis. Donec ut sapien non magna dictum imperdiet id sit amet tellus. Proin in porttitor est, eu imperdiet sapien posuere.',
-                        'quantity' => 550,
+                        'name' => 'Ice Cubes',
+                        'description' => 'Ice cubes to chill the juice and make it more refreshing.',
+                        'quantity' => 100,
                         'unit_of_measure' => MeasurementUnit::GRAM,
+                        'photo_filename' => 'ice cubes.webp',
                     ], [
-                        'name' => 'Garlic',
-                        'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel mollis massa. Cras euismod vehicula est, in placerat libero volutpat quis. Donec ut sapien non magna dictum imperdiet id sit amet tellus. Proin in porttitor est, eu imperdiet sapien posuere.',
-                        'quantity' => 35,
-                        'unit_of_measure' => MeasurementUnit::GRAM,
-                    ], [
-                        'name' => 'Water',
-                        'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel mollis massa. Cras euismod vehicula est, in placerat libero volutpat quis. Donec ut sapien non magna dictum imperdiet id sit amet tellus. Proin in porttitor est, eu imperdiet sapien posuere.',
-                        'quantity' => 500,
-                        'unit_of_measure' => MeasurementUnit::MILLILITER,
-                    ], [
-                        'name' => 'Black Peppercorn',
-                        'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel mollis massa. Cras euismod vehicula est, in placerat libero volutpat quis. Donec ut sapien non magna dictum imperdiet id sit amet tellus. Proin in porttitor est, eu imperdiet sapien posuere.',
-                        'quantity' => 3,
-                        'unit_of_measure' => MeasurementUnit::GRAM,
-                    ], [
-                        'name' => 'Star Anise',
-                        'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel mollis massa. Cras euismod vehicula est, in placerat libero volutpat quis. Donec ut sapien non magna dictum imperdiet id sit amet tellus. Proin in porttitor est, eu imperdiet sapien posuere.',
-                        'quantity' => 1,
-                        'unit_of_measure' => MeasurementUnit::GRAM,
-                    ], [
-                        'name' => 'Bay Leaf',
-                        'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel mollis massa. Cras euismod vehicula est, in placerat libero volutpat quis. Donec ut sapien non magna dictum imperdiet id sit amet tellus. Proin in porttitor est, eu imperdiet sapien posuere.',
-                        'quantity' => 0.2,
+                        'name' => 'Mint Leaves',
+                        'description' => 'Mint leaves add a fresh, cool aftertaste that complements the sweet and tart flavors of the fruits.',
+                        'quantity' => 5,
                         'unit_of_measure' => MeasurementUnit::PIECES,
+                        'photo_filename' => 'mint leaves.webp',
                     ], [
-                        'name' => 'Bango Kecap Manis',
-                        'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel mollis massa. Cras euismod vehicula est, in placerat libero volutpat quis. Donec ut sapien non magna dictum imperdiet id sit amet tellus. Proin in porttitor est, eu imperdiet sapien posuere.',
-                        'quantity' => 130,
-                        'unit_of_measure' => MeasurementUnit::MILLILITER,
-                    ], [
-                        'name' => 'Banana Blossoms',
-                        'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel mollis massa. Cras euismod vehicula est, in placerat libero volutpat quis. Donec ut sapien non magna dictum imperdiet id sit amet tellus. Proin in porttitor est, eu imperdiet sapien posuere.',
-                        'quantity' => 35,
+                        'name' => 'Honey',
+                        'description' => 'A natural sweetener to enhance the sweetness of the juice without adding refined sugar.',
+                        'quantity' => 20,
                         'unit_of_measure' => MeasurementUnit::GRAM,
-                    ], [
-                        'name' => 'Roasted Reanuts',
-                        'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel mollis massa. Cras euismod vehicula est, in placerat libero volutpat quis. Donec ut sapien non magna dictum imperdiet id sit amet tellus. Proin in porttitor est, eu imperdiet sapien posuere.',
-                        'quantity' => 40,
-                        'unit_of_measure' => MeasurementUnit::GRAM,
-                    ], [
-                        'name' => 'Cornstarch',
-                        'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel mollis massa. Cras euismod vehicula est, in placerat libero volutpat quis. Donec ut sapien non magna dictum imperdiet id sit amet tellus. Proin in porttitor est, eu imperdiet sapien posuere.',
-                        'quantity' => 10,
-                        'unit_of_measure' => MeasurementUnit::GRAM,
+                        'photo_filename' => 'honey.webp',
                     ],
                 ];
 
                 foreach ($ingredients as $array) {
+                    Storage::putFile('photos', Storage::disk('local')->get($array['photo_filename']));
+
                     $ingredient = new Ingredient([
                         'name' => $array['name'],
                         'unit_of_measure' => $array['unit_of_measure'],
