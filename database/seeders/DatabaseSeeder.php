@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        $businesses = [
+        $stores = [
             [
                 'owner_phone' => '6282371486542',
                 'owner_name' => 'Frans Halim',
@@ -56,12 +56,12 @@ class DatabaseSeeder extends Seeder
             ],
         ];
 
-        foreach ($businesses as $index => $business) {
-            $owner = new Owner(['phone' => $business['owner_phone']]);
+        foreach ($stores as $index => $store) {
+            $owner = new Owner(['phone' => $store['owner_phone']]);
 
             $user = User::factory()->create([
-                'name' => $business['owner_name'],
-                'email' => $business['owner_email'],
+                'name' => $store['owner_name'],
+                'email' => $store['owner_email'],
             ]);
 
             $owner->save();
@@ -69,9 +69,9 @@ class DatabaseSeeder extends Seeder
             $owner->user()->save($user);
 
             $shop = new Shop([
-                'name' => $business['shop_name'],
-                'address' => $business['address'],
-                'zip_code' => $business['zip_code'],
+                'name' => $store['shop_name'],
+                'address' => $store['address'],
+                'zip_code' => $store['zip_code'],
             ]);
 
             $shop->owner()->associate($owner);
@@ -96,68 +96,72 @@ class DatabaseSeeder extends Seeder
 
                 $admin->user()->save($user);
 
+                $path = Storage::putFile('recipes', storage_path('app/Tropical Fruit Juice.webp'));
+
                 $recipe = new Recipe([
                     'name' => 'Tropical Fruit Juice',
                     'description' => 'A refreshing tropical fruit juice blend perfect for hot days. This juice combines the flavors of mango, pineapple, and orange to deliver a vitamin-packed delicious drink.',
+                    'photo' => $path,
                 ]);
 
                 $recipe->shop()->associate($shop);
 
                 $recipe->save();
 
-                $ingredients = [
+                $stocks = [
                     [
                         'name' => 'Mango',
                         'description' => 'Rich in vitamins, minerals, and antioxidants, mango adds a creamy, tropical flavor to any juice.',
                         'quantity' => 200,
                         'unit_of_measure' => MeasurementUnit::GRAM,
-                        'photo_filename' => 'mango.webp',
+                        'photo_filename' => 'Mango.webp',
                     ], [
                         'name' => 'Pineapple',
                         'description' => 'Pineapple is a tropical fruit that provides a tart sweetness and is known for its digestive benefits.',
                         'quantity' => 300,
                         'unit_of_measure' => MeasurementUnit::GRAM,
-                        'photo_filename' => 'pineapple.webp',
+                        'photo_filename' => 'Pineapple.webp',
                     ], [
                         'name' => 'Orange Juice',
                         'description' => 'Freshly squeezed orange juice to add a tangy zest, boosting the vitamin C content of the drink.',
                         'quantity' => 250,
                         'unit_of_measure' => MeasurementUnit::MILLILITER,
-                        'photo_filename' => 'orange juice.webp',
+                        'photo_filename' => 'Orange Juice.webp',
                     ], [
                         'name' => 'Ice Cubes',
                         'description' => 'Ice cubes to chill the juice and make it more refreshing.',
                         'quantity' => 100,
                         'unit_of_measure' => MeasurementUnit::GRAM,
-                        'photo_filename' => 'ice cubes.webp',
+                        'photo_filename' => 'Ice Cubes.webp',
                     ], [
                         'name' => 'Mint Leaves',
                         'description' => 'Mint leaves add a fresh, cool aftertaste that complements the sweet and tart flavors of the fruits.',
                         'quantity' => 5,
                         'unit_of_measure' => MeasurementUnit::PIECES,
-                        'photo_filename' => 'mint leaves.webp',
+                        'photo_filename' => 'Mint Leaves.webp',
                     ], [
                         'name' => 'Honey',
                         'description' => 'A natural sweetener to enhance the sweetness of the juice without adding refined sugar.',
                         'quantity' => 20,
                         'unit_of_measure' => MeasurementUnit::GRAM,
-                        'photo_filename' => 'honey.webp',
+                        'photo_filename' => 'Honey.webp',
                     ],
                 ];
 
-                foreach ($ingredients as $array) {
-                    Storage::putFile('photos', Storage::disk('local')->get($array['photo_filename']));
+                foreach ($stocks as $stock) {
+                    $path = Storage::putFile('ingredients', storage_path('app/'.$stock['photo_filename']));
 
                     $ingredient = new Ingredient([
-                        'name' => $array['name'],
-                        'unit_of_measure' => $array['unit_of_measure'],
+                        'name' => $stock['name'],
+                        'unit_of_measure' => $stock['unit_of_measure'],
+                        'photo' => $path,
                     ]);
 
                     $ingredient->shop()->associate($shop);
 
                     $ingredient->save();
 
-                    $ingredient->recipes()->attach($recipe, ['quantity' => $array['quantity']]);
+                    $ingredient->recipes()->attach($recipe, ['quantity' => $stock['quantity']]);
                 }
             }
         }
