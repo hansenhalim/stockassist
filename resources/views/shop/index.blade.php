@@ -24,7 +24,7 @@
                 </md-filled-tonal-button>
             </div>
         @else
-            <form action="{{ route('shop.switch') }}" method="post">
+            <form action="{{ route('switch-shop') }}" method="post">
                 @csrf
 
                 <md-outlined-select label="Currently at" name="shop_id" onchange="this.form.submit()">

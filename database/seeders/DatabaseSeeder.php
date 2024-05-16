@@ -162,7 +162,7 @@ class DatabaseSeeder extends Seeder
 
                     $ingredient->save();
 
-                    $ingredient->recipes()->attach($recipe, ['quantity' => $stock['quantity']]);
+                    $recipe->ingredients()->attach($ingredient, ['quantity' => $stock['quantity']]);
                 }
             }
         }

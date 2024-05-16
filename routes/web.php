@@ -4,6 +4,7 @@ use App\Http\Controllers\Home;
 use App\Http\Controllers\IncomingInventoryController;
 use App\Http\Controllers\IncomingInventoryItemController;
 use App\Http\Controllers\IngredientController;
+use App\Http\Controllers\LinkIngredient;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\ShopController;
@@ -21,7 +22,8 @@ Route::view('/news/3', 'article.3');
 Route::middleware('auth')->group(function () {
     Route::get('/home', Home::class)->name('home');
 
-    Route::post('/switch-shop', SwitchShop::class)->name('shop.switch');
+    Route::post('/switch-shop', SwitchShop::class)->name('switch-shop');
+    Route::post('/link-ingredient', LinkIngredient::class)->name('link-ingredient');
 
     Route::resource('shops', ShopController::class);
     Route::resource('ingredients', IngredientController::class);
