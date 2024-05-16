@@ -21,6 +21,10 @@
             @endif
         </div>
 
+        <div class="md-typescale-title-medium mt-4">{{ $ingredient->name }}</div>
+
+        <div class="md-typescale-body-medium mt-2">{{ $ingredient->description ?? 'No description' }}</div>
+
         <form action="{{ route('incoming-inventory-items.store', ['ingredient_id' => $ingredient]) }}" method="post">
             @csrf
 

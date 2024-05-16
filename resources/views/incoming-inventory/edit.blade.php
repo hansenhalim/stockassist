@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex items-center justify-between">
+        <div class="flex items-center">
             <md-icon-button href="{{ route('ingredients.index') }}" class="me-2">
                 <md-icon class="material-icons">arrow_back</md-icon>
             </md-icon-button>

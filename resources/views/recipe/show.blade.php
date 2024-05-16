@@ -4,7 +4,10 @@
             <md-icon-button onclick="history.back()" class="me-2">
                 <md-icon class="material-icons">arrow_back</md-icon>
             </md-icon-button>
-            <div class="md-typescale-title-large">{{ $recipe->name }}</div>
+            <div class="md-typescale-title-large flex-grow">{{ $recipe->name }}</div>
+            <md-icon-button href="#">
+                <md-icon class="material-icons">add_shopping_cart</md-icon>
+            </md-icon-button>
         </div>
     </x-slot>
 
@@ -27,17 +30,18 @@
 
         <div class="md-typescale-body-medium mt-2">{{ $recipe->description ?? 'No description' }}</div>
 
-        <div class="md-typescale-label-large mt-4">Ingredients</div>
-
-        <ul class="list-disc ml-4">
-            @forelse($recipe->ingredients as $ingredient)
-                <li class="md-typescale-body-medium">
-                    {{ $ingredient->pivot->quantity }}&nbsp;{{ $ingredient->unit_of_measure }}&nbsp;<span
-                        class="lowercase">{{ $ingredient->name }}</span></li>
-            @empty
-                <p>No ingredients</p>
-            @endforelse
-        </ul>
+        @if ($recipe->ingredients->isEmpty())
+            <p class="md-typescale-body-large mt-4" style="color: var(--md-sys-color-outline);">No ingredients</p>
+        @else
+            <div class="md-typescale-label-large mt-4">Ingredients</div>
+            <ul class="list-disc ml-4">
+                @foreach ($recipe->ingredients as $ingredient)
+                    <li class="md-typescale-body-medium">
+                        {{ $ingredient->pivot->quantity }}&nbsp;{{ $ingredient->unit_of_measure }}&nbsp;<span
+                            class="lowercase">{{ $ingredient->name }}</span></li>
+                @endforeach
+            </ul>
+        @endif
 
         <div class="flex justify-between mt-8">
             <md-outlined-button type="button" onclick="history.back()">Back</md-outlined-button>
