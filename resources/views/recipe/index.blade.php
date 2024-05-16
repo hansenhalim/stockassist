@@ -29,9 +29,9 @@
             <md-list>
                 @foreach ($recipes as $recipe)
                     <md-list-item href="{{ route('recipes.show', $recipe) }}">
-                        <div slot="headline">
-                            {{ $recipe->name }}
-                        </div>
+                        <div slot="headline">{{ $recipe->name }}</div>
+
+                        <div slot="supporting-text" class="line-clamp-2">{{ $recipe->description }}</div>
 
                         @if ($recipe->photo)
                             <img slot="start" style="width: 56px" class="rounded-md"

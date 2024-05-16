@@ -112,39 +112,39 @@ class DatabaseSeeder extends Seeder
                     [
                         'name' => 'Mango',
                         'description' => 'Rich in vitamins, minerals, and antioxidants, mango adds a creamy, tropical flavor to any juice.',
-                        'quantity' => 200,
                         'unit_of_measure' => MeasurementUnit::GRAM,
                         'photo_filename' => 'Mango.webp',
+                        'quantity' => 200,
                     ], [
                         'name' => 'Pineapple',
                         'description' => 'Pineapple is a tropical fruit that provides a tart sweetness and is known for its digestive benefits.',
-                        'quantity' => 300,
                         'unit_of_measure' => MeasurementUnit::GRAM,
                         'photo_filename' => 'Pineapple.webp',
+                        'quantity' => 300,
                     ], [
                         'name' => 'Orange Juice',
                         'description' => 'Freshly squeezed orange juice to add a tangy zest, boosting the vitamin C content of the drink.',
-                        'quantity' => 250,
                         'unit_of_measure' => MeasurementUnit::MILLILITER,
                         'photo_filename' => 'Orange Juice.webp',
+                        'quantity' => 250,
                     ], [
                         'name' => 'Ice Cubes',
                         'description' => 'Ice cubes to chill the juice and make it more refreshing.',
-                        'quantity' => 100,
                         'unit_of_measure' => MeasurementUnit::GRAM,
                         'photo_filename' => 'Ice Cubes.webp',
+                        'quantity' => 100,
                     ], [
                         'name' => 'Mint Leaves',
                         'description' => 'Mint leaves add a fresh, cool aftertaste that complements the sweet and tart flavors of the fruits.',
-                        'quantity' => 5,
                         'unit_of_measure' => MeasurementUnit::PIECES,
                         'photo_filename' => 'Mint Leaves.webp',
+                        'quantity' => 5,
                     ], [
                         'name' => 'Honey',
                         'description' => 'A natural sweetener to enhance the sweetness of the juice without adding refined sugar.',
-                        'quantity' => 20,
                         'unit_of_measure' => MeasurementUnit::GRAM,
                         'photo_filename' => 'Honey.webp',
+                        'quantity' => 20,
                     ],
                 ];
 
@@ -153,6 +153,7 @@ class DatabaseSeeder extends Seeder
 
                     $ingredient = new Ingredient([
                         'name' => $stock['name'],
+                        'description' => $stock['description'],
                         'unit_of_measure' => $stock['unit_of_measure'],
                         'photo' => $path,
                     ]);

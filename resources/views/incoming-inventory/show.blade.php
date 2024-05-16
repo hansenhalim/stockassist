@@ -21,9 +21,7 @@
             <md-list>
                 @foreach ($incomingInventory->incomingInventoryItems as $incomingInventoryItem)
                     <md-list-item>
-                        <div slot="headline">
-                            {{ $incomingInventoryItem->ingredient_name }}
-                        </div>
+                        <div slot="headline">{{ $incomingInventoryItem->ingredient_name }}</div>
 
                         @if ($incomingInventoryItem->ingredient_photo)
                             <img slot="start" style="width: 56px" class="rounded-md"

@@ -28,9 +28,7 @@
             <md-list>
                 @foreach ($incomingInventory->incomingInventoryItems as $incomingInventoryItem)
                     <md-list-item href="{{ route('incoming-inventory-items.edit', $incomingInventoryItem) }}">
-                        <div slot="headline">
-                            {{ $incomingInventoryItem->ingredient->name }}
-                        </div>
+                        <div slot="headline">{{ $incomingInventoryItem->ingredient->name }}</div>
 
                         @if ($incomingInventoryItem->ingredient->photo)
                             <img slot="start" style="width: 56px" class="rounded-md"

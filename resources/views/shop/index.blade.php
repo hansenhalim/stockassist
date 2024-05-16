@@ -47,7 +47,7 @@
                     <md-list-item href="{{ route('shops.show', $shop) }}">
                         <div slot="headline">{{ $shop->name }}</div>
 
-                        <div slot="supporting-text" class="line-clamp-1">{{ $shop->address }}</div>
+                        <div slot="supporting-text" class="line-clamp-2">{{ $shop->address }}</div>
 
                         <md-icon slot="end" class="material-icons">arrow_right</md-icon>
 
