@@ -16,7 +16,7 @@
         @if ($recipes->isEmpty())
             <div class="flex flex-col justify-center items-center my-[35svh]">
                 <div class="md-typescale-body-large" style="color: var(--md-sys-color-outline);">
-                    No recipes found
+                    No recipe found
                 </div>
                 <md-filled-tonal-button href="{{ route('recipes.create') }}" class="mt-2">
                     Create recipe
@@ -29,7 +29,10 @@
             <md-list>
                 @foreach ($recipes as $recipe)
                     <md-list-item href="{{ route('recipes.show', $recipe) }}">
-                        {{ $recipe->name }}
+                        <div slot="headline">
+                            {{ $recipe->name }}
+                        </div>
+
                         @if ($recipe->photo)
                             <img slot="start" style="width: 56px" class="rounded-md"
                                 src="{{ url('storage/' . $recipe->photo) }}">

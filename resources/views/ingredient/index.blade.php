@@ -29,7 +29,10 @@
             <md-list>
                 @foreach ($ingredients as $ingredient)
                     <md-list-item href="{{ route('ingredients.show', $ingredient) }}">
-                        {{ $ingredient->name }}
+                        <div slot="headline">
+                            {{ $ingredient->name }}
+                        </div>
+
                         @if ($ingredient->photo)
                             <img slot="start" style="width: 56px" class="rounded-md"
                                 src="{{ url('storage/' . $ingredient->photo) }}">
@@ -37,6 +40,10 @@
                             <img slot="start" style="width: 56px" class="rounded-md"
                                 src="{{ asset('assets/img/no_img.png') }}">
                         @endif
+
+                        <div slot="trailing-supporting-text">
+                            {{ $ingredient->remaining_amount }}&nbsp;{{ $ingredient->unit_of_measure }}
+                        </div>
                     </md-list-item>
                 @endforeach
             </md-list>

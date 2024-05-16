@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <div class="flex items-center justify-between">
-            <md-icon-button onclick="history.back()" class="me-2">
+            <md-icon-button href="{{ route('ingredients.index') }}" class="me-2">
                 <md-icon class="material-icons">arrow_back</md-icon>
             </md-icon-button>
             <div class="md-typescale-title-large flex-grow">Incoming</div>
@@ -28,7 +28,10 @@
             <md-list>
                 @foreach ($incomingInventory->incomingInventoryItems as $incomingInventoryItem)
                     <md-list-item href="{{ route('incoming-inventory-items.edit', $incomingInventoryItem) }}">
-                        {{ $incomingInventoryItem->ingredient->name }}
+                        <div slot="headline">
+                            {{ $incomingInventoryItem->ingredient->name }}
+                        </div>
+
                         @if ($incomingInventoryItem->ingredient->photo)
                             <img slot="start" style="width: 56px" class="rounded-md"
                                 src="{{ url('storage/' . $incomingInventoryItem->ingredient->photo) }}">
@@ -36,8 +39,9 @@
                             <img slot="start" style="width: 56px" class="rounded-md"
                                 src="{{ asset('assets/img/no_img.png') }}">
                         @endif
+
                         <div slot="trailing-supporting-text">
-                            {{ $incomingInventoryItem->quantity }}&nbsp;{{ $incomingInventoryItem->ingredient->unit_of_measure }}
+                            &plus;{{ $incomingInventoryItem->quantity }}&nbsp;{{ $incomingInventoryItem->ingredient->unit_of_measure }}
                         </div>
                     </md-list-item>
                 @endforeach
