@@ -30,8 +30,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/incoming-inventories/edit', [IncomingInventoryController::class, 'edit'])->name('incoming-inventories.edit');
     Route::put('/incoming-inventories', [IncomingInventoryController::class, 'update'])->name('incoming-inventories.update');
 
-    Route::resource('incoming-inventories', IncomingInventoryController::class)->only(['index', 'show']);
-    Route::resource('incoming-inventory-items', IncomingInventoryItemController::class);
+    Route::resource('incoming-inventories', IncomingInventoryController::class)->only(['index', 'show', 'destroy']);
+    Route::resource('incoming-inventory-items', IncomingInventoryItemController::class)->except('show');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

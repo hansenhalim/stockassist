@@ -25,33 +25,22 @@
                 </md-filled-tonal-button>
             </div>
         @else
-            <div class="grid grid-cols-2 gap-2.5">
+            <md-list>
                 @foreach ($incomingInventory->incomingInventoryItems as $incomingInventoryItem)
-                    <a href="{{ route('incoming-inventory-items.edit', $incomingInventoryItem) }}">
-                        <div class="w-full rounded-lg overflow-hidden shadow-md border"
-                            style="background-color: var(--md-sys-color-surface-container-low);">
-                            @if ($incomingInventoryItem->ingredient->photo)
-                                <div class="aspect-square bg-center bg-cover"
-                                    style="background-image: url('{{ url('storage/' . $incomingInventoryItem->ingredient->photo) }}');">
-                                </div>
-                            @else
-                                <div class="aspect-square bg-center bg-cover"
-                                    style="background-image: url('{{ asset('assets/img/no_img.png') }}');">
-                                </div>
-                            @endif
-                            <div class="p-4">
-                                <div class="md-typescale-body-large" style="color: var(--md-sys-color-on-surface);">
-                                    {{ $incomingInventoryItem->ingredient->name }}
-                                </div>
-                                <div class="md-typescale-body-medium"
-                                    style="color: var(--md-sys-color-on-surface-variant);">
-                                    {{ $incomingInventoryItem->ingredient->description }}
-                                </div>
-                            </div>
+                    <md-list-item href="{{ route('incoming-inventory-items.edit', $incomingInventoryItem) }}">
+                        {{ $incomingInventoryItem->ingredient->name }}
+                        @if ($incomingInventoryItem->ingredient->photo)
+                            <img slot="start" style="width: 56px"
+                                src="{{ url('storage/' . $incomingInventoryItem->ingredient->photo) }}">
+                        @else
+                            <img slot="start" style="width: 56px" src="{{ asset('assets/img/no_img.png') }}">
+                        @endif
+                        <div slot="trailing-supporting-text">
+                            {{ $incomingInventoryItem->quantity }}&nbsp;{{ $incomingInventoryItem->ingredient->unit_of_measure }}
                         </div>
-                    </a>
+                    </md-list-item>
                 @endforeach
-            </div>
+            </md-list>
         @endif
     </div>
 
@@ -60,6 +49,20 @@
         <md-icon-button href="{{ route('incoming-inventory-items.index') }}">
             <md-icon class="material-icons" style="color: var(--md-sys-color-on-surface);">add</md-icon>
         </md-icon-button>
+
+        @unless ($incomingInventory->incomingInventoryItems->isEmpty())
+            <div class="flex-grow">
+                <form action="{{ route('incoming-inventories.destroy', $incomingInventory) }}" method="post">
+                    @csrf
+                    @method('DELETE')
+
+                    <md-icon-button>
+                        <md-icon class="material-icons-outlined"
+                            style="color: var(--md-sys-color-on-surface);">delete</md-icon>
+                    </md-icon-button>
+                </form>
+            </div>
+        @endunless
 
         <form action="{{ route('incoming-inventories.update') }}" method="post">
             @csrf

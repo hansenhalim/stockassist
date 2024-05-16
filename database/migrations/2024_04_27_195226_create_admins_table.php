@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('admins', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Shop::class);
+            $table->foreignIdFor(Shop::class)->constrained()->cascadeOnDelete();
             $table->string('pin')->nullable();
         });
     }

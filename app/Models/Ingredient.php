@@ -27,7 +27,8 @@ class Ingredient extends Model
             ->withPivot('quantity');
     }
 
-    public function incomingInventoryItems(): HasMany {
+    public function incomingInventoryItems(): HasMany
+    {
         return $this->hasMany(IncomingInventoryItem::class);
     }
 }

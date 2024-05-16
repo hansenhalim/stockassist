@@ -9,25 +9,28 @@
     </x-slot>
 
     <div class="mx-auto px-4">
-        @if ($incomingInventories->isEmpty())
+        @if ($incomingInventoriesGroups->isEmpty())
             <div class="flex flex-col justify-center items-center my-[40svh]">
                 <div class="md-typescale-body-large" style="color: var(--md-sys-color-outline);">
                     History is empty
                 </div>
             </div>
         @else
-            <md-list>
-                @foreach ($incomingInventories as $ingredient)
-                    <md-list-item href="{{ route('ingredients.show', $ingredient) }}">
-                        {{ $ingredient->name }}
-                        @if ($ingredient->photo)
-                            <img slot="start" style="width: 56px" src="{{ url('storage/' . $ingredient->photo) }}">
-                        @else
-                            <img slot="start" style="width: 56px" src="{{ asset('assets/img/no_img.png') }}">
-                        @endif
-                    </md-list-item>
-                @endforeach
-            </md-list>
+            @foreach ($incomingInventoriesGroups as $group => $incomingInventories)
+                <md-list>
+                    <div class="md-typescale-title-small">{{ $group }}</div>
+                    @foreach ($incomingInventories as $incomingInventory)
+                        <md-list-item href="{{ route('incoming-inventories.show', $incomingInventory) }}">
+                            <div class="md-typescale-body-medium">
+                                {{ $incomingInventory->incomingInventoryItems()->count() }} Items
+                            </div>
+                            <md-icon slot="start" class="material-icons-outlined">archive</md-icon>
+                            <div slot="trailing-supporting-text">
+                                {{ $incomingInventory->finalized_at->timezone('Asia/Jakarta')->format('g:i A') }}</div>
+                        </md-list-item>
+                    @endforeach
+                </md-list>
+            @endforeach
         @endif
     </div>
 </x-app-layout>

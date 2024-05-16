@@ -16,8 +16,8 @@ return new class extends Migration
     {
         Schema::create('release_order_item_details', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(ReleaseOrderItem::class);
-            $table->foreignIdFor(Ingredient::class);
+            $table->foreignIdFor(ReleaseOrderItem::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Ingredient::class)->nullable()->constrained()->nullOnDelete();
             $table->string('ingredient_name');
             $table->string('ingredient_barcode')->nullable();
             $table->string('ingredient_description')->nullable();

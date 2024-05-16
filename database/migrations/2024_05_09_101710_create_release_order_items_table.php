@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('release_order_items', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(ReleaseOrder::class);
-            $table->foreignIdFor(Recipe::class);
+            $table->foreignIdFor(ReleaseOrder::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Recipe::class)->nullable()->constrained()->nullOnDelete();
             $table->string('recipe_name');
             $table->string('recipe_photo')->nullable();
             $table->unsignedBigInteger('quantity');

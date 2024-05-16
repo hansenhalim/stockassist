@@ -26,10 +26,10 @@
 
             <div class="flex items-center justify-center mt-8">
                 @error('quantity')
-                    <md-outlined-text-field name="quantity" min=1 value="{{ old('quantity', 1) }}" type="number"
+                    <md-outlined-text-field name="quantity" min="1" value="{{ old('quantity', 1) }}" type="number"
                         label="Quantity" class="flex-grow" error error-text="{{ $message }}"></md-outlined-text-field>
                 @else
-                    <md-outlined-text-field name="quantity" min=1 value="{{ old('quantity', 1) }}" type="number"
+                    <md-outlined-text-field name="quantity" min="1" value="{{ old('quantity', 1) }}" type="number"
                         label="Quantity" class="flex-grow"></md-outlined-text-field>
                 @enderror
                 <div class="w-14 text-center md-typescale-label-large">{{ $ingredient->unit_of_measure }}</div>

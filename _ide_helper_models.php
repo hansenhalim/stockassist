@@ -17,12 +17,12 @@ namespace App\Models{
  *
  * @property int $id
  * @property int $shop_id
- * @property string $pin
+ * @property string|null $pin
  * @property mixed $password
  * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent $authable
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
- * @property-read \App\Models\Shop|null $shop
+ * @property-read \App\Models\Shop $shop
  * @property-read \App\Models\User|null $user
  * @method static \Illuminate\Database\Eloquent\Builder|Admin newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Admin newQuery()
@@ -45,7 +45,7 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\IncomingInventoryItem> $incomingInventoryItems
  * @property-read int|null $incoming_inventory_items_count
- * @property-read \App\Models\Shop|null $shop
+ * @property-read \App\Models\Shop $shop
  * @method static \Illuminate\Database\Eloquent\Builder|IncomingInventory newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|IncomingInventory newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|IncomingInventory query()
@@ -64,14 +64,15 @@ namespace App\Models{
  *
  * @property int $id
  * @property int $incoming_inventory_id
- * @property int $ingredient_id
+ * @property int|null $ingredient_id
  * @property string $ingredient_name
  * @property string|null $ingredient_barcode
  * @property string|null $ingredient_description
  * @property string|null $ingredient_unit_of_measure
  * @property string|null $ingredient_photo
  * @property int $quantity
- * @property-read \App\Models\IncomingInventory|null $incomingInventory
+ * @property-read \App\Models\IncomingInventory $incomingInventory
+ * @property-read \App\Models\Ingredient|null $ingredient
  * @method static \Illuminate\Database\Eloquent\Builder|IncomingInventoryItem newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|IncomingInventoryItem newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|IncomingInventoryItem query()
@@ -102,9 +103,11 @@ namespace App\Models{
  * @property string|null $photo
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\IncomingInventoryItem> $incomingInventoryItems
+ * @property-read int|null $incoming_inventory_items_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Recipe> $recipes
  * @property-read int|null $recipes_count
- * @property-read \App\Models\Shop|null $shop
+ * @property-read \App\Models\Shop $shop
  * @method static \Illuminate\Database\Eloquent\Builder|Ingredient newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Ingredient newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Ingredient query()
@@ -145,7 +148,7 @@ namespace App\Models{
  *
  * @property int $id
  * @property int|null $selected_shop_id
- * @property string $phone
+ * @property string|null $phone
  * @property mixed $password
  * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent $authable
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
@@ -178,7 +181,7 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Ingredient> $ingredients
  * @property-read int|null $ingredients_count
- * @property-read \App\Models\Shop|null $shop
+ * @property-read \App\Models\Shop $shop
  * @method static \Illuminate\Database\Eloquent\Builder|Recipe newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Recipe newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Recipe query()
@@ -204,7 +207,7 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ReleaseOrderItem> $releaseOrderItems
  * @property-read int|null $release_order_items_count
- * @property-read \App\Models\Shop|null $shop
+ * @property-read \App\Models\Shop $shop
  * @method static \Illuminate\Database\Eloquent\Builder|ReleaseOrder newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ReleaseOrder newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ReleaseOrder query()
@@ -223,11 +226,11 @@ namespace App\Models{
  *
  * @property int $id
  * @property int $release_order_id
- * @property int $recipe_id
+ * @property int|null $recipe_id
  * @property string $recipe_name
  * @property string|null $recipe_photo
  * @property int $quantity
- * @property-read \App\Models\ReleaseOrder|null $releaseOrder
+ * @property-read \App\Models\ReleaseOrder $releaseOrder
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ReleaseOrderItemDetail> $releaseOrderItemDetails
  * @property-read int|null $release_order_item_details_count
  * @method static \Illuminate\Database\Eloquent\Builder|ReleaseOrderItem newModelQuery()
@@ -249,14 +252,14 @@ namespace App\Models{
  *
  * @property int $id
  * @property int $release_order_item_id
- * @property int $ingredient_id
+ * @property int|null $ingredient_id
  * @property string $ingredient_name
  * @property string|null $ingredient_barcode
  * @property string|null $ingredient_description
  * @property string|null $ingredient_unit_of_measure
  * @property string|null $ingredient_photo
  * @property int $quantity
- * @property-read \App\Models\ReleaseOrderItem|null $releaseOrderItem
+ * @property-read \App\Models\ReleaseOrderItem $releaseOrderItem
  * @method static \Illuminate\Database\Eloquent\Builder|ReleaseOrderItemDetail newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ReleaseOrderItemDetail newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ReleaseOrderItemDetail query()
@@ -289,7 +292,7 @@ namespace App\Models{
  * @property-read int|null $incoming_inventories_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Ingredient> $ingredients
  * @property-read int|null $ingredients_count
- * @property-read \App\Models\Owner|null $owner
+ * @property-read \App\Models\Owner $owner
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Recipe> $recipes
  * @property-read int|null $recipes_count
  * @method static \Illuminate\Database\Eloquent\Builder|Shop newModelQuery()

@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('release_orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Shop::class);
+            $table->foreignIdFor(Shop::class)->constrained()->cascadeOnDelete();
             $table->timestamp('finalized_at')->nullable();
             $table->timestamps();
         });

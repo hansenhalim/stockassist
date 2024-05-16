@@ -16,8 +16,8 @@ return new class extends Migration
     {
         Schema::create('incoming_inventory_items', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(IncomingInventory::class);
-            $table->foreignIdFor(Ingredient::class);
+            $table->foreignIdFor(IncomingInventory::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Ingredient::class)->nullable()->constrained()->nullOnDelete();
             $table->string('ingredient_name');
             $table->string('ingredient_barcode')->nullable();
             $table->string('ingredient_description')->nullable();

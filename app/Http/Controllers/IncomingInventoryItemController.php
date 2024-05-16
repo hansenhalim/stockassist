@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreIncomingInventoryItemRequest;
+use App\Http\Requests\UpdateIncomingInventoryItemRequest;
 use App\Models\IncomingInventoryItem;
 use App\Models\Ingredient;
 use Illuminate\Database\Eloquent\Builder;
@@ -65,23 +66,25 @@ class IncomingInventoryItemController extends Controller
         return redirect()->route('incoming-inventories.edit');
     }
 
-    public function show(IncomingInventoryItem $incomingInventoryItem)
-    {
-        //
-    }
-
     public function edit(IncomingInventoryItem $incomingInventoryItem)
     {
-        //
+        return view('incoming-inventory-item.edit')
+            ->with('incomingInventoryItem', $incomingInventoryItem);
     }
 
-    public function update(Request $request, IncomingInventoryItem $incomingInventoryItem)
+    public function update(UpdateIncomingInventoryItemRequest $request, IncomingInventoryItem $incomingInventoryItem)
     {
-        //
+        $incomingInventoryItem->quantity = $request->input('quantity');
+
+        $incomingInventoryItem->save();
+
+        return redirect()->route('incoming-inventories.edit');
     }
 
     public function destroy(IncomingInventoryItem $incomingInventoryItem)
     {
-        //
+        $incomingInventoryItem->delete();
+
+        return redirect()->route('incoming-inventories.edit');
     }
 }

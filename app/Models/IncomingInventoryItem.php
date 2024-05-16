@@ -14,7 +14,8 @@ class IncomingInventoryItem extends Model
         return $this->belongsTo(IncomingInventory::class);
     }
 
-    public function ingredient() : BelongsTo {
+    public function ingredient(): BelongsTo
+    {
         return $this->belongsTo(Ingredient::class);
     }
 }

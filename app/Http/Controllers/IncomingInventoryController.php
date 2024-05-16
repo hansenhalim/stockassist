@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\IncomingInventory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class IncomingInventoryController extends Controller
 {
@@ -13,10 +14,25 @@ class IncomingInventoryController extends Controller
 
         $incomingInventories = $shop->incomingInventories()
             ->whereNotNull('finalized_at')
+            ->latest('finalized_at')
             ->get();
 
+        $incomingInventoriesGroups = $incomingInventories->groupBy(function (IncomingInventory $incomingInventory, int $key) {
+            $date = $incomingInventory->finalized_at->timezone('Asia/Jakarta');
+
+            if ($date->isToday()) {
+                $dateString = 'Today';
+            } elseif ($date->isYesterday()) {
+                $dateString = 'Yesterday';
+            } else {
+                $dateString = $date->locale('id')->format('l, j F Y');
+            }
+
+            return $dateString;
+        });
+
         return view('incoming-inventory.index')
-            ->with('incomingInventories', $incomingInventories);
+            ->with('incomingInventoriesGroups', $incomingInventoriesGroups);
     }
 
     public function show(IncomingInventory $incomingInventory)
@@ -50,8 +66,6 @@ class IncomingInventoryController extends Controller
 
     public function update(Request $request)
     {
-        // TODO: Increment target ingredient remaining_amount
-
         $shop = $request->user()->authable->shop;
 
         $incomingInventory = $shop->incomingInventories()
@@ -60,8 +74,23 @@ class IncomingInventoryController extends Controller
 
         $incomingInventory->finalized_at = now();
 
-        $incomingInventory->save();
+        DB::transaction(function () use ($incomingInventory) {
+            foreach ($incomingInventory->incomingInventoryItems as $incomingInventoryItem) {
+                $incomingInventoryItem->ingredient->remaining_amount += $incomingInventoryItem->quantity;
+
+                $incomingInventoryItem->ingredient->save();
+            }
+
+            $incomingInventory->save();
+        });
 
         return redirect()->route('ingredients.index');
+    }
+
+    public function destroy(IncomingInventory $incomingInventory)
+    {
+        $incomingInventory->delete();
+
+        return back();
     }
 }

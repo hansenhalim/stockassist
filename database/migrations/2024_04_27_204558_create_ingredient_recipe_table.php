@@ -14,8 +14,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('ingredient_recipe', function (Blueprint $table) {
-            $table->foreignIdFor(Ingredient::class);
-            $table->foreignIdFor(Recipe::class);
+            $table->foreignIdFor(Ingredient::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Recipe::class)->constrained()->cascadeOnDelete();
             $table->unsignedBigInteger('quantity');
         });
     }

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('ingredients', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Shop::class);
+            $table->foreignIdFor(Shop::class)->constrained()->cascadeOnDelete();
             $table->string('name');
             $table->string('barcode')->nullable();
             $table->string('description')->nullable();
