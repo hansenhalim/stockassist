@@ -1,5 +1,5 @@
 # Use an official PHP-Apache image as a parent image
-FROM php:8.2-apache
+FROM php:8.3-apache
 
 # Set the working directory
 WORKDIR /var/www
@@ -27,6 +27,12 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 # Install PHP extensions
 RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 RUN pecl install redis && docker-php-ext-enable redis
+
+# Add virtual host configuration
+COPY docker/000-default.conf /etc/apache2/sites-available/000-default.conf
+
+# Enable the site configuration
+RUN a2ensite 000-default.conf
 
 # Enable Apache mod_rewrite
 RUN a2enmod rewrite
