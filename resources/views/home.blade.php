@@ -2,15 +2,15 @@
     <div class="mx-auto px-4 pt-6 mb-24">
         <div class="flex justify-between items-center">
             <div class="flex items-center">
-                <div class="rounded-full overflow-hidden w-12 h-12">
-                    @if (auth()->user()->photo)
-                        <img slot="start" style="width: 56px" class="rounded-full"
-                            src="{{ url('storage/' . auth()->user()->photo) }}">
-                    @else
-                        <img slot="start" style="width: 56px" class="rounded-full"
-                            src="{{ asset('assets/img/no_profile.jpg') }}">
-                    @endif
-                </div>
+                <a href="#">
+                    <div class="rounded-full overflow-hidden w-12 h-12 border">
+                        @if (auth()->user()->photo)
+                            <img class="rounded-full" src="{{ url('storage/' . auth()->user()->photo) }}">
+                        @else
+                            <img class="rounded-full" src="{{ asset('assets/img/no_profile.jpg') }}">
+                        @endif
+                    </div>
+                </a>
                 <div class="flex items-center">
                     <div class="md-typescale-body-large ml-3">
                         Hello, <strong>{{ auth()->user()->name }}</strong>
@@ -51,18 +51,19 @@
             <div class="swiper-pagination"></div>
         </div>
 
-        @if (true)
-            <div class="mt-8 shadow-md rounded-xl overflow-hidden border-2"
-                style="background-color: var(--md-sys-color-error-container); color: var(--md-sys-color-on-error-container); border-color: var(--md-sys-color-error);">
-                <div class="py-1 md-typescale-title-small flex items-center justify-center"
-                    style="background-color: var(--md-sys-color-error); color: var(--md-sys-color-on-error)">
-                    <md-icon class="material-icons">warning</md-icon><span class="ms-1">Low Stock Alerts!</span>
-                </div>
-                <div class="py-2 px-4">store_info</div>
+        <div class="mt-8 shadow-md rounded-xl overflow-hidden border-2 hidden" onclick="this.classList.add('hidden')"
+            style="background-color: var(--md-sys-color-error-container); color: var(--md-sys-color-on-error-container); border-color: var(--md-sys-color-error);">
+            <div class="py-1 md-typescale-title-small flex items-center justify-center"
+                style="background-color: var(--md-sys-color-error); color: var(--md-sys-color-on-error)">
+                <md-icon class="material-icons">warning</md-icon><span class="ms-1">Low Stock Alerts!</span>
             </div>
-        @endif
+            <div class="py-2 px-4">store_info</div>
+        </div>
 
-        <div class="md-typescale-title-medium mt-8">Latest News</div>
+        <div class="md-typescale-title-medium mt-8" onclick="this.previousElementSibling.classList.remove('hidden')">
+            Latest News
+        </div>
+
         <md-list>
             <md-list-item href="/news/1">
                 <div class="md-typescale-label-small" style="color: var(--md-sys-color-secondary);">
