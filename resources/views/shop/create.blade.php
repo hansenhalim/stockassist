@@ -12,7 +12,7 @@
         <label for="photo">
             <div class="relative rounded-3xl shadow-md overflow-hidden">
                 <div class="h-56 bg-center bg-cover"
-                    style="background-image: url('{{ asset('assets/img/no_img.png') }}');">
+                    style="background-image: url('{{ asset('assets/img/no_img.jpg') }}');">
                 </div>
                 <div class="bg-black opacity-50 absolute top-0 w-full h-full"></div>
                 <div

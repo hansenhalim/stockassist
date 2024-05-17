@@ -2,9 +2,29 @@
     <div class="mx-auto px-4 pt-6 mb-24">
         <div class="flex justify-between items-center">
             <div class="flex items-center">
-                <div class="rounded-full overflow-hidden w-12 h-12">
-                    <img src="https://secure.gravatar.com/avatar/e163481ef3a2c52d5e2f283e022cedd5?size=128"
-                        alt="">
+                <div class="flex flex-col items-center">
+                    <div class="rounded-full overflow-hidden w-12 h-12">
+                        @if (auth()->user()->photo)
+                            <img slot="start" style="width: 56px" class="rounded-full"
+                                src="{{ url('storage/' . auth()->user()->photo) }}">
+                        @else
+                            <img slot="start" style="width: 56px" class="rounded-full"
+                                src="{{ asset('assets/img/no_profile.jpg') }}">
+                        @endif
+                    </div>
+
+                    @if (auth()->user()->isOwner())
+                        <div class="md-typescale-label-small mt-1.5 px-2 rounded"
+                            style="background-color: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container)">
+                            Owner
+                        </div>
+                    @else
+                        <div class="md-typescale-label-small mt-1.5 px-2 rounded"
+                            style="background-color: var(--md-sys-color-tertiary-container); color: var(--md-sys-color-on-tertiary-container)">
+                            Admin
+                        </div>
+                    @endif
+
                 </div>
                 <div class="md-typescale-body-large ml-3">Hello, <strong>{{ auth()->user()->name }}</strong></div>
             </div>

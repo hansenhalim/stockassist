@@ -35,7 +35,7 @@
                                 src="{{ url('storage/' . $incomingInventoryItem->ingredient->photo) }}">
                         @else
                             <img slot="start" style="width: 56px" class="rounded-md"
-                                src="{{ asset('assets/img/no_img.png') }}">
+                                src="{{ asset('assets/img/no_img.jpg') }}">
                         @endif
 
                         <div slot="trailing-supporting-text">

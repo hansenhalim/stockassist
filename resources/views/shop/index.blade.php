@@ -56,7 +56,7 @@
                                 src="{{ url('storage/' . $shop->photo) }}">
                         @else
                             <img slot="start" style="width: 56px" class="rounded-full"
-                                src="{{ asset('assets/img/no_img.png') }}">
+                                src="{{ asset('assets/img/no_img.jpg') }}">
                         @endif
                     </md-list-item>
                 @endforeach

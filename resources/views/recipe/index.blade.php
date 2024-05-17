@@ -38,7 +38,7 @@
                                 src="{{ url('storage/' . $recipe->photo) }}">
                         @else
                             <img slot="start" style="width: 56px" class="rounded-md"
-                                src="{{ asset('assets/img/no_img.png') }}">
+                                src="{{ asset('assets/img/no_img.jpg') }}">
                         @endif
                     </md-list-item>
                 @endforeach
@@ -46,7 +46,7 @@
         @endif
 
         @unless ($recipes->isEmpty())
-            <a href="{{ route('home') }}">
+            <a href="#">
                 <md-fab label="Release" variant="primary" class="fixed bottom-28 right-4">
                     <md-icon slot="icon" class="material-icons-outlined">unarchive</md-icon>
                 </md-fab>
