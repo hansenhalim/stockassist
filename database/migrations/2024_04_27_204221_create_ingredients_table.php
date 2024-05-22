@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->enum('unit_of_measure', MeasurementUnit::values());
             $table->enum('service_level', ServiceLevel::values());
-            $table->bigInteger('remaining_amount')->default(0);
+            $table->unsignedBigInteger('remaining_amount')->default(0);
             $table->unsignedBigInteger('reorder_point')->nullable();
             $table->unsignedBigInteger('minimum_stock')->nullable();
             $table->unsignedBigInteger('maximum_stock')->nullable();

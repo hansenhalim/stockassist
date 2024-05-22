@@ -8,12 +8,12 @@ enum ServiceLevel: string
 {
     use Values;
 
-    case LOW = 'low';
-    case MEDIUM = 'medium';
-    case HIGH = 'high';
-    case VERY_HIGH = 'very_high';
-    case ULTRA_HIGH = 'ultra_high';
-    case EXTREMELY_HIGH = 'extremely_high';
+    case LOW = 'low_90';
+    case MEDIUM = 'medium_95';
+    case HIGH = 'high_97_5';
+    case VERY_HIGH = 'very_high_99';
+    case ULTRA_HIGH = 'ultra_high_99_5';
+    case EXTREMELY_HIGH = 'extremely_high_99_9';
 
     public function display(): string {
         return match ($this) {
