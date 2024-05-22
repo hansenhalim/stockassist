@@ -1,39 +1,38 @@
 <x-app-layout>
     <div class="mx-auto px-4 pt-6 mb-24">
-        <div class="flex justify-between items-center">
-            <div class="flex items-center">
-                <a href="#">
-                    <div class="rounded-full overflow-hidden w-12 h-12 border">
-                        @if (auth()->user()->photo)
-                            <img class="rounded-full" src="{{ url('storage/' . auth()->user()->photo) }}">
-                        @else
-                            <img class="rounded-full" src="{{ asset('assets/img/no_profile.jpg') }}">
-                        @endif
-                    </div>
-                </a>
-                <div class="flex items-center">
-                    <div class="md-typescale-body-large ml-3">
-                        Hello, <strong>{{ auth()->user()->name }}</strong>
-                    </div>
-
-                    @if (auth()->user()->isOwner())
-                        <div class="md-typescale-label-small ml-2 px-1 rounded"
-                            style="background-color: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container)">
-                            Owner
-                        </div>
+        <div class="flex items-center">
+            <a href="#">
+                <div class="rounded-full overflow-hidden w-12 h-12 border">
+                    @if (auth()->user()->photo)
+                        <img class="rounded-full" src="{{ Storage::url(auth()->user()->photo) }}">
                     @else
-                        <div class="md-typescale-label-small ml-2 px-1 rounded"
-                            style="background-color: var(--md-sys-color-tertiary-container); color: var(--md-sys-color-on-tertiary-container)">
-                            Admin
-                        </div>
+                        <img class="rounded-full" src="{{ asset('assets/img/no_profile.jpg') }}">
                     @endif
                 </div>
+            </a>
+
+            <div class="md-typescale-body-large ml-3">
+                Hello, <strong>{{ auth()->user()->name }}</strong>
             </div>
 
-            <form action="{{ route('logout') }}" method="post">
-                @csrf
-                <md-filled-button>Logout</md-filled-button>
-            </form>
+            @if (auth()->user()->isOwner())
+                <div class="md-typescale-label-small ml-2 px-1 rounded"
+                    style="background-color: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container)">
+                    Owner
+                </div>
+            @else
+                <div class="md-typescale-label-small ml-2 px-1 rounded"
+                    style="background-color: var(--md-sys-color-tertiary-container); color: var(--md-sys-color-on-tertiary-container)">
+                    Admin
+                </div>
+            @endif
+
+            <div class="flex-grow text-right">
+                <form action="{{ route('logout') }}" method="post">
+                    @csrf
+                    <md-filled-button>Logout</md-filled-button>
+                </form>
+            </div>
         </div>
 
         <div class="swiper rounded-xl shadow-md mt-8">

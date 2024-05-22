@@ -23,7 +23,7 @@
                             style="background-color: var(--md-sys-color-surface-container-low);">
                             @if ($ingredient->photo)
                                 <div class="aspect-square bg-center bg-cover"
-                                    style="background-image: url('{{ url('storage/' . $ingredient->photo) }}');">
+                                    style="background-image: url('{{ Storage::url($ingredient->photo) }}');">
                                 </div>
                             @else
                                 <div class="aspect-square bg-center bg-cover"

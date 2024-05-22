@@ -13,7 +13,7 @@
             <div class="relative rounded-3xl shadow-md overflow-hidden">
                 @if ($recipe->photo)
                     <div class="h-56 bg-center bg-cover"
-                        style="background-image: url('{{ url('storage/' . $recipe->photo) }}');">
+                        style="background-image: url('{{ Storage::url($recipe->photo) }}');">
                     </div>
                 @else
                     <div class="h-56 bg-center bg-cover"

@@ -31,19 +31,17 @@
                     <md-list-item href="{{ route('ingredients.show', $ingredient) }}">
                         <div slot="headline">{{ $ingredient->name }}</div>
 
-                        <div slot="supporting-text" class="line-clamp-2">{{ $ingredient->description }}</div>
-
-                        @if ($ingredient->photo)
-                            <img slot="start" style="width: 56px" class="rounded-md"
-                                src="{{ url('storage/' . $ingredient->photo) }}">
-                        @else
-                            <img slot="start" style="width: 56px" class="rounded-md"
-                                src="{{ asset('assets/img/no_img.jpg') }}">
-                        @endif
-
-                        <div slot="trailing-supporting-text">
+                        <div slot="supporting-text">
                             {{ $ingredient->remaining_amount }}&nbsp;{{ $ingredient->unit_of_measure }}
                         </div>
+
+                        @if ($ingredient->photo)
+                            <img slot="start" class="rounded-full w-10" src="{{ Storage::url($ingredient->photo) }}">
+                        @else
+                            <img slot="start" class="rounded-full w-10" src="{{ asset('assets/img/no_img.jpg') }}">
+                        @endif
+
+                        <div slot="trailing-supporting-text">In Stock</div>
                     </md-list-item>
                 @endforeach
             </md-list>

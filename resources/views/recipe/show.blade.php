@@ -5,7 +5,7 @@
                 <md-icon class="material-icons">arrow_back</md-icon>
             </md-icon-button>
             <div class="md-typescale-title-large flex-grow">{{ $recipe->name }}</div>
-            <md-icon-button onclick="searchBar.style.display = 'block'">
+            <md-icon-button onclick="searchBar.classList.toggle('hidden')">
                 <md-icon class="material-icons">add_shopping_cart</md-icon>
             </md-icon-button>
         </div>
@@ -15,7 +15,7 @@
         <div class="rounded-3xl shadow-md overflow-hidden">
             @if ($recipe->photo)
                 <div class="h-56 bg-center bg-cover"
-                    style="background-image: url('{{ url('storage/' . $recipe->photo) }}');">
+                    style="background-image: url('{{ Storage::url($recipe->photo) }}');">
                 </div>
             @else
                 <div class="h-56 bg-center bg-cover"
@@ -30,19 +30,19 @@
 
         <div class="md-typescale-body-medium mt-2">{{ $recipe->description ?? 'No description' }}</div>
 
-        <div id="search-bar" class="mt-4" style="display: none;">
+        <div id="search-bar" class="mt-4 hidden">
             <form action="{{ route('link-ingredient') }}" method="post">
                 @csrf
 
                 <div class="flex">
                     <input id="search-input" type="text" class="bg-lime-100 w-1/2 p-2" oninput="search(this.value)"
                         placeholder="Type to search">
-                    <div id="name" style="display: none;" class="bg-lime-100 w-1/2 p-2"></div>
-                    <input id="quantity" type="number" name="quantity" min="0.001" step="0.001"
-                        class="bg-red-100 w-1/4 p-2" placeholder="qty" style="display: none;">
+                    <div id="name" class="bg-lime-100 w-1/2 p-2 hidden"></div>
+                    <input id="quantity" type="number" name="quantity" min="1" value="1"
+                        class="bg-red-100 w-1/4 p-2 hidden" placeholder="qty">
                     <input id="primary-key" type="hidden" name="ingredient_id" class="hidden">
                     <input type="hidden" name="recipe_id" value="{{ $recipe->id }}">
-                    <button id="search-button" type="submit" class="bg-blue-100 w-1/6 p-2">Insert</button>
+                    <button type="submit" class="bg-blue-100 w-1/6 p-2">Insert</button>
                 </div>
             </form>
 
@@ -90,7 +90,6 @@
         const searchInput = document.getElementById('search-input');
         const name = document.getElementById('name');
         const quantity = document.getElementById('quantity');
-        const searchButton = document.getElementById('search-button');
 
         const search = (keyword) => {
             container.innerHTML = '';
@@ -107,9 +106,9 @@
                     primaryKey.value = ingredient.id;
                     searchInput.style.display = 'none';
                     container.style.display = 'none';
-                    name.style.display = 'block';
+                    name.classList.remove('hidden');
                     name.textContent = div.textContent;
-                    quantity.style.display = 'block';
+                    quantity.classList.remove('hidden');
                 });
 
                 container.appendChild(div);

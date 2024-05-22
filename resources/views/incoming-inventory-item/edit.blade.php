@@ -12,7 +12,7 @@
         <div class="rounded-3xl shadow-md overflow-hidden">
             @if ($incomingInventoryItem->ingredient->photo)
                 <div class="h-56 bg-center bg-cover"
-                    style="background-image: url('{{ url('storage/' . $incomingInventoryItem->ingredient->photo) }}');">
+                    style="background-image: url('{{ Storage::url($incomingInventoryItem->ingredient->photo) }}');">
                 </div>
             @else
                 <div class="h-56 bg-center bg-cover"

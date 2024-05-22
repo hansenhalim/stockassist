@@ -36,7 +36,8 @@ class User extends Authenticatable
         return $this->morphTo();
     }
 
-    public function isOwner() : bool {
+    public function isOwner(): bool
+    {
         return $this->authable instanceof Owner;
     }
 }

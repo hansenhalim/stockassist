@@ -53,7 +53,7 @@
 
                         @if ($shop->photo)
                             <img slot="start" style="width: 56px" class="rounded-full"
-                                src="{{ url('storage/' . $shop->photo) }}">
+                                src="{{ Storage::url($shop->photo) }}">
                         @else
                             <img slot="start" style="width: 56px" class="rounded-full"
                                 src="{{ asset('assets/img/no_img.jpg') }}">

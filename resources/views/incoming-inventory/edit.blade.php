@@ -32,7 +32,7 @@
 
                         @if ($incomingInventoryItem->ingredient->photo)
                             <img slot="start" style="width: 56px" class="rounded-md"
-                                src="{{ url('storage/' . $incomingInventoryItem->ingredient->photo) }}">
+                                src="{{ Storage::url($incomingInventoryItem->ingredient->photo) }}">
                         @else
                             <img slot="start" style="width: 56px" class="rounded-md"
                                 src="{{ asset('assets/img/no_img.jpg') }}">

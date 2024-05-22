@@ -34,11 +34,9 @@
                         <div slot="supporting-text" class="line-clamp-2">{{ $recipe->description }}</div>
 
                         @if ($recipe->photo)
-                            <img slot="start" style="width: 56px" class="rounded-md"
-                                src="{{ url('storage/' . $recipe->photo) }}">
+                            <img slot="start" class="rounded-full w-10" src="{{ Storage::url($recipe->photo) }}">
                         @else
-                            <img slot="start" style="width: 56px" class="rounded-md"
-                                src="{{ asset('assets/img/no_img.jpg') }}">
+                            <img slot="start" class="rounded-full w-10" src="{{ asset('assets/img/no_img.jpg') }}">
                         @endif
                     </md-list-item>
                 @endforeach

@@ -15,8 +15,7 @@
     <div class="mx-auto px-4 mb-24">
         <div class="rounded-3xl shadow-md overflow-hidden">
             @if ($shop->photo)
-                <div class="h-56 bg-center bg-cover"
-                    style="background-image: url('{{ url('storage/' . $shop->photo) }}');">
+                <div class="h-56 bg-center bg-cover" style="background-image: url('{{ Storage::url($shop->photo) }}');">
                 </div>
             @else
                 <div class="h-56 bg-center bg-cover"
