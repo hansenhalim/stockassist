@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ConfirmIncoming;
 use App\Http\Controllers\Home;
 use App\Http\Controllers\IncomingInventoryController;
 use App\Http\Controllers\IncomingInventoryItemController;
@@ -24,15 +25,14 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/switch-shop', SwitchShop::class)->name('switch-shop');
     Route::post('/link-ingredient', LinkIngredient::class)->name('link-ingredient');
+    Route::post('/confirm-incoming', ConfirmIncoming::class)->name('confirm-incoming');
+
+    Route::get('/incoming-inventories/edit', [IncomingInventoryController::class, 'edit'])->name('incoming-inventories.edit');
 
     Route::resource('shops', ShopController::class);
     Route::resource('ingredients', IngredientController::class);
     Route::resource('recipes', RecipeController::class);
-
-    Route::get('/incoming-inventories/edit', [IncomingInventoryController::class, 'edit'])->name('incoming-inventories.edit');
-    Route::put('/incoming-inventories', [IncomingInventoryController::class, 'update'])->name('incoming-inventories.update');
-
-    Route::resource('incoming-inventories', IncomingInventoryController::class)->only(['index', 'show', 'destroy']);
+    Route::resource('incoming-inventories', IncomingInventoryController::class)->only(['index', 'show', 'update', 'destroy']);
     Route::resource('incoming-inventory-items', IncomingInventoryItemController::class)->except('show');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

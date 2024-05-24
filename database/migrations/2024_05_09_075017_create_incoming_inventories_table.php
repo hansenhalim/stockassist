@@ -15,7 +15,6 @@ return new class extends Migration
         Schema::create('incoming_inventories', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Shop::class)->constrained()->cascadeOnDelete();
-            $table->timestamp('finalized_at')->nullable();
             $table->timestamp('expected_at')->nullable();
             $table->timestamp('fulfilled_at')->nullable();
             $table->timestamps();

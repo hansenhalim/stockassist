@@ -12,13 +12,14 @@ class IncomingInventoryController extends Controller
     {
         $shop = $request->user()->authable->shop;
 
-        $incomingInventories = $shop->incomingInventories()
+        $pendingIncomingInventories = $shop->incomingInventories()
             ->withCount('incomingInventoryItems')
-            ->whereNotNull('finalized_at')
-            ->latest('finalized_at')
+            ->whereNotNull('expected_at')
+            ->whereNull('fulfilled_at')
+            ->oldest('expected_at')
             ->get();
 
-        $incomingInventories->transform(function (IncomingInventory $incomingInventory) {
+        $pendingIncomingInventories->transform(function (IncomingInventory $incomingInventory) {
             $incomingInventory->supporting_text = $incomingInventory->incomingInventoryItems()
                 ->take(3)
                 ->pluck('ingredient_name')
@@ -27,8 +28,38 @@ class IncomingInventoryController extends Controller
             return $incomingInventory;
         });
 
-        $incomingInventoriesGroups = $incomingInventories->groupBy(function (IncomingInventory $incomingInventory) {
-            $date = $incomingInventory->finalized_at->timezone('Asia/Jakarta');
+        $pendingIncomingInventoriesGroups = $pendingIncomingInventories->groupBy(function (IncomingInventory $incomingInventory) {
+            $date = $incomingInventory->expected_at->timezone('Asia/Jakarta');
+
+            if ($date->isToday()) {
+                $dateString = 'Today';
+            } elseif ($date->isTomorrow()) {
+                $dateString = 'Tomorrow';
+            } else {
+                $dateString = $date->locale('id')->format('l, j F Y');
+            }
+
+            return $dateString;
+        });
+
+        $completedIncomingInventories = $shop->incomingInventories()
+            ->withCount('incomingInventoryItems')
+            ->whereNotNull('expected_at')
+            ->whereNotNull('fulfilled_at')
+            ->latest('fulfilled_at')
+            ->get();
+
+        $completedIncomingInventories->transform(function (IncomingInventory $incomingInventory) {
+            $incomingInventory->supporting_text = $incomingInventory->incomingInventoryItems()
+                ->take(3)
+                ->pluck('ingredient_name')
+                ->implode(', ');
+
+            return $incomingInventory;
+        });
+
+        $completedIncomingInventoriesGroups = $completedIncomingInventories->groupBy(function (IncomingInventory $incomingInventory) {
+            $date = $incomingInventory->fulfilled_at->timezone('Asia/Jakarta');
 
             if ($date->isToday()) {
                 $dateString = 'Today';
@@ -42,7 +73,8 @@ class IncomingInventoryController extends Controller
         });
 
         return view('incoming-inventory.index')
-            ->with('incomingInventoriesGroups', $incomingInventoriesGroups);
+            ->with('completedIncomingInventoriesGroups', $completedIncomingInventoriesGroups)
+            ->with('pendingIncomingInventoriesGroups', $pendingIncomingInventoriesGroups);
     }
 
     public function show(IncomingInventory $incomingInventory)
@@ -56,7 +88,7 @@ class IncomingInventoryController extends Controller
         $shop = $request->user()->authable->shop;
 
         $incomingInventory = $shop->incomingInventories()
-            ->whereNull('finalized_at')
+            ->whereNull('expected_at')
             ->first();
 
         if ($incomingInventory) {
@@ -74,15 +106,9 @@ class IncomingInventoryController extends Controller
             ->with('incomingInventory', $incomingInventory);
     }
 
-    public function update(Request $request)
+    public function update(Request $request, IncomingInventory $incomingInventory)
     {
-        $shop = $request->user()->authable->shop;
-
-        $incomingInventory = $shop->incomingInventories()
-            ->whereNull('finalized_at')
-            ->first();
-
-        $incomingInventory->finalized_at = now();
+        $incomingInventory->fulfilled_at = now();
 
         DB::transaction(function () use ($incomingInventory) {
             foreach ($incomingInventory->incomingInventoryItems as $incomingInventoryItem) {

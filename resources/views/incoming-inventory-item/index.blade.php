@@ -34,10 +34,6 @@
                                 <div class="md-typescale-body-large" style="color: var(--md-sys-color-on-surface);">
                                     {{ $ingredient->name }}
                                 </div>
-                                <div class="md-typescale-body-medium line-clamp-2"
-                                    style="color: var(--md-sys-color-on-surface-variant);">
-                                    {{ $ingredient->description }}
-                                </div>
                             </div>
                         </div>
                     </a>

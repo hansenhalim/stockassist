@@ -16,7 +16,7 @@ class IncomingInventoryItemController extends Controller
         $shop = $request->user()->authable->shop;
 
         $incomingInventory = $shop->incomingInventories()
-            ->whereNull('finalized_at')
+            ->whereNull('expected_at')
             ->first();
 
         $ingredients = $shop->ingredients()
@@ -42,7 +42,7 @@ class IncomingInventoryItemController extends Controller
         $shop = $request->user()->authable->shop;
 
         $incomingInventory = $shop->incomingInventories()
-            ->whereNull('finalized_at')
+            ->whereNull('expected_at')
             ->first();
 
         $ingredient = Ingredient::findOrFail($request->input('ingredient_id'));

@@ -59,15 +59,30 @@
                     label="Description" class="mt-4 w-full"></md-outlined-text-field>
             @enderror
 
-            <div class="md-typescale-title-small mt-4">Unit of Measure</div>
+            <div class="md-typescale-label-large mt-4">Unit of Measure</div>
             @foreach ($measurement_units as $measurement_unit)
                 <div class="mt-2 flex items-center">
                     <md-radio id="{{ $measurement_unit }}" name="unit_of_measure" value="{{ $measurement_unit }}"
-                        @checked($measurement_unit === $ingredient->unit_of_measure)></md-radio>
-                    <label for="{{ $measurement_unit }}"
-                        class="ms-3">{{ $measurement_unit->display() }}&nbsp;({{ $measurement_unit }})</label>
+                        @checked($ingredient->unit_of_measure === $measurement_unit)></md-radio>
+                    <label for="{{ $measurement_unit }}" class="ms-3">{{ $measurement_unit->display() }}</label>
                 </div>
             @endforeach
+
+            <md-outlined-select label="Service Level" name="service_level" class="mt-6 w-full">
+                @foreach ($service_levels as $service_level)
+                    <md-select-option value="{{ $service_level }}" @selected($ingredient->service_level === $service_level)>
+                        {{ $service_level->display() }}
+                    </md-select-option>
+                @endforeach
+            </md-outlined-select>
+
+            <md-outlined-select label="Order Cycle" name="order_cycle" class="mt-4 w-full">
+                @foreach ($order_cycles as $order_cycle)
+                    <md-select-option value="{{ $order_cycle }}" @selected($ingredient->order_cycle === $order_cycle)>
+                        {{ $order_cycle->display() }}
+                    </md-select-option>
+                @endforeach
+            </md-outlined-select>
 
             <div class="flex items-center justify-between mt-8">
                 <md-outlined-button type="button" onclick="history.back()">Back</md-outlined-button>

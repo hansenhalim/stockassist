@@ -15,9 +15,9 @@ enum MeasurementUnit: string
     public function display(): string
     {
         return match ($this) {
-            MeasurementUnit::MILLILITER => 'milliliter',
-            MeasurementUnit::GRAM => 'grams',
-            MeasurementUnit::PIECES => 'pieces',
+            self::MILLILITER => 'milliliter (mL)',
+            self::GRAM => 'grams (g)',
+            self::PIECES => 'pieces (pcs)',
         };
     }
 }

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Enums\MeasurementUnit;
+use App\Enums\OrderCycle;
+use App\Enums\ServiceLevel;
 use App\Http\Requests\StoreIngredientRequest;
 use App\Http\Requests\UpdateIngredientRequest;
 use App\Models\Ingredient;
@@ -21,7 +23,9 @@ class IngredientController extends Controller
     public function create()
     {
         return view('ingredient.create')
-            ->with('measurement_units', MeasurementUnit::cases());
+            ->with('measurement_units', MeasurementUnit::cases())
+            ->with('service_levels', ServiceLevel::cases())
+            ->with('order_cycles', OrderCycle::cases());
     }
 
     public function store(StoreIngredientRequest $request)
@@ -59,7 +63,9 @@ class IngredientController extends Controller
     {
         return view('ingredient.edit')
             ->with('ingredient', $ingredient)
-            ->with('measurement_units', MeasurementUnit::cases());
+            ->with('measurement_units', MeasurementUnit::cases())
+            ->with('service_levels', ServiceLevel::cases())
+            ->with('order_cycles', OrderCycle::cases());
     }
 
     public function update(UpdateIngredientRequest $request, Ingredient $ingredient)

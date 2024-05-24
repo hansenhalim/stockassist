@@ -1,6 +1,7 @@
 <?php
 
 use App\Enums\MeasurementUnit;
+use App\Enums\OrderCycle;
 use App\Enums\ServiceLevel;
 use App\Models\Shop;
 use Illuminate\Database\Migrations\Migration;
@@ -22,6 +23,7 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->enum('unit_of_measure', MeasurementUnit::values());
             $table->enum('service_level', ServiceLevel::values());
+            $table->enum('order_cycle', OrderCycle::values());
             $table->unsignedBigInteger('remaining_amount')->default(0);
             $table->unsignedBigInteger('reorder_point')->nullable();
             $table->unsignedBigInteger('minimum_stock')->nullable();

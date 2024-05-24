@@ -45,7 +45,7 @@
 
         @unless ($recipes->isEmpty())
             <a href="#">
-                <md-fab label="Release" variant="primary" class="fixed bottom-28 right-4">
+                <md-fab variant="primary" class="fixed bottom-28 right-4">
                     <md-icon slot="icon" class="material-icons-outlined">unarchive</md-icon>
                 </md-fab>
             </a>

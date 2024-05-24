@@ -44,6 +44,12 @@
                     </md-list-item>
                 @endforeach
             </md-list>
+
+            <div class="flex mt-8 gap-4 items-center">
+                <label for="expected_at" class="md-typescale-label-medium">Expected At</label>
+                <input type="datetime-local" name="expected_at" id="expected_at" form="confirm-form"
+                    class="border flex-grow">
+            </div>
         @endif
     </div>
 
@@ -67,9 +73,8 @@
             </div>
         @endunless
 
-        <form action="{{ route('incoming-inventories.update') }}" method="post">
+        <form id="confirm-form" action="{{ route('confirm-incoming') }}" method="post">
             @csrf
-            @method('PUT')
 
             <div onclick="this.parentNode.submit()">
                 <md-fab variant="secondary" lowered>

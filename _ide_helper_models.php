@@ -40,7 +40,9 @@ namespace App\Models{
  *
  * @property int $id
  * @property int $shop_id
- * @property \Illuminate\Support\Carbon|null $finalized_at
+ * @property string|null $finalized_at
+ * @property \Illuminate\Support\Carbon|null $expected_at
+ * @property \Illuminate\Support\Carbon|null $fulfilled_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\IncomingInventoryItem> $incomingInventoryItems
@@ -50,7 +52,9 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|IncomingInventory newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|IncomingInventory query()
  * @method static \Illuminate\Database\Eloquent\Builder|IncomingInventory whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|IncomingInventory whereExpectedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|IncomingInventory whereFinalizedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|IncomingInventory whereFulfilledAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|IncomingInventory whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|IncomingInventory whereShopId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|IncomingInventory whereUpdatedAt($value)
@@ -98,8 +102,15 @@ namespace App\Models{
  * @property string $name
  * @property string|null $barcode
  * @property string|null $description
- * @property \App\Enums\MeasurementUnit|null $unit_of_measure
+ * @property \App\Enums\MeasurementUnit $unit_of_measure
+ * @property \App\Enums\ServiceLevel $service_level
+ * @property \App\Enums\OrderCycle $order_cycle
  * @property int $remaining_amount
+ * @property int|null $reorder_point
+ * @property int|null $minimum_stock
+ * @property int|null $maximum_stock
+ * @property int|null $economic_order_quantity
+ * @property int|null $safety_stock
  * @property string|null $photo
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
@@ -114,10 +125,17 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Ingredient whereBarcode($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Ingredient whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Ingredient whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Ingredient whereEconomicOrderQuantity($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Ingredient whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Ingredient whereMaximumStock($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Ingredient whereMinimumStock($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Ingredient whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Ingredient whereOrderCycle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Ingredient wherePhoto($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Ingredient whereRemainingAmount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Ingredient whereReorderPoint($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Ingredient whereSafetyStock($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Ingredient whereServiceLevel($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Ingredient whereShopId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Ingredient whereUnitOfMeasure($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Ingredient whereUpdatedAt($value)
@@ -131,7 +149,7 @@ namespace App\Models{
  *
  * @property int $ingredient_id
  * @property int $recipe_id
- * @property string $quantity
+ * @property int $quantity
  * @method static \Illuminate\Database\Eloquent\Builder|IngredientRecipe newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|IngredientRecipe newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|IngredientRecipe query()
@@ -322,6 +340,7 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $email_verified_at
  * @property mixed $password
  * @property string|null $remember_token
+ * @property string|null $photo
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent $authable
@@ -339,6 +358,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User wherePhoto($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  */

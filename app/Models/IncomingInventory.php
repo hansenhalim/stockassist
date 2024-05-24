@@ -12,7 +12,10 @@ class IncomingInventory extends Model
 
     protected function casts(): array
     {
-        return ['finalized_at' => 'datetime'];
+        return [
+            'expected_at' => 'datetime',
+            'fulfilled_at' => 'datetime',
+        ];
     }
 
     public function incomingInventoryItems(): HasMany
