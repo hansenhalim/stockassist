@@ -5,18 +5,52 @@ namespace App\Http\Controllers;
 use App\Models\ReleaseOrder;
 use App\Models\ReleaseOrderItemDetail;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 
 class ReleaseOrderController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $shop = $request->user()->authable->shop;
+
+        $releaseOrders = $shop->releaseOrders()
+            ->withCount('releaseOrderItems')
+            ->whereNotNull('finalized_at')
+            ->latest('finalized_at')
+            ->get();
+
+        $releaseOrders->transform(function (ReleaseOrder $releaseOrder) {
+            $releaseOrder->supporting_text = $releaseOrder->releaseOrderItems()
+                ->take(3)
+                ->pluck('recipe_name')
+                ->implode(', ');
+
+            return $releaseOrder;
+        });
+
+        $releaseOrdersGroups = $releaseOrders->groupBy(function (ReleaseOrder $releaseOrder) {
+            $date = $releaseOrder->finalized_at->timezone('Asia/Jakarta');
+
+            if ($date->isToday()) {
+                $dateString = 'Today';
+            } elseif ($date->isYesterday()) {
+                $dateString = 'Yesterday';
+            } else {
+                $dateString = $date->locale('id')->format('l, j F Y');
+            }
+
+            return $dateString;
+        });
+
+        return view('release-order.index')
+            ->with('releaseOrdersGroups', $releaseOrdersGroups);
     }
 
     public function show(ReleaseOrder $releaseOrder)
     {
-        //
+        return view('release-order.show')
+            ->with('releaseOrder', $releaseOrder);
     }
 
     public function edit(Request $request)
@@ -79,6 +113,16 @@ class ReleaseOrderController extends Controller
                     $releaseOrderItemDetail->ingredient_order_cycle = $ingredient->order_cycle;
 
                     $releaseOrderItemDetail->save();
+                }
+
+                foreach ($releaseOrderItem->releaseOrderItemDetails as $releaseOrderItemDetail) {
+                    if ($releaseOrderItemDetail->ingredient->remaining_amount < $releaseOrderItemDetail->quantity) {
+                        abort(Response::HTTP_INTERNAL_SERVER_ERROR);
+                    }
+
+                    $releaseOrderItemDetail->ingredient->remaining_amount -= $releaseOrderItemDetail->quantity;
+
+                    $releaseOrderItemDetail->ingredient->save();
                 }
             }
         });

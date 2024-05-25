@@ -39,7 +39,7 @@
                         @endif
 
                         <div slot="trailing-supporting-text">
-                            &plus;{{ $releaseOrderItem->quantity }}
+                            {{ $releaseOrderItem->quantity }}&nbsp;pcs
                         </div>
                     </md-list-item>
                 @endforeach

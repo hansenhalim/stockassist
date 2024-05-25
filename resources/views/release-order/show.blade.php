@@ -5,46 +5,30 @@
                 <md-icon class="material-icons">arrow_back</md-icon>
             </md-icon-button>
             <div class="md-typescale-title-large flex-grow">
-                Incoming Items
+                Release Items
             </div>
         </div>
     </x-slot>
 
     <div class="mx-auto px-4 mb-8">
         <md-list>
-            @foreach ($incomingInventory->incomingInventoryItems as $incomingInventoryItem)
+            @foreach ($releaseOrder->releaseOrderItems as $releaseOrderItem)
                 <md-list-item>
-                    <div slot="headline">{{ $incomingInventoryItem->ingredient_name }}</div>
+                    <div slot="headline">{{ $releaseOrderItem->recipe_name }}</div>
 
-                    @if ($incomingInventoryItem->ingredient_photo)
+                    @if ($releaseOrderItem->recipe_photo)
                         <img slot="start" style="width: 56px" class="rounded-md"
-                            src="{{ Storage::url($incomingInventoryItem->ingredient_photo) }}">
+                            src="{{ Storage::url($releaseOrderItem->recipe_photo) }}">
                     @else
                         <img slot="start" style="width: 56px" class="rounded-md"
                             src="{{ asset('assets/img/no_img.jpg') }}">
                     @endif
 
                     <div slot="trailing-supporting-text">
-                        &plus;{{ $incomingInventoryItem->quantity }}&nbsp;{{ $incomingInventoryItem->ingredient_unit_of_measure }}
+                        {{ $releaseOrderItem->quantity }}&nbsp;pcs
                     </div>
                 </md-list-item>
             @endforeach
         </md-list>
     </div>
-
-    @unless ($incomingInventory->fulfilled_at)
-        <div class="flex items-center justify-end fixed bottom-0 w-full max-w-md px-4 py-3"
-            style="background-color: var(--md-sys-color-surface-container);">
-            <form action="{{ route('incoming-inventories.update', $incomingInventory) }}" method="post">
-                @csrf
-                @method('PUT')
-
-                <div onclick="this.parentNode.submit()">
-                    <md-fab variant="secondary" lowered>
-                        <md-icon slot="icon" class="material-icons">check</md-icon>
-                    </md-fab>
-                </div>
-            </form>
-        </div>
-    @endunless
 </x-app-layout>
