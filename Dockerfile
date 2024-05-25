@@ -2,7 +2,7 @@
 FROM php:8.3-apache
 
 # Set the working directory
-WORKDIR /var/www
+WORKDIR /var/www/html
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
@@ -45,6 +45,9 @@ COPY --chown=www-data:www-data . /var/www/html
 
 # Change current user to www-data
 USER www-data
+
+# Run Laravel specific commands
+RUN php artisan storage:link
 
 # Expose port 80 and start Apache server
 EXPOSE 80
