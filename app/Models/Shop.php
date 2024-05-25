@@ -13,6 +13,11 @@ class Shop extends Model
         return $this->belongsTo(Owner::class);
     }
 
+    public function admins(): HasMany
+    {
+        return $this->hasMany(Admin::class);
+    }
+
     public function recipes(): HasMany
     {
         return $this->hasMany(Recipe::class);

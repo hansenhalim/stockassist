@@ -71,15 +71,11 @@ class DatabaseSeeder extends Seeder
 
             $owner->user()->save($user);
 
-            if (array_key_exists('photo_filename', $store)) {
-                $path = Storage::putFile('ingredients', storage_path('app/'.$store['photo_filename']));
-            }
-
             $shop = new Shop([
                 'name' => $store['shop_name'],
                 'address' => $store['address'],
                 'zip_code' => $store['zip_code'],
-                'photo' => $path,
+                'photo' => array_key_exists('photo_filename', $store) ? Storage::putFile('ingredients', storage_path('app/'.$store['photo_filename'])) : null,
             ]);
 
             $shop->owner()->associate($owner);
@@ -104,12 +100,10 @@ class DatabaseSeeder extends Seeder
 
                 $admin->user()->save($user);
 
-                $path = Storage::putFile('recipes', storage_path('app/Tropical Fruit Juice.webp'));
-
                 $recipe = new Recipe([
                     'name' => 'Tropical Fruit Juice',
                     'description' => 'A refreshing tropical fruit juice blend perfect for hot days. This juice combines the flavors of mango, pineapple, and orange to deliver a vitamin-packed delicious drink.',
-                    'photo' => $path,
+                    'photo' => Storage::putFile('recipes', storage_path('app/Tropical Fruit Juice.webp')),
                 ]);
 
                 $recipe->shop()->associate($shop);
@@ -169,7 +163,6 @@ class DatabaseSeeder extends Seeder
                 ];
 
                 foreach ($stocks as $stock) {
-                    $path = Storage::putFile('ingredients', storage_path('app/'.$stock['photo_filename']));
 
                     $ingredient = new Ingredient([
                         'name' => $stock['name'],
@@ -177,7 +170,7 @@ class DatabaseSeeder extends Seeder
                         'unit_of_measure' => $stock['unit_of_measure'],
                         'service_level' => $stock['service_level'],
                         'order_cycle' => $stock['order_cycle'],
-                        'photo' => $path,
+                        'photo' => Storage::putFile('ingredients', storage_path('app/'.$stock['photo_filename'])),
                     ]);
 
                     $ingredient->shop()->associate($shop);

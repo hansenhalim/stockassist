@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="mx-auto px-4 pt-6 mb-24">
         <div class="flex items-center">
-            <a href="#">
+            <a href="{{ route('profile.show') }}">
                 <div class="rounded-full overflow-hidden w-12 h-12 border">
                     @if (auth()->user()->photo)
                         <img class="rounded-full" src="{{ Storage::url(auth()->user()->photo) }}">
@@ -11,8 +11,8 @@
                 </div>
             </a>
 
-            <div class="md-typescale-body-large ml-3">
-                Hello, <strong>{{ auth()->user()->name }}</strong>
+            <div class="md-typescale-title-small ml-3">
+                {{ auth()->user()->name }}
             </div>
 
             @if (auth()->user()->isOwner())
@@ -28,10 +28,9 @@
             @endif
 
             <div class="flex-grow text-right">
-                <form action="{{ route('logout') }}" method="post">
-                    @csrf
-                    <md-filled-button>Logout</md-filled-button>
-                </form>
+                <md-icon-button href="#">
+                    <md-icon class="material-icons">notifications</md-icon>
+                </md-icon-button>
             </div>
         </div>
 
