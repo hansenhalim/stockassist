@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(ReleaseOrder::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Recipe::class)->nullable()->constrained()->nullOnDelete();
-            $table->string('recipe_name');
-            $table->string('recipe_photo')->nullable();
             $table->unsignedBigInteger('quantity');
+            $table->string('recipe_name')->nullable();
+            $table->string('recipe_photo')->nullable();
         });
     }
 

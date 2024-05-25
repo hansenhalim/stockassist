@@ -45,11 +45,19 @@
                 @endforeach
             </md-list>
 
-            <div class="flex mt-8 gap-4 items-center">
-                <label for="expected_at" class="md-typescale-label-medium">Expected At</label>
-                <input type="datetime-local" name="expected_at" id="expected_at" form="confirm-form"
-                    class="border flex-grow">
-            </div>
+            @error('expected_at')
+                <div class="flex mt-4 gap-4 items-center">
+                    <label for="expected_at" class="md-typescale-label-medium">Expected At</label>
+                    <input type="date" name="expected_at" id="expectedAt" form="confirmForm" class="border flex-grow"
+                        style="border-color: var(--md-sys-color-error);">
+                </div>
+                <span class="md-typescale-body-medium" style="color: var(--md-sys-color-error);">{{ $message }}</span>
+            @else
+                <div class="flex mt-4 gap-4 items-center">
+                    <label for="expected_at" class="md-typescale-label-medium">Expected At</label>
+                    <input type="date" name="expected_at" id="expectedAt" form="confirmForm" class="border flex-grow">
+                </div>
+            @enderror
         @endif
     </div>
 
@@ -73,7 +81,7 @@
             </div>
         @endunless
 
-        <form id="confirm-form" action="{{ route('confirm-incoming') }}" method="post">
+        <form id="confirmForm" action="{{ route('confirm-incoming') }}" method="post">
             @csrf
 
             <div onclick="this.parentNode.submit()">
@@ -83,4 +91,11 @@
             </div>
         </form>
     </div>
+
+    <script>
+        const date = new Date();
+        expectedAt.min = new Date(date.getTime() - (date.getTimezoneOffset() * 60000))
+            .toISOString()
+            .slice(0, 10);
+    </script>
 </x-app-layout>

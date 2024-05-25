@@ -31,8 +31,6 @@
                     <md-list-item href="{{ route('recipes.show', $recipe) }}">
                         <div slot="headline">{{ $recipe->name }}</div>
 
-                        <div slot="supporting-text" class="line-clamp-2">{{ $recipe->description }}</div>
-
                         @if ($recipe->photo)
                             <img slot="start" class="rounded-full w-10" src="{{ Storage::url($recipe->photo) }}">
                         @else
@@ -44,7 +42,7 @@
         @endif
 
         @unless ($recipes->isEmpty())
-            <a href="#">
+            <a href="{{ route('release-orders.edit') }}">
                 <md-fab variant="primary" class="fixed bottom-28 right-4">
                     <md-icon slot="icon" class="material-icons-outlined">unarchive</md-icon>
                 </md-fab>

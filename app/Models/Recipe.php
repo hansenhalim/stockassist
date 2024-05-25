@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Traits\BelongsToShop;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Recipe extends Model
 {
@@ -16,5 +17,10 @@ class Recipe extends Model
             ->belongsToMany(Ingredient::class)
             ->using(IngredientRecipe::class)
             ->withPivot('quantity');
+    }
+
+    public function releaseOrderItems(): HasMany
+    {
+        return $this->hasMany(ReleaseOrderItem::class);
     }
 }

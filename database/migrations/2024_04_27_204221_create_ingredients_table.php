@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('barcode')->nullable();
             $table->string('description')->nullable();
             $table->enum('unit_of_measure', MeasurementUnit::values());
+            $table->string('photo')->nullable();
             $table->enum('service_level', ServiceLevel::values());
             $table->enum('order_cycle', OrderCycle::values());
             $table->unsignedBigInteger('remaining_amount')->default(0);
@@ -30,7 +31,6 @@ return new class extends Migration
             $table->unsignedBigInteger('maximum_stock')->nullable();
             $table->unsignedBigInteger('economic_order_quantity')->nullable();
             $table->unsignedBigInteger('safety_stock')->nullable();
-            $table->string('photo')->nullable();
             $table->timestamps();
         });
     }

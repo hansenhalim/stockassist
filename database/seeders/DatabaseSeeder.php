@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
                 'shop_name' => 'Pempek Semar',
                 'address' => 'Jl. Jenderal Sudirman No.120, Tugu Kecil, Kec. Prabumulih Tim., Kota Prabumulih, Sumatera Selatan',
                 'zip_code' => '31113',
+                'photo_filename' => 'Pempek Semar.jpg',
             ], [
                 'owner_phone' => '6289502941231',
                 'owner_name' => 'Joshua Indra',
@@ -70,10 +71,15 @@ class DatabaseSeeder extends Seeder
 
             $owner->user()->save($user);
 
+            if (array_key_exists('photo_filename', $store)) {
+                $path = Storage::putFile('ingredients', storage_path('app/'.$store['photo_filename']));
+            }
+
             $shop = new Shop([
                 'name' => $store['shop_name'],
                 'address' => $store['address'],
                 'zip_code' => $store['zip_code'],
+                'photo' => $path,
             ]);
 
             $shop->owner()->associate($owner);

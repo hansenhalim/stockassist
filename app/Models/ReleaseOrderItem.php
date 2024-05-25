@@ -19,4 +19,9 @@ class ReleaseOrderItem extends Model
     {
         return $this->hasMany(ReleaseOrderItemDetail::class);
     }
+
+    public function recipe(): BelongsTo
+    {
+        return $this->belongsTo(Recipe::class);
+    }
 }

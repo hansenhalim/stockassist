@@ -30,23 +30,23 @@
 
         <div class="md-typescale-body-medium mt-2">{{ $recipe->description ?? 'No description' }}</div>
 
-        <div id="search-bar" class="mt-4 hidden">
+        <div id="searchBar" class="mt-4 hidden">
             <form action="{{ route('link-ingredient') }}" method="post">
                 @csrf
 
                 <div class="flex">
-                    <input id="search-input" type="text" class="bg-lime-100 w-1/2 p-2" oninput="search(this.value)"
+                    <input id="searchInput" type="text" class="bg-lime-100 w-1/2 p-2" oninput="search(this.value)"
                         placeholder="Type to search">
-                    <div id="name" class="bg-lime-100 w-1/2 p-2 hidden"></div>
+                    <div id="ingredientName" class="bg-lime-100 w-1/2 p-2 hidden"></div>
                     <input id="quantity" type="number" name="quantity" min="1" value="1"
                         class="bg-red-100 w-1/4 p-2 hidden" placeholder="qty">
-                    <input id="primary-key" type="hidden" name="ingredient_id" class="hidden">
+                    <input id="primaryKey" type="hidden" name="ingredient_id" class="hidden">
                     <input type="hidden" name="recipe_id" value="{{ $recipe->id }}">
                     <button type="submit" class="bg-blue-100 w-1/6 p-2">Insert</button>
                 </div>
             </form>
 
-            <div id="container" class="mt-1 w-1/2">
+            <div id="ingredientContainer" class="mt-1 w-1/2">
                 <!-- <div class="border px-4 py-2">Mango (pcs)</div> -->
             </div>
         </div>
@@ -84,15 +84,11 @@
     <script>
         const ingredients = @json($ingredients);
 
-        const searchBar = document.getElementById('search-bar');
-        const container = document.getElementById('container');
-        const primaryKey = document.getElementById('primary-key');
-        const searchInput = document.getElementById('search-input');
-        const name = document.getElementById('name');
+        const searchInput = document.getElementById('searchInput');
         const quantity = document.getElementById('quantity');
 
         const search = (keyword) => {
-            container.innerHTML = '';
+            ingredientContainer.innerHTML = '';
 
             if (keyword === '') return;
 
@@ -105,13 +101,13 @@
                 div.addEventListener('click', () => {
                     primaryKey.value = ingredient.id;
                     searchInput.style.display = 'none';
-                    container.style.display = 'none';
-                    name.classList.remove('hidden');
-                    name.textContent = div.textContent;
+                    ingredientContainer.style.display = 'none';
+                    ingredientName.classList.remove('hidden');
+                    ingredientName.textContent = div.textContent;
                     quantity.classList.remove('hidden');
                 });
 
-                container.appendChild(div);
+                ingredientContainer.appendChild(div);
             });
         }
     </script>

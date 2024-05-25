@@ -44,12 +44,7 @@
                 <md-outlined-button type="button" onclick="history.back()">Back</md-outlined-button>
 
                 <div class="flex">
-                    <form action="{{ route('incoming-inventory-items.destroy', $incomingInventoryItem) }}"
-                        method="post">
-                        @csrf
-                        @method('DELETE')
-                        <md-text-button>Delete</md-text-button>
-                    </form>
+                    <md-text-button form="formDelete">Delete</md-text-button>
                     <md-filled-button>
                         Confirm
                         <div slot="icon" class="w-6 h-6">
@@ -58,6 +53,12 @@
                     </md-filled-button>
                 </div>
             </div>
+        </form>
+
+        <form id="formDelete" action="{{ route('incoming-inventory-items.destroy', $incomingInventoryItem) }}"
+            method="post">
+            @csrf
+            @method('DELETE')
         </form>
     </div>
 </x-app-layout>

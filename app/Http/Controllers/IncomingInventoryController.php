@@ -111,13 +111,13 @@ class IncomingInventoryController extends Controller
         $incomingInventory->fulfilled_at = now();
 
         DB::transaction(function () use ($incomingInventory) {
+            $incomingInventory->save();
+
             foreach ($incomingInventory->incomingInventoryItems as $incomingInventoryItem) {
                 $incomingInventoryItem->ingredient->remaining_amount += $incomingInventoryItem->quantity;
 
                 $incomingInventoryItem->ingredient->save();
             }
-
-            $incomingInventory->save();
         });
 
         return redirect()->route('ingredients.index');

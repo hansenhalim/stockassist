@@ -53,12 +53,6 @@ class IncomingInventoryItemController extends Controller
 
         $incomingInventoryItem->ingredient()->associate($ingredient);
 
-        $incomingInventoryItem->ingredient_name = $ingredient->name;
-        $incomingInventoryItem->ingredient_barcode = $ingredient->barcode;
-        $incomingInventoryItem->ingredient_description = $ingredient->description;
-        $incomingInventoryItem->ingredient_unit_of_measure = $ingredient->unit_of_measure;
-        $incomingInventoryItem->ingredient_photo = $ingredient->photo;
-
         $incomingInventoryItem->quantity = $request->input('quantity');
 
         $incomingInventoryItem->save();

@@ -14,7 +14,7 @@
             <md-primary-tab active>Analytics</md-primary-tab>
         </md-tabs>
 
-        <div id="first-tab" class="hidden">
+        <div id="firstTab" class="hidden">
             <div class="rounded-3xl shadow-md overflow-hidden mt-4">
                 @if ($ingredient->photo)
                     <div class="h-56 bg-center bg-cover"
@@ -48,15 +48,12 @@
             </div>
         </div>
 
-        <div id="second-tab">
+        <div id="secondTab">
             <md-slider step="1" ticks min="1" max="6" value="2" labeled></md-slider>
         </div>
     </div>
 
     <script>
-        const firstTab = document.getElementById('first-tab');
-        const secondTab = document.getElementById('second-tab');
-
         const switchTab = (e) => {
             if (e.target.activeTabIndex === 0) {
                 firstTab.classList.remove('hidden');

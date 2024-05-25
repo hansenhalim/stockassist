@@ -13,4 +13,9 @@ class ReleaseOrderItemDetail extends Model
     {
         return $this->belongsTo(ReleaseOrderItem::class);
     }
+
+    public function ingredient(): BelongsTo
+    {
+        return $this->belongsTo(Ingredient::class);
+    }
 }
