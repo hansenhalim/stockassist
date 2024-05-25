@@ -24,23 +24,24 @@
                 </md-filled-tonal-button>
             </div>
         @else
-            <form action="{{ route('switch-shop') }}" method="post">
-                @csrf
-
-                <md-outlined-select label="Currently at" name="shop_id" onchange="this.form.submit()">
-                    @foreach ($shops as $shop)
-                        @if ($shop == $selectedShop)
-                            <md-select-option value="{{ $shop->id }}" selected>
+            <div class="flex items-center justify-between mt-4">
+                <form action="{{ route('switch-shop') }}" method="post">
+                    @csrf
+                    <md-outlined-select label="Currently at" name="shop_id" onchange="this.form.submit()">
+                        @foreach ($shops as $shop)
+                            <md-select-option value="{{ $shop->id }}" @selected($shop == $selectedShop)>
                                 {{ $shop->name }}
                             </md-select-option>
-                        @else
-                            <md-select-option value="{{ $shop->id }}">
-                                {{ $shop->name }}
-                            </md-select-option>
-                        @endif
-                    @endforeach
-                </md-outlined-select>
-            </form>
+                        @endforeach
+                    </md-outlined-select>
+                </form>
+                <md-filled-button href="#" class="ml-3">
+                    Admin
+                    <div slot="icon" class="w-6 h-6">
+                        <md-icon class="material-icons-outlined">person_add</md-icon>
+                    </div>
+                </md-filled-button>
+            </div>
 
             <md-list>
                 @foreach ($shops as $shop)
