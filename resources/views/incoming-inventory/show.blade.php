@@ -10,7 +10,7 @@
         </div>
     </x-slot>
 
-    <div class="mx-auto px-4 mb-8">
+    <div class="mx-auto px-4 mb-24">
         <md-list>
             @foreach ($incomingInventory->incomingInventoryItems as $incomingInventoryItem)
                 <md-list-item>
@@ -25,7 +25,10 @@
                     @endif
 
                     <div slot="trailing-supporting-text">
-                        &plus;{{ $incomingInventoryItem->quantity }}&nbsp;{{ $incomingInventoryItem->ingredient_unit_of_measure }}
+                        {{ $incomingInventoryItem->ingredient->remaining_amount }}&nbsp;{{ $incomingInventoryItem->ingredient_unit_of_measure }}
+                        <span style="color: var(--md-sys-color-primary);">
+                            &plus;{{ $incomingInventoryItem->quantity }}
+                        </span>
                     </div>
                 </md-list-item>
             @endforeach

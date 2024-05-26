@@ -26,12 +26,17 @@ return new class extends Migration
             $table->enum('service_level', ServiceLevel::values());
             $table->enum('order_cycle', OrderCycle::values());
             $table->unsignedBigInteger('remaining_amount')->default(0);
-            $table->unsignedBigInteger('reorder_point')->nullable();
-            $table->unsignedBigInteger('minimum_stock')->nullable();
-            $table->unsignedBigInteger('maximum_stock')->nullable();
-            $table->unsignedBigInteger('economic_order_quantity')->nullable();
-            $table->unsignedBigInteger('safety_stock')->nullable();
             $table->timestamps();
+
+            $table->unsignedBigInteger('lead_time_avg')->nullable();
+            $table->unsignedBigInteger('lead_time_min')->nullable();
+            $table->unsignedBigInteger('lead_time_sig')->nullable();
+            $table->unsignedBigInteger('demand_avg')->nullable();
+            $table->unsignedBigInteger('demand_min')->nullable();
+
+            $table->unsignedBigInteger('reorder_point')->nullable();
+            $table->unsignedBigInteger('safety_stock')->nullable();
+            $table->unsignedBigInteger('inventory_level_max')->nullable();
         });
     }
 

@@ -32,7 +32,7 @@
         </label>
 
         <div class="flex items-center justify-end mt-4">
-            <md-text-button href="{{ route('password.request') }}">Forgot your password?</md-text-button>
+            <md-text-button type="button" href="{{ route('password.request') }}">Forgot your password?</md-text-button>
 
             <md-filled-button class="ms-1">Log in</md-filled-button>
         </div>

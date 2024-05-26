@@ -11,7 +11,7 @@
         </div>
     </x-slot>
 
-    <div class="mx-auto px-4 mb-8">
+    <div class="mx-auto px-4 mb-24">
         @if ($releaseOrder->releaseOrderItems->isEmpty())
             <div class="flex flex-col justify-center items-center my-[37svh]">
                 <div class="md-typescale-body-large" style="color: var(--md-sys-color-outline);">

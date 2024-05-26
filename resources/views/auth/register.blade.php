@@ -39,7 +39,7 @@
         @enderror
 
         <div class="flex items-center justify-end mt-4">
-            <md-text-button href="{{ route('login') }}">Already registered?</md-text-button>
+            <md-text-button type="button" href="{{ route('login') }}">Already registered?</md-text-button>
 
             <md-filled-button class="ms-1">Register</md-filled-button>
         </div>

@@ -35,4 +35,22 @@ class Ingredient extends Model
     {
         return $this->hasMany(IncomingInventoryItem::class);
     }
+
+    public function recalculateStats(): void {
+        $this->lead_time_avg = $this->getLeadTimeAvg();
+        $this->lead_time_min = 0;
+        $this->lead_time_sig = 0;
+        $this->demand_avg = 0;
+        $this->demand_min = 0;
+
+        $this->reorder_point = 0;
+        $this->safety_stock = 0;
+        $this->inventory_level_max = 0;
+
+        $this->save();
+    }
+
+    private function getLeadTimeAvg(): int {
+        return 0;
+    }
 }

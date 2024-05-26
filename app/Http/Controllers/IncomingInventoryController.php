@@ -120,6 +120,10 @@ class IncomingInventoryController extends Controller
             }
         });
 
+        foreach ($incomingInventory->incomingInventoryItems as $incomingInventoryItem) {
+            $incomingInventoryItem->ingredient->recalculateStats();
+        }
+
         return redirect()->route('ingredients.index');
     }
 
