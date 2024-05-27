@@ -35,10 +35,10 @@
                         @endforeach
                     </md-outlined-select>
                 </form>
-                <md-filled-button href="#" class="ml-3">
-                    Admin
+                <md-filled-button href="{{ route('admins.index') }}" class="ml-3">
+                    Staff
                     <div slot="icon" class="w-6 h-6">
-                        <md-icon class="material-icons-outlined">person_add</md-icon>
+                        <md-icon class="material-icons-outlined">engineering</md-icon>
                     </div>
                 </md-filled-button>
             </div>

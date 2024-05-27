@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreAdminRequest;
 use App\Models\Admin;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -20,9 +23,25 @@ class AdminController extends Controller
         return view('admin.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreAdminRequest $request)
     {
-        //
+        $shop = $request->user()->authable->shop;
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        $admin = new Admin;
+
+        $admin->shop()->associate($shop);
+
+        $admin->save();
+
+        $admin->user()->save($user);
+
+        return redirect()->route('admins.index');
     }
 
     public function show(Admin $admin)
@@ -31,19 +50,10 @@ class AdminController extends Controller
             ->with('admin', $admin);
     }
 
-    public function edit(Admin $admin)
-    {
-        return view('admin.edit')
-            ->with('admin', $admin);
-    }
-
-    public function update(Request $request, Admin $admin)
-    {
-        //
-    }
-
     public function destroy(Admin $admin)
     {
-        //
+        $admin->delete();
+
+        return redirect()->route('admins.index');
     }
 }

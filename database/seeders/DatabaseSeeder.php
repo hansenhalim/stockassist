@@ -90,6 +90,7 @@ class DatabaseSeeder extends Seeder
                 $user = User::factory()->create([
                     'name' => 'Hansen Halim',
                     'email' => 'hansen_halim@example.com',
+                    'photo' => Storage::putFile('users', storage_path('app/Hansen Halim.jpeg')),
                 ]);
 
                 $admin = new Admin(['pin' => '123456']);

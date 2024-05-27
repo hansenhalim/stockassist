@@ -38,11 +38,10 @@ Route::middleware('auth')->group(function () {
     Route::resource('ingredients', IngredientController::class);
     Route::resource('recipes', RecipeController::class);
     Route::resource('incoming-inventories', IncomingInventoryController::class)->only(['index', 'show', 'update', 'destroy']);
-    Route::resource('incoming-inventory-items', IncomingInventoryItemController::class)->except('show');
+    Route::resource('incoming-inventory-items', IncomingInventoryItemController::class)->except(['show']);
     Route::resource('release-orders', ReleaseOrderController::class)->only(['index', 'show', 'destroy']);
-    Route::resource('release-order-items', ReleaseOrderItemController::class)->except('show');
-
-    Route::resource('admins', AdminController::class);
+    Route::resource('release-order-items', ReleaseOrderItemController::class)->except(['show']);
+    Route::resource('admins', AdminController::class)->except(['edit', 'update']);
 
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
