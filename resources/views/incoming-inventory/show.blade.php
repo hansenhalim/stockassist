@@ -16,19 +16,21 @@
                 <md-list-item>
                     <div slot="headline">{{ $incomingInventoryItem->ingredient_name }}</div>
 
+                    @unless ($incomingInventory->fulfilled_at)
+                        <div slot="supporting-text">
+                            {{ $incomingInventoryItem->ingredient->remaining_amount }}&nbsp;{{ $incomingInventoryItem->ingredient_unit_of_measure }}
+                        </div>
+                    @endunless
+
                     @if ($incomingInventoryItem->ingredient_photo)
-                        <img slot="start" style="width: 56px" class="rounded-md"
+                        <img slot="start" class="rounded-full w-10"
                             src="{{ Storage::url($incomingInventoryItem->ingredient_photo) }}">
                     @else
-                        <img slot="start" style="width: 56px" class="rounded-md"
-                            src="{{ asset('assets/img/no_img.jpg') }}">
+                        <img slot="start" class="rounded-full w-10" src="{{ asset('assets/img/no_img.jpg') }}">
                     @endif
 
-                    <div slot="trailing-supporting-text">
-                        {{ $incomingInventoryItem->ingredient->remaining_amount }}&nbsp;{{ $incomingInventoryItem->ingredient_unit_of_measure }}
-                        <span style="color: var(--md-sys-color-primary);">
-                            &plus;{{ $incomingInventoryItem->quantity }}
-                        </span>
+                    <div slot="trailing-supporting-text" style="color: var(--md-sys-color-primary);">
+                        &plus;{{ $incomingInventoryItem->quantity }}&nbsp;{{ $incomingInventoryItem->ingredient_unit_of_measure }}
                     </div>
                 </md-list-item>
             @endforeach

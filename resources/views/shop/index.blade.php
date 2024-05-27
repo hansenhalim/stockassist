@@ -2,28 +2,16 @@
     <x-slot name="header">
         <div class="flex items-center justify-between">
             <div class="md-typescale-title-large">Store</div>
-            @unless ($shops->isEmpty())
+            @if ($shops->isNotEmpty())
                 <md-icon-button href="{{ route('shops.create') }}">
                     <md-icon class="material-icons">add</md-icon>
                 </md-icon-button>
-            @endunless
+            @endif
         </div>
     </x-slot>
 
     <div class="mx-auto px-4 mb-24">
-        @if ($shops->isEmpty())
-            <div class="flex flex-col justify-center items-center my-[35svh]">
-                <div class="md-typescale-body-large" style="color: var(--md-sys-color-outline);">
-                    You don't have a store
-                </div>
-                <md-filled-tonal-button href="{{ route('shops.create') }}" class="mt-2">
-                    Create store
-                    <div slot="icon" class="w-6 h-6">
-                        <md-icon class="material-icons">add</md-icon>
-                    </div>
-                </md-filled-tonal-button>
-            </div>
-        @else
+        @if ($shops->isNotEmpty())
             <div class="flex items-center justify-between mt-4">
                 <form action="{{ route('switch-shop') }}" method="post">
                     @csrf
@@ -53,15 +41,25 @@
                         <md-icon slot="end" class="material-icons">arrow_right</md-icon>
 
                         @if ($shop->photo)
-                            <img slot="start" style="width: 56px" class="rounded-full"
-                                src="{{ Storage::url($shop->photo) }}">
+                            <img slot="start" class="rounded-full w-10" src="{{ Storage::url($shop->photo) }}">
                         @else
-                            <img slot="start" style="width: 56px" class="rounded-full"
-                                src="{{ asset('assets/img/no_img.jpg') }}">
+                            <img slot="start" class="rounded-full w-10" src="{{ asset('assets/img/no_img.jpg') }}">
                         @endif
                     </md-list-item>
                 @endforeach
             </md-list>
+        @else
+            <div class="flex flex-col justify-center items-center my-[35svh]">
+                <div class="md-typescale-body-large" style="color: var(--md-sys-color-outline);">
+                    You don't have a store
+                </div>
+                <md-filled-tonal-button href="{{ route('shops.create') }}" class="mt-2">
+                    Create store
+                    <div slot="icon" class="w-6 h-6">
+                        <md-icon class="material-icons">add</md-icon>
+                    </div>
+                </md-filled-tonal-button>
+            </div>
         @endif
     </div>
 </x-app-layout>

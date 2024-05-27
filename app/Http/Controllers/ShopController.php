@@ -88,8 +88,16 @@ class ShopController extends Controller
         return redirect()->route('shops.show', $shop);
     }
 
-    public function destroy(Shop $shop)
+    public function destroy(Request $request, Shop $shop)
     {
+        $owner = $request->user()->authable;
+
+        if ($owner->selectedShop == $shop) {
+            $owner->selectedShop()->dissociate();
+
+            $owner->save();
+        }
+
         $shop->delete();
 
         return redirect()->route('shops.index');

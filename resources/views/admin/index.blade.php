@@ -5,11 +5,11 @@
                 <md-icon class="material-icons">arrow_back</md-icon>
             </md-icon-button>
             <div class="md-typescale-title-large flex-grow">Staff</div>
-            @unless ($admins->isEmpty())
+            @if ($admins->isNotEmpty())
                 <md-icon-button href="{{ route('admins.create') }}">
                     <md-icon class="material-icons">add</md-icon>
                 </md-icon-button>
-            @endunless
+            @endif
         </div>
     </x-slot>
 

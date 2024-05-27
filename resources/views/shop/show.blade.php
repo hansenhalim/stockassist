@@ -1,14 +1,14 @@
 <x-app-layout>
     <x-slot name="header">
         <div class="flex items-center">
-            @if (request()->routeIs('shops.index'))
-                <div class="md-typescale-title-large">Store</div>
-            @else
+            @unless (request()->routeIs('shops.index'))
                 <md-icon-button href="{{ route('shops.index') }}" class="me-2">
                     <md-icon class="material-icons">arrow_back</md-icon>
                 </md-icon-button>
                 <div class="md-typescale-title-large">{{ $shop->name }}</div>
-            @endif
+            @else
+                <div class="md-typescale-title-large">Store</div>
+            @endunless
         </div>
     </x-slot>
 
@@ -34,19 +34,15 @@
         <div class="flex justify-between mt-8">
             @unless (request()->routeIs('shops.index'))
                 <md-outlined-button type="button" href="{{ route('shops.index') }}">Back</md-outlined-button>
-            @endunless
-            @if (auth()->user()->authable instanceof App\Models\Owner)
                 <div class="flex">
-                    @unless (auth()->user()->authable->selectedShop == $shop)
-                        <form action="{{ route('shops.destroy', $shop) }}" method="post">
-                            @csrf
-                            @method('DELETE')
-                            <md-text-button>Delete</md-text-button>
-                        </form>
-                    @endunless
+                    <form action="{{ route('shops.destroy', $shop) }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <md-text-button>Delete</md-text-button>
+                    </form>
                     <md-filled-button href="{{ route('shops.edit', $shop) }}" class="ms-1">Edit</md-filled-button>
                 </div>
-            @endif
+            @endunless
         </div>
 
     </div>

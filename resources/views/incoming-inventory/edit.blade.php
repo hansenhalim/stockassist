@@ -31,11 +31,10 @@
                         <div slot="headline">{{ $incomingInventoryItem->ingredient->name }}</div>
 
                         @if ($incomingInventoryItem->ingredient->photo)
-                            <img slot="start" style="width: 56px" class="rounded-md"
+                            <img slot="start" class="rounded-full w-10"
                                 src="{{ Storage::url($incomingInventoryItem->ingredient->photo) }}">
                         @else
-                            <img slot="start" style="width: 56px" class="rounded-md"
-                                src="{{ asset('assets/img/no_img.jpg') }}">
+                            <img slot="start" class="rounded-full w-10" src="{{ asset('assets/img/no_img.jpg') }}">
                         @endif
 
                         <div slot="trailing-supporting-text">
@@ -61,13 +60,13 @@
         @endif
     </div>
 
-    <div class="flex items-center justify-between fixed bottom-0 w-full max-w-md px-4 py-3"
-        style="background-color: var(--md-sys-color-surface-container);">
-        <md-icon-button href="{{ route('incoming-inventory-items.index') }}">
-            <md-icon class="material-icons" style="color: var(--md-sys-color-on-surface);">add</md-icon>
-        </md-icon-button>
+    @if ($incomingInventory->incomingInventoryItems->isNotEmpty())
+        <div class="flex items-center justify-end fixed bottom-0 w-full max-w-md px-4 py-3"
+            style="background-color: var(--md-sys-color-surface-container);">
+            <md-icon-button href="{{ route('incoming-inventory-items.index') }}">
+                <md-icon class="material-icons" style="color: var(--md-sys-color-on-surface);">add</md-icon>
+            </md-icon-button>
 
-        @unless ($incomingInventory->incomingInventoryItems->isEmpty())
             <div class="flex-grow">
                 <form action="{{ route('incoming-inventories.destroy', $incomingInventory) }}" method="post">
                     @csrf
@@ -79,18 +78,18 @@
                     </md-icon-button>
                 </form>
             </div>
-        @endunless
 
-        <form id="confirmForm" action="{{ route('confirm-incoming') }}" method="post">
-            @csrf
+            <form id="confirmForm" action="{{ route('confirm-incoming') }}" method="post">
+                @csrf
 
-            <div onclick="this.parentNode.submit()">
-                <md-fab variant="secondary" lowered>
-                    <md-icon slot="icon" class="material-icons">check</md-icon>
-                </md-fab>
-            </div>
-        </form>
-    </div>
+                <div onclick="this.parentNode.submit()">
+                    <md-fab variant="secondary" lowered>
+                        <md-icon slot="icon" class="material-icons">check</md-icon>
+                    </md-fab>
+                </div>
+            </form>
+        </div>
+    @endif
 
     <script>
         const date = new Date();

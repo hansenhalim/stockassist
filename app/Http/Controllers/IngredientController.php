@@ -17,7 +17,7 @@ class IngredientController extends Controller
         $shop = $request->user()->authable->shop;
 
         return view('ingredient.index')
-            ->with('ingredients', $shop->ingredients);
+            ->with('ingredients', $shop?->ingredients);
     }
 
     public function create()

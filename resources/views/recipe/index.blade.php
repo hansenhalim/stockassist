@@ -2,30 +2,16 @@
     <x-slot name="header">
         <div class="flex items-center justify-between">
             <div class="md-typescale-title-large">Recipe</div>
-            @if (auth()->user()->authable instanceof App\Models\Owner)
-                @unless ($recipes->isEmpty())
-                    <md-icon-button href="{{ route('recipes.create') }}">
-                        <md-icon class="material-icons">add</md-icon>
-                    </md-icon-button>
-                @endunless
+            @if (auth()->user()->authable instanceof App\Models\Owner && $recipes?->isNotEmpty())
+                <md-icon-button href="{{ route('recipes.create') }}">
+                    <md-icon class="material-icons">add</md-icon>
+                </md-icon-button>
             @endif
         </div>
     </x-slot>
 
     <div class="mx-auto px-4 mb-24">
-        @if ($recipes->isEmpty())
-            <div class="flex flex-col justify-center items-center my-[35svh]">
-                <div class="md-typescale-body-large" style="color: var(--md-sys-color-outline);">
-                    No recipe found
-                </div>
-                <md-filled-tonal-button href="{{ route('recipes.create') }}" class="mt-2">
-                    Create recipe
-                    <div slot="icon" class="w-6 h-6">
-                        <md-icon class="material-icons">add</md-icon>
-                    </div>
-                </md-filled-tonal-button>
-            </div>
-        @else
+        @if ($recipes?->isNotEmpty())
             <md-list>
                 @foreach ($recipes as $recipe)
                     <md-list-item href="{{ route('recipes.show', $recipe) }}">
@@ -39,14 +25,36 @@
                     </md-list-item>
                 @endforeach
             </md-list>
-        @endif
 
-        @unless ($recipes->isEmpty())
             <a href="{{ route('release-orders.edit') }}">
                 <md-fab variant="primary" class="fixed bottom-28 right-4">
                     <md-icon slot="icon" class="material-icons-outlined">unarchive</md-icon>
                 </md-fab>
             </a>
-        @endunless
+        @else
+            <div class="flex flex-col justify-center items-center my-[35svh]">
+                @if ($recipes)
+                    <div class="md-typescale-body-large" style="color: var(--md-sys-color-outline);">
+                        No recipe found
+                    </div>
+                    <md-filled-tonal-button href="{{ route('recipes.create') }}" class="mt-2">
+                        Create recipe
+                        <div slot="icon" class="w-6 h-6">
+                            <md-icon class="material-icons">add</md-icon>
+                        </div>
+                    </md-filled-tonal-button>
+                @else
+                    <div class="md-typescale-body-large" style="color: var(--md-sys-color-outline);">
+                        You don't have a store
+                    </div>
+                    <md-filled-tonal-button href="{{ route('shops.create') }}" class="mt-2">
+                        Create store
+                        <div slot="icon" class="w-6 h-6">
+                            <md-icon class="material-icons">add</md-icon>
+                        </div>
+                    </md-filled-tonal-button>
+                @endif
+            </div>
+        @endif
     </div>
 </x-app-layout>

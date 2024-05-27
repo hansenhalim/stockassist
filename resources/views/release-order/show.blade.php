@@ -17,11 +17,10 @@
                     <div slot="headline">{{ $releaseOrderItem->recipe_name }}</div>
 
                     @if ($releaseOrderItem->recipe_photo)
-                        <img slot="start" style="width: 56px" class="rounded-md"
+                        <img slot="start" class="rounded-full w-10"
                             src="{{ Storage::url($releaseOrderItem->recipe_photo) }}">
                     @else
-                        <img slot="start" style="width: 56px" class="rounded-md"
-                            src="{{ asset('assets/img/no_img.jpg') }}">
+                        <img slot="start" class="rounded-full w-10" src="{{ asset('assets/img/no_img.jpg') }}">
                     @endif
 
                     <div slot="trailing-supporting-text">
