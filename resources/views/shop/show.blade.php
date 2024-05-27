@@ -4,7 +4,7 @@
             @if (request()->routeIs('shops.index'))
                 <div class="md-typescale-title-large">Store</div>
             @else
-                <md-icon-button onclick="history.back()" class="me-2">
+                <md-icon-button href="{{ route('shops.index') }}" class="me-2">
                     <md-icon class="material-icons">arrow_back</md-icon>
                 </md-icon-button>
                 <div class="md-typescale-title-large">{{ $shop->name }}</div>
@@ -33,7 +33,7 @@
 
         <div class="flex justify-between mt-8">
             @unless (request()->routeIs('shops.index'))
-                <md-outlined-button type="button" onclick="history.back()">Back</md-outlined-button>
+                <md-outlined-button type="button" href="{{ route('shops.index') }}">Back</md-outlined-button>
             @endunless
             @if (auth()->user()->authable instanceof App\Models\Owner)
                 <div class="flex">

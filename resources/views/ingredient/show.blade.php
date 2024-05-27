@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <div class="flex items-center">
-            <md-icon-button onclick="history.back()" class="me-2">
+            <md-icon-button href="{{ route('ingredients.index') }}" class="me-2">
                 <md-icon class="material-icons">arrow_back</md-icon>
             </md-icon-button>
             <div class="md-typescale-title-large">{{ $ingredient->name }}</div>
@@ -10,11 +10,11 @@
 
     <div class="mx-auto px-4 mb-8">
         <md-tabs onchange="switchTab(event)">
-            <md-primary-tab>Details</md-primary-tab>
-            <md-primary-tab active>Analytics</md-primary-tab>
+            <md-primary-tab active>Details</md-primary-tab>
+            <md-primary-tab>Analytics</md-primary-tab>
         </md-tabs>
 
-        <div id="firstTab" class="hidden">
+        <div id="firstTab">
             <div class="rounded-3xl shadow-md overflow-hidden mt-4">
                 @if ($ingredient->photo)
                     <div class="h-56 bg-center bg-cover"
@@ -33,7 +33,7 @@
             </div>
             <div class="md-typescale-body-medium mt-2">{{ $ingredient->description ?? 'No description' }}</div>
             <div class="flex justify-between mt-8">
-                <md-outlined-button type="button" onclick="history.back()">Back</md-outlined-button>
+                <md-outlined-button type="button" href="{{ route('ingredients.index') }}">Back</md-outlined-button>
                 @if (auth()->user()->authable instanceof App\Models\Owner)
                     <div class="flex">
                         <form action="{{ route('ingredients.destroy', $ingredient) }}" method="post">
@@ -48,7 +48,7 @@
             </div>
         </div>
 
-        <div id="secondTab">
+        <div id="secondTab" class="hidden">
             <md-slider step="1" ticks min="1" max="6" value="2" labeled></md-slider>
         </div>
     </div>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ConfirmIncoming;
 use App\Http\Controllers\Home;
 use App\Http\Controllers\IncomingInventoryController;
@@ -40,6 +41,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('incoming-inventory-items', IncomingInventoryItemController::class)->except('show');
     Route::resource('release-orders', ReleaseOrderController::class)->only(['index', 'show', 'destroy']);
     Route::resource('release-order-items', ReleaseOrderItemController::class)->except('show');
+
+    Route::resource('admins', AdminController::class);
 
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');

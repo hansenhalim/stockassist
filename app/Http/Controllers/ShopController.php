@@ -56,7 +56,7 @@ class ShopController extends Controller
 
         $owner->save();
 
-        return back();
+        return redirect()->route('shops.show', $shop);
     }
 
     public function show(Shop $shop)
@@ -85,7 +85,7 @@ class ShopController extends Controller
 
         $shop->save();
 
-        return back();
+        return redirect()->route('shops.show', $shop);
     }
 
     public function destroy(Shop $shop)

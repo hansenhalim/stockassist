@@ -50,7 +50,7 @@ class IngredientController extends Controller
 
         $ingredient->save();
 
-        return back();
+        return redirect()->route('ingredients.show', $ingredient);
     }
 
     public function show(Ingredient $ingredient)
@@ -84,7 +84,7 @@ class IngredientController extends Controller
 
         $ingredient->save();
 
-        return back();
+        return redirect()->route('ingredients.show', $ingredient);
     }
 
     public function destroy(Ingredient $ingredient)

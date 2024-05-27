@@ -41,7 +41,7 @@ class RecipeController extends Controller
 
         $recipe->save();
 
-        return back();
+        return redirect()->route('recipes.show', $recipe);
     }
 
     public function show(Recipe $recipe)
@@ -75,7 +75,7 @@ class RecipeController extends Controller
 
         $recipe->save();
 
-        return back();
+        return redirect()->route('recipes.show', $recipe);
     }
 
     public function destroy(Recipe $recipe)

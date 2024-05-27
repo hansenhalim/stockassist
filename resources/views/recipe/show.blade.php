@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <div class="flex items-center">
-            <md-icon-button onclick="history.back()" class="me-2">
+            <md-icon-button href="{{ route('recipes.index') }}" class="me-2">
                 <md-icon class="material-icons">arrow_back</md-icon>
             </md-icon-button>
             <div class="md-typescale-title-large flex-grow">{{ $recipe->name }}</div>
@@ -65,7 +65,7 @@
         @endif
 
         <div class="flex justify-between mt-8">
-            <md-outlined-button type="button" onclick="history.back()">Back</md-outlined-button>
+            <md-outlined-button type="button" href="{{ route('recipes.index') }}">Back</md-outlined-button>
             @if (auth()->user()->authable instanceof App\Models\Owner)
                 <div class="flex">
                     <form action="{{ route('recipes.destroy', $recipe) }}" method="post">
