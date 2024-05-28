@@ -88,6 +88,8 @@
         const quantity = document.getElementById('quantity');
 
         const search = (keyword) => {
+            keyword = keyword.toLowerCase();
+
             ingredientContainer.innerHTML = '';
 
             if (keyword === '') return;

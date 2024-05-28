@@ -66,7 +66,7 @@
         </md-list>
 
         <div class="md-typescale-body-small text-center" style="color: var(--md-sys-color-outline);">
-            StockAssist - v0.6
+            StockAssist - v0.7
         </div>
     </div>
 
