@@ -36,7 +36,8 @@ class Ingredient extends Model
         return $this->hasMany(IncomingInventoryItem::class);
     }
 
-    public function recalculateStats(): void {
+    public function recalculateStats(): void
+    {
         $this->lead_time_avg = $this->getLeadTimeAvg();
         $this->lead_time_min = 0;
         $this->lead_time_sig = 0;
@@ -50,7 +51,8 @@ class Ingredient extends Model
         $this->save();
     }
 
-    private function getLeadTimeAvg(): int {
+    private function getLeadTimeAvg(): int
+    {
         return 0;
     }
 }

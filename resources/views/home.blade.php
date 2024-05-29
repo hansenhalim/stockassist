@@ -23,7 +23,7 @@
             @else
                 <div class="md-typescale-label-small ml-2 px-1 rounded"
                     style="background-color: var(--md-sys-color-tertiary-container); color: var(--md-sys-color-on-tertiary-container)">
-                    Admin
+                    Staff
                 </div>
             @endif
 

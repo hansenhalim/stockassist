@@ -37,12 +37,14 @@
                     <div class="md-typescale-body-large" style="color: var(--md-sys-color-outline);">
                         No recipe found
                     </div>
-                    <md-filled-tonal-button href="{{ route('recipes.create') }}" class="mt-2">
-                        Create recipe
-                        <div slot="icon" class="w-6 h-6">
-                            <md-icon class="material-icons">add</md-icon>
-                        </div>
-                    </md-filled-tonal-button>
+                    @if (auth()->user()->authable instanceof App\Models\Owner)
+                        <md-filled-tonal-button href="{{ route('recipes.create') }}" class="mt-2">
+                            Create recipe
+                            <div slot="icon" class="w-6 h-6">
+                                <md-icon class="material-icons">add</md-icon>
+                            </div>
+                        </md-filled-tonal-button>
+                    @endif
                 @else
                     <div class="md-typescale-body-large" style="color: var(--md-sys-color-outline);">
                         You don't have a store

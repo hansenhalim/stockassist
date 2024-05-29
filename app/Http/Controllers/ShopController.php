@@ -98,6 +98,10 @@ class ShopController extends Controller
             $owner->save();
         }
 
+        foreach ($shop->admins as $admin) {
+            $admin->user->delete();
+        }
+
         $shop->delete();
 
         return redirect()->route('shops.index');
