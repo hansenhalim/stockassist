@@ -38,7 +38,7 @@
                         @endif
 
                         <div slot="trailing-supporting-text">
-                            &plus;{{ $incomingInventoryItem->quantity }}&nbsp;{{ $incomingInventoryItem->ingredient->unit_of_measure }}
+                            &plus;{{ number_format($incomingInventoryItem->quantity) }}&nbsp;{{ $incomingInventoryItem->ingredient->unit_of_measure }}
                         </div>
                     </md-list-item>
                 @endforeach

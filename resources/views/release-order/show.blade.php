@@ -24,7 +24,7 @@
                     @endif
 
                     <div slot="trailing-supporting-text">
-                        {{ $releaseOrderItem->quantity }}&nbsp;pcs
+                        {{ number_format($releaseOrderItem->quantity) }}&nbsp;pcs
                     </div>
                 </md-list-item>
             @endforeach

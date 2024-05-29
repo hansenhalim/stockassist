@@ -10,12 +10,14 @@
 
     <div class="mx-auto px-4 mb-8">
         <md-tabs onchange="switchTab(event)">
-            <md-primary-tab active>Details</md-primary-tab>
-            <md-primary-tab>Analytics</md-primary-tab>
+            <md-primary-tab active>Analytics</md-primary-tab>
+            <md-primary-tab>Details</md-primary-tab>
         </md-tabs>
 
         <div id="firstTab">
-            <div class="flex p-4 mt-4 rounded-3xl"
+            <img src="{{ asset('assets/img/graph.webp') }}" alt="">
+
+            <div class="flex p-4 mt-2 rounded-3xl"
                 style="background-color: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container);">
                 <div class="text-center flex-1">
                     <div class="md-typescale-body-small">Lead Time</div>
@@ -33,6 +35,7 @@
                         {{ number_format($ingredient->safety_stock) }}&nbsp;{{ $ingredient->unit_of_measure }}</div>
                 </div>
             </div>
+
             <div class="flex p-4 mt-2 rounded-3xl"
                 style="background-color: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container);">
                 <div class="text-center flex-1">

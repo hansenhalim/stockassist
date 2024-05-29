@@ -30,7 +30,7 @@
                     @endif
 
                     <div slot="trailing-supporting-text" style="color: var(--md-sys-color-primary);">
-                        &plus;{{ $incomingInventoryItem->quantity }}&nbsp;{{ $incomingInventoryItem->ingredient_unit_of_measure }}
+                        &plus;{{ number_format($incomingInventoryItem->quantity) }}&nbsp;{{ $incomingInventoryItem->ingredient_unit_of_measure }}
                     </div>
                 </md-list-item>
             @endforeach

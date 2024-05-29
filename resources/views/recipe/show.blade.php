@@ -58,7 +58,7 @@
             <ul class="list-disc ml-4">
                 @foreach ($recipe->ingredients as $ingredient)
                     <li class="md-typescale-body-medium">
-                        {{ $ingredient->pivot->quantity }}&nbsp;{{ $ingredient->unit_of_measure }}&nbsp;<span
+                        {{ number_format($ingredient->pivot->quantity) }}&nbsp;{{ $ingredient->unit_of_measure }}&nbsp;<span
                             class="lowercase">{{ $ingredient->name }}</span></li>
                 @endforeach
             </ul>

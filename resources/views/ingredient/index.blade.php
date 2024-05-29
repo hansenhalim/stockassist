@@ -27,7 +27,15 @@
                             <img slot="start" class="rounded-full w-10" src="{{ asset('assets/img/no_img.jpg') }}">
                         @endif
 
-                        <div slot="trailing-supporting-text">In Stock</div>
+                        @if ($ingredient->remaining_amount > $ingredient->inventory_level_max)
+                            <div slot="trailing-supporting-text" class="text-indigo-700">Overstock</div>
+                        @elseif($ingredient->remaining_amount > $ingredient->reorder_point)
+                            <div slot="trailing-supporting-text" class="text-green-700">In Stock</div>
+                        @elseif($ingredient->remaining_amount > $ingredient->safety_stock)
+                            <div slot="trailing-supporting-text" class="text-yellow-700">Low Stock</div>
+                        @else
+                            <div slot="trailing-supporting-text" class="text-red-700">Critical</div>
+                        @endif
                     </md-list-item>
                 @endforeach
             </md-list>
