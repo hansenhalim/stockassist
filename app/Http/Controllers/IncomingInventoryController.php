@@ -36,7 +36,7 @@ class IncomingInventoryController extends Controller
             } elseif ($date->isTomorrow()) {
                 $dateString = 'Tomorrow';
             } else {
-                $dateString = $date->locale('id')->format('l, j F Y');
+                $dateString = $date->format('l, j F Y');
             }
 
             return $dateString;
@@ -66,7 +66,7 @@ class IncomingInventoryController extends Controller
             } elseif ($date->isYesterday()) {
                 $dateString = 'Yesterday';
             } else {
-                $dateString = $date->locale('id')->format('l, j F Y');
+                $dateString = $date->format('l, j F Y');
             }
 
             return $dateString;
@@ -117,12 +117,10 @@ class IncomingInventoryController extends Controller
                 $incomingInventoryItem->ingredient->remaining_amount += $incomingInventoryItem->quantity;
 
                 $incomingInventoryItem->ingredient->save();
+
+                $incomingInventoryItem->ingredient->recalculateStats();
             }
         });
-
-        foreach ($incomingInventory->incomingInventoryItems as $incomingInventoryItem) {
-            $incomingInventoryItem->ingredient->recalculateStats();
-        }
 
         return redirect()->route('ingredients.index');
     }

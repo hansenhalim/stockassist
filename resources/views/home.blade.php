@@ -28,7 +28,7 @@
             @endif
 
             <div class="flex-grow text-right">
-                <md-icon-button href="#">
+                <md-icon-button href="{{ route('notifications.index') }}">
                     <md-icon class="material-icons">notifications</md-icon>
                 </md-icon-button>
             </div>
@@ -49,16 +49,7 @@
             <div class="swiper-pagination"></div>
         </div>
 
-        <div class="mt-8 shadow-md rounded-xl overflow-hidden border-2 hidden" onclick="this.classList.add('hidden')"
-            style="background-color: var(--md-sys-color-error-container); color: var(--md-sys-color-on-error-container); border-color: var(--md-sys-color-error);">
-            <div class="py-1 md-typescale-title-small flex items-center justify-center"
-                style="background-color: var(--md-sys-color-error); color: var(--md-sys-color-on-error)">
-                <md-icon class="material-icons">warning</md-icon><span class="ms-1">Low Stock Alerts!</span>
-            </div>
-            <div class="py-2 px-4">store_info</div>
-        </div>
-
-        <div class="md-typescale-title-medium mt-8" onclick="this.previousElementSibling.classList.remove('hidden')">
+        <div class="md-typescale-title-medium mt-8">
             Latest News
         </div>
 
@@ -92,5 +83,4 @@
             </md-list-item>
         </md-list>
     </div>
-
 </x-app-layout>

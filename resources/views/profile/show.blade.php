@@ -50,9 +50,8 @@
             </md-list-item>
             <md-divider></md-divider>
             <md-list-item type="link" href="#">
-                <div slot="headline" style="color: var(--md-sys-color-tertiary);">Give feedback</div>
-                <md-icon slot="start" class="material-icons"
-                    style="color: var(--md-sys-color-tertiary);">thumb_up</md-icon>
+                <div slot="headline">Give feedback</div>
+                <md-icon slot="start" class="material-icons">thumb_up</md-icon>
             </md-list-item>
             <md-divider></md-divider>
             <form action="{{ route('logout') }}" method="post">

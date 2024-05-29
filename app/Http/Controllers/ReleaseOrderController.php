@@ -37,7 +37,7 @@ class ReleaseOrderController extends Controller
             } elseif ($date->isYesterday()) {
                 $dateString = 'Yesterday';
             } else {
-                $dateString = $date->locale('id')->format('l, j F Y');
+                $dateString = $date->format('l, j F Y');
             }
 
             return $dateString;
@@ -123,6 +123,8 @@ class ReleaseOrderController extends Controller
                     $releaseOrderItemDetail->ingredient->remaining_amount -= $releaseOrderItemDetail->quantity;
 
                     $releaseOrderItemDetail->ingredient->save();
+
+                    $releaseOrderItemDetail->ingredient->recalculateStats();
                 }
             }
         });

@@ -15,6 +15,47 @@
         </md-tabs>
 
         <div id="firstTab">
+            <div class="flex p-4 mt-4 rounded-3xl"
+                style="background-color: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container);">
+                <div class="text-center flex-1">
+                    <div class="md-typescale-body-small">Lead Time</div>
+                    <div class="md-typescale-title-medium">{{ number_format($ingredient->lead_time_avg) }} days</div>
+                </div>
+                <div class="text-center flex-1 border-x"
+                    style="border-color: var(--md-sys-color-on-secondary-container);">
+                    <div class="md-typescale-body-small">Daily Demand</div>
+                    <div class="md-typescale-title-medium">
+                        {{ number_format($ingredient->demand_avg) }}&nbsp;{{ $ingredient->unit_of_measure }}</div>
+                </div>
+                <div class="text-center flex-1">
+                    <div class="md-typescale-body-small">Safety Stock</div>
+                    <div class="md-typescale-title-medium">
+                        {{ number_format($ingredient->safety_stock) }}&nbsp;{{ $ingredient->unit_of_measure }}</div>
+                </div>
+            </div>
+            <div class="flex p-4 mt-2 rounded-3xl"
+                style="background-color: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container);">
+                <div class="text-center flex-1">
+                    <div class="md-typescale-body-small">Reorder Point</div>
+                    <div class="md-typescale-title-medium">
+                        {{ number_format($ingredient->reorder_point) }}&nbsp;{{ $ingredient->unit_of_measure }}</div>
+                </div>
+                <div class="text-center flex-1 border-x"
+                    style="border-color: var(--md-sys-color-on-secondary-container);">
+                    <div class="md-typescale-body-small">Order Quantity</div>
+                    <div class="md-typescale-title-medium">
+                        {{ number_format($ingredient->order_quantity) }}&nbsp;{{ $ingredient->unit_of_measure }}</div>
+                </div>
+                <div class="text-center flex-1">
+                    <div class="md-typescale-body-small">Maximum Stock</div>
+                    <div class="md-typescale-title-medium">
+                        {{ number_format($ingredient->inventory_level_max) }}&nbsp;{{ $ingredient->unit_of_measure }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="secondTab" class="hidden">
             <div class="rounded-3xl shadow-md overflow-hidden mt-4">
                 @if ($ingredient->photo)
                     <div class="h-56 bg-center bg-cover"
@@ -46,10 +87,6 @@
                     </div>
                 @endif
             </div>
-        </div>
-
-        <div id="secondTab" class="hidden">
-            <md-slider step="1" ticks min="1" max="6" value="2" labeled></md-slider>
         </div>
     </div>
 

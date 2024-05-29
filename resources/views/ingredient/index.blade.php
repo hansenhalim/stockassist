@@ -18,7 +18,7 @@
                         <div slot="headline">{{ $ingredient->name }}</div>
 
                         <div slot="supporting-text">
-                            {{ $ingredient->remaining_amount }}&nbsp;{{ $ingredient->unit_of_measure }}
+                            {{ number_format($ingredient->remaining_amount) }}&nbsp;{{ $ingredient->unit_of_measure }}
                         </div>
 
                         @if ($ingredient->photo)
@@ -32,11 +32,13 @@
                 @endforeach
             </md-list>
 
-            <a href="{{ route('incoming-inventories.edit') }}">
-                <md-fab variant="primary" class="fixed bottom-28 right-4">
-                    <md-icon slot="icon" class="material-icons-outlined">archive</md-icon>
-                </md-fab>
-            </a>
+            <div class="px-4 w-full max-w-md fixed bottom-28 left-1/2 -translate-x-1/2">
+                <a href="{{ route('incoming-inventories.edit') }}">
+                    <md-fab variant="primary" class="absolute right-4 bottom-0">
+                        <md-icon slot="icon" class="material-icons-outlined">archive</md-icon>
+                    </md-fab>
+                </a>
+            </div>
         @else
             <div class="flex flex-col justify-center items-center my-[35svh]">
                 @if ($ingredients)

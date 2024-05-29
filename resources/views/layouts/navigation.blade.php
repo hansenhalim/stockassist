@@ -1,4 +1,4 @@
-<div class="p-4 w-full max-w-md fixed z-10 bottom-0 left-1/2 -translate-x-1/2">
+<div class="px-4 pb-4 w-full max-w-md fixed z-10 bottom-0 left-1/2 -translate-x-1/2">
     <div class="flex justify-evenly rounded-full shadow-lg"
         style="background-color: var(--md-sys-color-surface-container);">
         @if (request()->routeIs('home'))

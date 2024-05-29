@@ -26,11 +26,13 @@
                 @endforeach
             </md-list>
 
-            <a href="{{ route('release-orders.edit') }}">
-                <md-fab variant="primary" class="fixed bottom-28 right-4">
-                    <md-icon slot="icon" class="material-icons-outlined">unarchive</md-icon>
-                </md-fab>
-            </a>
+            <div class="px-4 w-full max-w-md fixed bottom-28 left-1/2 -translate-x-1/2">
+                <a href="{{ route('release-orders.edit') }}">
+                    <md-fab variant="primary" class="absolute right-4 bottom-0">
+                        <md-icon slot="icon" class="material-icons-outlined">unarchive</md-icon>
+                    </md-fab>
+                </a>
+            </div>
         @else
             <div class="flex flex-col justify-center items-center my-[35svh]">
                 @if ($recipes)

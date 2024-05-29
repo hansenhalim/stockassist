@@ -40,7 +40,6 @@ namespace App\Models{
  *
  * @property int $id
  * @property int $shop_id
- * @property string|null $finalized_at
  * @property \Illuminate\Support\Carbon|null $expected_at
  * @property \Illuminate\Support\Carbon|null $fulfilled_at
  * @property \Illuminate\Support\Carbon|null $created_at
@@ -53,7 +52,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|IncomingInventory query()
  * @method static \Illuminate\Database\Eloquent\Builder|IncomingInventory whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|IncomingInventory whereExpectedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|IncomingInventory whereFinalizedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|IncomingInventory whereFulfilledAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|IncomingInventory whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|IncomingInventory whereShopId($value)
@@ -69,12 +67,14 @@ namespace App\Models{
  * @property int $id
  * @property int $incoming_inventory_id
  * @property int|null $ingredient_id
- * @property string $ingredient_name
+ * @property int $quantity
+ * @property string|null $ingredient_name
  * @property string|null $ingredient_barcode
  * @property string|null $ingredient_description
  * @property string|null $ingredient_unit_of_measure
  * @property string|null $ingredient_photo
- * @property int $quantity
+ * @property string|null $ingredient_service_level
+ * @property string|null $ingredient_order_cycle
  * @property-read \App\Models\IncomingInventory $incomingInventory
  * @property-read \App\Models\Ingredient|null $ingredient
  * @method static \Illuminate\Database\Eloquent\Builder|IncomingInventoryItem newModelQuery()
@@ -86,7 +86,9 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|IncomingInventoryItem whereIngredientDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder|IncomingInventoryItem whereIngredientId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|IncomingInventoryItem whereIngredientName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|IncomingInventoryItem whereIngredientOrderCycle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|IncomingInventoryItem whereIngredientPhoto($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|IncomingInventoryItem whereIngredientServiceLevel($value)
  * @method static \Illuminate\Database\Eloquent\Builder|IncomingInventoryItem whereIngredientUnitOfMeasure($value)
  * @method static \Illuminate\Database\Eloquent\Builder|IncomingInventoryItem whereQuantity($value)
  */
@@ -103,32 +105,40 @@ namespace App\Models{
  * @property string|null $barcode
  * @property string|null $description
  * @property \App\Enums\MeasurementUnit $unit_of_measure
+ * @property string|null $photo
  * @property \App\Enums\ServiceLevel $service_level
  * @property \App\Enums\OrderCycle $order_cycle
  * @property int $remaining_amount
- * @property int|null $reorder_point
- * @property int|null $minimum_stock
- * @property int|null $maximum_stock
- * @property int|null $economic_order_quantity
- * @property int|null $safety_stock
- * @property string|null $photo
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property float|null $lead_time_avg
+ * @property float|null $lead_time_min
+ * @property float|null $lead_time_sig
+ * @property float|null $demand_avg
+ * @property float|null $demand_min
+ * @property int|null $reorder_point
+ * @property int|null $safety_stock
+ * @property int|null $inventory_level_max
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\IncomingInventoryItem> $incomingInventoryItems
  * @property-read int|null $incoming_inventory_items_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Recipe> $recipes
  * @property-read int|null $recipes_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ReleaseOrderItemDetail> $releaseOrderItemDetails
+ * @property-read int|null $release_order_item_details_count
  * @property-read \App\Models\Shop $shop
  * @method static \Illuminate\Database\Eloquent\Builder|Ingredient newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Ingredient newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Ingredient query()
  * @method static \Illuminate\Database\Eloquent\Builder|Ingredient whereBarcode($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Ingredient whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Ingredient whereDemandAvg($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Ingredient whereDemandMin($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Ingredient whereDescription($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Ingredient whereEconomicOrderQuantity($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Ingredient whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Ingredient whereMaximumStock($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Ingredient whereMinimumStock($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Ingredient whereInventoryLevelMax($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Ingredient whereLeadTimeAvg($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Ingredient whereLeadTimeMin($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Ingredient whereLeadTimeSig($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Ingredient whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Ingredient whereOrderCycle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Ingredient wherePhoto($value)
@@ -199,6 +209,8 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Ingredient> $ingredients
  * @property-read int|null $ingredients_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ReleaseOrderItem> $releaseOrderItems
+ * @property-read int|null $release_order_items_count
  * @property-read \App\Models\Shop $shop
  * @method static \Illuminate\Database\Eloquent\Builder|Recipe newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Recipe newQuery()
@@ -245,9 +257,10 @@ namespace App\Models{
  * @property int $id
  * @property int $release_order_id
  * @property int|null $recipe_id
- * @property string $recipe_name
- * @property string|null $recipe_photo
  * @property int $quantity
+ * @property string|null $recipe_name
+ * @property string|null $recipe_photo
+ * @property-read \App\Models\Recipe|null $recipe
  * @property-read \App\Models\ReleaseOrder $releaseOrder
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ReleaseOrderItemDetail> $releaseOrderItemDetails
  * @property-read int|null $release_order_item_details_count
@@ -271,12 +284,15 @@ namespace App\Models{
  * @property int $id
  * @property int $release_order_item_id
  * @property int|null $ingredient_id
- * @property string $ingredient_name
+ * @property int $quantity
+ * @property string|null $ingredient_name
  * @property string|null $ingredient_barcode
  * @property string|null $ingredient_description
  * @property string|null $ingredient_unit_of_measure
  * @property string|null $ingredient_photo
- * @property int $quantity
+ * @property string|null $ingredient_service_level
+ * @property string|null $ingredient_order_cycle
+ * @property-read \App\Models\Ingredient|null $ingredient
  * @property-read \App\Models\ReleaseOrderItem $releaseOrderItem
  * @method static \Illuminate\Database\Eloquent\Builder|ReleaseOrderItemDetail newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ReleaseOrderItemDetail newQuery()
@@ -286,7 +302,9 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|ReleaseOrderItemDetail whereIngredientDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ReleaseOrderItemDetail whereIngredientId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ReleaseOrderItemDetail whereIngredientName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ReleaseOrderItemDetail whereIngredientOrderCycle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ReleaseOrderItemDetail whereIngredientPhoto($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ReleaseOrderItemDetail whereIngredientServiceLevel($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ReleaseOrderItemDetail whereIngredientUnitOfMeasure($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ReleaseOrderItemDetail whereQuantity($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ReleaseOrderItemDetail whereReleaseOrderItemId($value)
@@ -306,13 +324,19 @@ namespace App\Models{
  * @property string|null $photo
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Admin> $admins
+ * @property-read int|null $admins_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\IncomingInventory> $incomingInventories
  * @property-read int|null $incoming_inventories_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Ingredient> $ingredients
  * @property-read int|null $ingredients_count
+ * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
+ * @property-read int|null $notifications_count
  * @property-read \App\Models\Owner $owner
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Recipe> $recipes
  * @property-read int|null $recipes_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ReleaseOrder> $releaseOrders
+ * @property-read int|null $release_orders_count
  * @method static \Illuminate\Database\Eloquent\Builder|Shop newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Shop newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Shop query()

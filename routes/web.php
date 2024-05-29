@@ -7,6 +7,7 @@ use App\Http\Controllers\IncomingInventoryController;
 use App\Http\Controllers\IncomingInventoryItemController;
 use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\LinkIngredient;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\ReleaseOrderController;
@@ -42,6 +43,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('release-orders', ReleaseOrderController::class)->only(['index', 'show', 'destroy']);
     Route::resource('release-order-items', ReleaseOrderItemController::class)->except(['show']);
     Route::resource('admins', AdminController::class)->except(['edit', 'update']);
+    Route::resource('notifications', NotificationController::class)->only(['index']);
 
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -28,14 +28,15 @@ return new class extends Migration
             $table->unsignedBigInteger('remaining_amount')->default(0);
             $table->timestamps();
 
-            $table->unsignedBigInteger('lead_time_avg')->nullable();
-            $table->unsignedBigInteger('lead_time_min')->nullable();
-            $table->unsignedBigInteger('lead_time_sig')->nullable();
-            $table->unsignedBigInteger('demand_avg')->nullable();
-            $table->unsignedBigInteger('demand_min')->nullable();
+            $table->float('lead_time_avg')->nullable();
+            $table->float('lead_time_min')->nullable();
+            $table->float('lead_time_sig')->nullable(); //standard deviation(sigma)
+            $table->float('demand_avg')->nullable();
+            $table->float('demand_min')->nullable();
 
-            $table->unsignedBigInteger('reorder_point')->nullable();
             $table->unsignedBigInteger('safety_stock')->nullable();
+            $table->unsignedBigInteger('reorder_point')->nullable();
+            $table->unsignedBigInteger('order_quantity')->nullable();
             $table->unsignedBigInteger('inventory_level_max')->nullable();
         });
     }

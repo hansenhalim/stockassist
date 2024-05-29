@@ -172,7 +172,6 @@ class DatabaseSeeder extends Seeder
                         'service_level' => $stock['service_level'],
                         'order_cycle' => $stock['order_cycle'],
                         'photo' => Storage::putFile('ingredients', storage_path('app/'.$stock['photo_filename'])),
-                        'remaining_amount' => 10000,
                     ]);
 
                     $ingredient->shop()->associate($shop);
