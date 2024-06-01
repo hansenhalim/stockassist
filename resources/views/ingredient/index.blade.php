@@ -27,15 +27,30 @@
                             <img slot="start" class="rounded-full w-10" src="{{ asset('assets/img/no_img.jpg') }}">
                         @endif
 
-                        @if ($ingredient->remaining_amount > $ingredient->inventory_level_max)
-                            <div slot="trailing-supporting-text" class="text-indigo-700">Overstock</div>
-                        @elseif($ingredient->remaining_amount > $ingredient->reorder_point)
-                            <div slot="trailing-supporting-text" class="text-green-700">In Stock</div>
-                        @elseif($ingredient->remaining_amount > $ingredient->safety_stock)
-                            <div slot="trailing-supporting-text" class="text-yellow-700">Low Stock</div>
-                        @else
-                            <div slot="trailing-supporting-text" class="text-red-700">Critical</div>
-                        @endif
+                        @switch($ingredient->level_status)
+                            @case(App\Enums\LevelStatus::OVERSTOCK)
+                                <div slot="trailing-supporting-text" class="text-indigo-700">
+                                    {{ $ingredient->level_status->display() }}</div>
+                            @break
+
+                            @case(App\Enums\LevelStatus::IN_STOCK)
+                                <div slot="trailing-supporting-text" class="text-green-700">
+                                    {{ $ingredient->level_status->display() }}</div>
+                            @break
+
+                            @case(App\Enums\LevelStatus::LOW_STOCK)
+                                <div slot="trailing-supporting-text" class="text-yellow-700">
+                                    {{ $ingredient->level_status->display() }}</div>
+                            @break
+
+                            @case(App\Enums\LevelStatus::CRITICAL)
+                                <div slot="trailing-supporting-text" class="text-red-700">
+                                    {{ $ingredient->level_status->display() }}</div>
+                            @break
+
+                            @default
+                                <div slot="trailing-supporting-text" style="color: var(--md-sys-color-outline);">n/a</div>
+                        @endswitch
                     </md-list-item>
                 @endforeach
             </md-list>

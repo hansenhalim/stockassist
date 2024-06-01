@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\LevelStatus;
 use App\Enums\MeasurementUnit;
 use App\Enums\OrderCycle;
 use App\Enums\ServiceLevel;
@@ -22,6 +23,7 @@ class Ingredient extends Model
             'unit_of_measure' => MeasurementUnit::class,
             'service_level' => ServiceLevel::class,
             'order_cycle' => OrderCycle::class,
+            'level_status' => LevelStatus::class,
         ];
     }
 
@@ -63,6 +65,16 @@ class Ingredient extends Model
 
         // Lmax = ROP + OQ - (Dmin * LTmin)
         $this->inventory_level_max = $this->reorder_point + $this->order_quantity - ($this->demand_min * $this->lead_time_min);
+
+        if ($this->remaining_amount > $this->inventory_level_max) {
+            $this->level_status = LevelStatus::OVERSTOCK;
+        } elseif ($this->remaining_amount > $this->reorder_point) {
+            $this->level_status = LevelStatus::IN_STOCK;
+        } elseif ($this->remaining_amount > $this->safety_stock) {
+            $this->level_status = LevelStatus::LOW_STOCK;
+        } else {
+            $this->level_status = LevelStatus::CRITICAL;
+        }
 
         $this->save();
     }

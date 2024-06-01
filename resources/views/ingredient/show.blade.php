@@ -18,21 +18,35 @@
             <img src="{{ asset('assets/img/graph.webp') }}" alt="">
 
             <div class="flex p-4 mt-2 rounded-3xl"
+                style="background-color: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary);">
+                <div class="text-center flex-1">
+                    <div class="md-typescale-body-small">Available Stock</div>
+                    <div class="md-typescale-title-medium">
+                        {{ number_format($ingredient->remaining_amount) }}&nbsp;{{ $ingredient->unit_of_measure }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex p-4 mt-2 rounded-3xl"
                 style="background-color: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container);">
                 <div class="text-center flex-1">
                     <div class="md-typescale-body-small">Lead Time</div>
-                    <div class="md-typescale-title-medium">{{ number_format($ingredient->lead_time_avg) }} days</div>
+                    <div class="md-typescale-title-medium">
+                        {{ number_format($ingredient->lead_time_avg) }}&nbsp;days
+                    </div>
                 </div>
                 <div class="text-center flex-1 border-x"
                     style="border-color: var(--md-sys-color-on-secondary-container);">
-                    <div class="md-typescale-body-small">Daily Demand</div>
+                    <div class="md-typescale-body-small">Avg Demand</div>
                     <div class="md-typescale-title-medium">
-                        {{ number_format($ingredient->demand_avg) }}&nbsp;{{ $ingredient->unit_of_measure }}</div>
+                        {{ number_format($ingredient->demand_avg) }}&nbsp;{{ $ingredient->unit_of_measure }}
+                    </div>
                 </div>
                 <div class="text-center flex-1">
                     <div class="md-typescale-body-small">Safety Stock</div>
                     <div class="md-typescale-title-medium">
-                        {{ number_format($ingredient->safety_stock) }}&nbsp;{{ $ingredient->unit_of_measure }}</div>
+                        {{ number_format($ingredient->safety_stock) }}&nbsp;{{ $ingredient->unit_of_measure }}
+                    </div>
                 </div>
             </div>
 
@@ -41,16 +55,18 @@
                 <div class="text-center flex-1">
                     <div class="md-typescale-body-small">Reorder Point</div>
                     <div class="md-typescale-title-medium">
-                        {{ number_format($ingredient->reorder_point) }}&nbsp;{{ $ingredient->unit_of_measure }}</div>
+                        {{ number_format($ingredient->reorder_point) }}&nbsp;{{ $ingredient->unit_of_measure }}
+                    </div>
                 </div>
                 <div class="text-center flex-1 border-x"
                     style="border-color: var(--md-sys-color-on-secondary-container);">
-                    <div class="md-typescale-body-small">Order Quantity</div>
+                    <div class="md-typescale-body-small">Reorder Qty</div>
                     <div class="md-typescale-title-medium">
-                        {{ number_format($ingredient->order_quantity) }}&nbsp;{{ $ingredient->unit_of_measure }}</div>
+                        {{ number_format($ingredient->order_quantity) }}&nbsp;{{ $ingredient->unit_of_measure }}
+                    </div>
                 </div>
                 <div class="text-center flex-1">
-                    <div class="md-typescale-body-small">Maximum Stock</div>
+                    <div class="md-typescale-body-small">Max Stock</div>
                     <div class="md-typescale-title-medium">
                         {{ number_format($ingredient->inventory_level_max) }}&nbsp;{{ $ingredient->unit_of_measure }}
                     </div>
@@ -77,7 +93,8 @@
             <div class="flex justify-between items-center mt-4">
                 <div class="md-typescale-title-medium">{{ $ingredient->name }}</div>
                 <div class="md-typescale-title-medium">
-                    {{ $ingredient->remaining_amount }}&nbsp;{{ $ingredient->unit_of_measure }}</div>
+                    {{ number_format($ingredient->remaining_amount) }}&nbsp;{{ $ingredient->unit_of_measure }}
+                </div>
             </div>
             <div class="md-typescale-body-medium mt-2">{{ $ingredient->description ?? 'No description' }}</div>
             <div class="flex justify-between mt-8">
@@ -89,8 +106,9 @@
                             @method('DELETE')
                             <md-text-button>Delete</md-text-button>
                         </form>
-                        <md-filled-button href="{{ route('ingredients.edit', $ingredient) }}"
-                            class="ms-1">Edit</md-filled-button>
+                        <md-filled-button href="{{ route('ingredients.edit', $ingredient) }}" class="ms-1">
+                            Edit
+                        </md-filled-button>
                     </div>
                 @endif
             </div>

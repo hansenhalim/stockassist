@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\LevelStatus;
 use App\Enums\MeasurementUnit;
 use App\Enums\OrderCycle;
 use App\Enums\ServiceLevel;
@@ -38,6 +39,8 @@ return new class extends Migration
             $table->unsignedBigInteger('reorder_point')->nullable();
             $table->unsignedBigInteger('order_quantity')->nullable();
             $table->unsignedBigInteger('inventory_level_max')->nullable();
+
+            $table->enum('level_status', LevelStatus::values())->nullable();
         });
     }
 
