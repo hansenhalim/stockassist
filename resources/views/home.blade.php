@@ -11,7 +11,7 @@
                 </div>
             </a>
 
-            <div class="md-typescale-title-small ml-3">
+            <div class="md-typescale-title-medium ml-3">
                 {{ auth()->user()->name }}
             </div>
 
@@ -29,7 +29,7 @@
 
             <div class="flex-grow text-right">
                 <md-icon-button href="{{ route('notifications.index') }}">
-                    <md-icon class="material-icons">notifications</md-icon>
+                    <md-icon class="material-icons-outlined">notifications</md-icon>
                 </md-icon-button>
             </div>
         </div>

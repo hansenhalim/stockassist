@@ -56,6 +56,10 @@
                     </div>
                 </div>
             </div>
+
+            <md-outlined-button class="mt-8" type="button" href="{{ route('ingredients.index') }}">
+                Back
+            </md-outlined-button>
         </div>
 
         <div id="secondTab" class="hidden">

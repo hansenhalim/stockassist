@@ -36,29 +36,29 @@
         <md-list>
             <md-list-item type="link" href="{{ route('profile.edit') }}">
                 <div slot="headline">Edit profile</div>
-                <md-icon slot="start" class="material-icons">account_circle</md-icon>
+                <md-icon slot="start" class="material-icons-outlined">account_circle</md-icon>
             </md-list-item>
             <md-divider></md-divider>
             <md-list-item type="link" href="{{ route('password.edit') }}">
                 <div slot="headline">Change password</div>
-                <md-icon slot="start" class="material-icons">lock</md-icon>
+                <md-icon slot="start" class="material-icons-outlined">lock</md-icon>
             </md-list-item>
             <md-divider></md-divider>
             <md-list-item type="link" href="#">
                 <div slot="headline">Bug report</div>
-                <md-icon slot="start" class="material-icons">bug_report</md-icon>
+                <md-icon slot="start" class="material-icons-outlined">bug_report</md-icon>
             </md-list-item>
             <md-divider></md-divider>
             <md-list-item type="link" href="#">
                 <div slot="headline">Give feedback</div>
-                <md-icon slot="start" class="material-icons">thumb_up</md-icon>
+                <md-icon slot="start" class="material-icons-outlined">thumb_up</md-icon>
             </md-list-item>
             <md-divider></md-divider>
             <form action="{{ route('logout') }}" method="post">
                 @csrf
                 <md-list-item type="button" onclick="this.parentNode.submit()">
                     <div slot="headline" style="color: var(--md-sys-color-error);">Logout</div>
-                    <md-icon slot="start" class="material-icons"
+                    <md-icon slot="start" class="material-icons-outlined"
                         style="color: var(--md-sys-color-error);">logout</md-icon>
                 </md-list-item>
             </form>
