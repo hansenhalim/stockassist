@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <div class="flex items-center">
-            <md-icon-button onclick="history.back()" class="me-2">
+            <md-icon-button href="{{ route('home') }}" class="me-2">
                 <md-icon class="material-icons">arrow_back</md-icon>
             </md-icon-button>
             <div class="md-typescale-title-large">{{ auth()->user()->name }}</div>
@@ -39,7 +39,7 @@
                 <md-icon slot="start" class="material-icons">account_circle</md-icon>
             </md-list-item>
             <md-divider></md-divider>
-            <md-list-item type="link" href="#">
+            <md-list-item type="link" href="{{ route('password.edit') }}">
                 <div slot="headline">Change password</div>
                 <md-icon slot="start" class="material-icons">lock</md-icon>
             </md-list-item>
@@ -65,7 +65,7 @@
         </md-list>
 
         <div class="md-typescale-body-small text-center" style="color: var(--md-sys-color-outline);">
-            StockAssist - v0.7
+            StockAssist - v0.8
         </div>
     </div>
 
