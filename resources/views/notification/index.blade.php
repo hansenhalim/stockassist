@@ -13,9 +13,9 @@
             <md-list>
                 @foreach ($notifications as $notification)
                     <md-list-item href="#">
-                        <div slot="headline">{{ $notification->data['ingredient_id'] }}</div>
+                        <div slot="headline">{{ $notification->data['message'] }}</div>
 
-                        <md-icon slot="start" class="material-icons">warning</md-icon>
+                        <md-icon slot="start" class="material-icons-outlined">info</md-icon>
                     </md-list-item>
                 @endforeach
             </md-list>

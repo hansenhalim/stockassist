@@ -6,6 +6,9 @@ use App\Enums\LevelStatus;
 use App\Enums\MeasurementUnit;
 use App\Enums\OrderCycle;
 use App\Enums\ServiceLevel;
+use App\Notifications\CriticalStockAlert;
+use App\Notifications\LowStockAlert;
+use App\Notifications\OverStockWarning;
 use App\Traits\BelongsToShop;
 use HiFolks\Statistics\Stat;
 use Illuminate\Database\Eloquent\Builder;
@@ -77,6 +80,20 @@ class Ingredient extends Model
         }
 
         $this->save();
+
+        if ($this->wasChanged('level_status')) {
+            switch ($this->level_status) {
+                case LevelStatus::OVERSTOCK:
+                    $this->shop->notify(new OverStockWarning($this));
+                    break;
+                case LevelStatus::LOW_STOCK:
+                    $this->shop->notify(new LowStockAlert($this));
+                    break;
+                case LevelStatus::CRITICAL:
+                    $this->shop->notify(new CriticalStockAlert($this));
+                    break;
+            }
+        }
     }
 
     private function getLeadTimeStats(): array
