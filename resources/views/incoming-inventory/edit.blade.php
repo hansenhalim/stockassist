@@ -44,19 +44,26 @@
                 @endforeach
             </md-list>
 
-            @error('expected_at')
-                <div class="flex mt-4 gap-4 items-center">
-                    <label for="expected_at" class="md-typescale-label-medium">Expected At</label>
-                    <input type="date" name="expected_at" id="expectedAt" form="confirmForm" class="border flex-grow"
-                        style="border-color: var(--md-sys-color-error);">
+            <div id="formModal" class="hidden">
+                <div class="bg-black bg-opacity-50 absolute top-0 left-0 w-full h-full flex items-center z-10 px-4">
+                    <div class="bg-white p-6 rounded-3xl w-full">
+                        <form id="confirmForm" action="{{ route('confirm-incoming') }}" method="post">
+                            @csrf
+
+                            <div class="md-typescale-headline-small">Expected At</div>
+                            <input required type="date" name="expected_at" id="expectedAt"
+                                class="w-full border-2 p-2 rounded mt-4">
+
+                            <div class="flex justify-end mt-6">
+                                <md-text-button type="button" onclick="formModal.classList.add('hidden')">
+                                    Cancel
+                                </md-text-button>
+                                <md-text-button>Confirm</md-text-button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <span class="md-typescale-body-medium" style="color: var(--md-sys-color-error);">{{ $message }}</span>
-            @else
-                <div class="flex mt-4 gap-4 items-center">
-                    <label for="expected_at" class="md-typescale-label-medium">Expected At</label>
-                    <input type="date" name="expected_at" id="expectedAt" form="confirmForm" class="border flex-grow">
-                </div>
-            @enderror
+            </div>
         @endif
     </div>
 
@@ -79,15 +86,11 @@
                 </form>
             </div>
 
-            <form id="confirmForm" action="{{ route('confirm-incoming') }}" method="post">
-                @csrf
-
-                <div onclick="this.parentNode.submit()">
-                    <md-fab variant="secondary" lowered>
-                        <md-icon slot="icon" class="material-icons">check</md-icon>
-                    </md-fab>
-                </div>
-            </form>
+            <div onclick="formModal.classList.remove('hidden')">
+                <md-fab variant="secondary" lowered>
+                    <md-icon slot="icon" class="material-icons">check</md-icon>
+                </md-fab>
+            </div>
         </div>
     @endif
 
