@@ -18,3 +18,5 @@ yarn-error.log
 /.idea
 /.vscode
 stockassist.tar.gz
+.DS_Store
+.git

@@ -18,5 +18,5 @@ yarn-error.log
 /.idea
 /.vscode
 stockassist.tar.gz
-storage/app/private-key.pem
 .DS_Store
+# .git

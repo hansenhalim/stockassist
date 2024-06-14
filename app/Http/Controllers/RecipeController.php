@@ -14,8 +14,10 @@ class RecipeController extends Controller
     {
         $shop = $request->user()->authable->shop;
 
+        $recipes = $shop?->recipes()->paginate(10);
+
         return view('recipe.index')
-            ->with('recipes', $shop?->recipes);
+            ->with('recipes', $recipes);
     }
 
     public function create()

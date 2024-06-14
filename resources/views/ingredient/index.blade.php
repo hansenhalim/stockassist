@@ -10,7 +10,7 @@
         </div>
     </x-slot>
 
-    <div class="mx-auto px-4 mb-24">
+    <div class="mx-auto px-4 mb-28">
         @if ($ingredients?->isNotEmpty())
             <md-list>
                 @foreach ($ingredients as $ingredient)
@@ -55,7 +55,11 @@
                 @endforeach
             </md-list>
 
-            <div class="px-4 w-full max-w-md fixed bottom-28 left-1/2 -translate-x-1/2">
+            <div class="mt-2">
+                {{ $ingredients->links() }}
+            </div>
+
+            <div id="floatingActionButton" class="px-4 w-full max-w-md fixed bottom-28 left-1/2 -translate-x-1/2">
                 <a href="{{ route('incoming-inventories.edit') }}">
                     <md-fab variant="primary" class="absolute right-4 bottom-0">
                         <md-icon slot="icon" class="material-icons-outlined">archive</md-icon>
@@ -90,4 +94,18 @@
             </div>
         @endif
     </div>
+
+    <script>
+        var prevScrollpos = window.pageYOffset;
+
+        window.onscroll = function() {
+            var currentScrollPos = window.pageYOffset;
+            if (prevScrollpos > currentScrollPos) {
+                floatingActionButton.classList.remove("hidden");
+            } else {
+                floatingActionButton.classList.add("hidden");
+            }
+            prevScrollpos = currentScrollPos;
+        }
+    </script>
 </x-app-layout>
