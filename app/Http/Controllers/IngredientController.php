@@ -16,7 +16,7 @@ class IngredientController extends Controller
     {
         $shop = $request->user()->authable->shop;
 
-        $ingredients = $shop?->ingredients()->latest('level_status')->paginate(10);
+        $ingredients = $shop?->ingredients()->latest('level_status')->oldest('id')->paginate(10);
 
         return view('ingredient.index')
             ->with('ingredients', $ingredients);
