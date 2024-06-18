@@ -22,7 +22,7 @@
     <div class="flex flex-col items-center justify-center min-h-svh border-x w-full max-w-md">
         <div>
             <a href="/">
-                <img class="w-40" src="{{ asset('assets/img/logo.png') }}" alt="">
+                <img class="w-40" src="assets/img/logo.png" alt="">
             </a>
         </div>
 

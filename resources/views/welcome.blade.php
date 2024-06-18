@@ -5,7 +5,7 @@
     <meta charset="utf-8">
 
     <!--====== Title ======-->
-    <title>Advanced - App Landing Page Template</title>
+    <title>StockAssist: Streamline Your Inventory Management for Culinary Businesses</title>
 
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -64,12 +64,11 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <nav class="navbar navbar-expand-lg">
-                            <a class="navbar-brand" href="#home">
+                            <!-- <a class="navbar-brand" href="#home">
                                 <img src="assets/images/logo.svg" alt="Logo">
-                            </a>
+                            </a> -->
                             <button class="navbar-toggler" type="button" data-toggle="collapse"
-                                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                                aria-expanded="false" aria-label="Toggle navigation">
+                                data-target="#navbarSupportedContent">
                                 <span class="toggler-icon"></span>
                                 <span class="toggler-icon"></span>
                                 <span class="toggler-icon"></span>
@@ -84,10 +83,7 @@
                                         <a class="page-scroll" href="#about">About</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="page-scroll" href="#pricing">Pricing</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="page-scroll" href="#blog">Blog</a>
+                                        <a class="page-scroll" href="#news">News</a>
                                     </li>
                                 </ul>
                             </div> <!-- navbar collapse -->
@@ -107,15 +103,17 @@
                     <div class="col-lg-6">
                         <div class="header_hero_content mt-45">
                             <h2 class="header_title wow fadeInLeftBig" data-wow-duration="1.3s" data-wow-delay="0.2s">
-                                HTML App Landing Page Template</h2>
-                            <p class="wow fadeInLeftBig" data-wow-duration="1.3s" data-wow-delay="0.6s">Lorem ipsum
-                                dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
-                                labore et dolore magna aliquyam erat.</p>
+                                StockAssist: Your Ultimate Inventory Management Solution
+                            </h2>
+                            <p class="wow fadeInLeftBig" data-wow-duration="1.3s" data-wow-delay="0.6s">
+                                Manage your culinary business effortlessly with StockAssist. Track your inventory,
+                                receive low stock alerts, and generate detailed reports with ease.
+                            </p>
                             <ul>
-                                <li><a class="main-btn wow fadeInUp" data-wow-duration="1.3s" data-wow-delay="1s"
-                                        href="#">Discover More</a></li>
-                                <li><a class="main-btn main-btn-2 wow fadeInUp" data-wow-duration="1.3s"
-                                        data-wow-delay="1.4s" href="#">Download App</a></li>
+                                <li><a href="/register" class="main-btn wow fadeInUp" data-wow-duration="1.3s"
+                                        data-wow-delay="1s">Register</a></li>
+                                <li><a href="/login" class="main-btn main-btn-2 wow fadeInUp" data-wow-duration="1.3s"
+                                        data-wow-delay="1.4s">Login</a></li>
                             </ul>
                         </div> <!-- header hero content -->
                     </div>
@@ -197,14 +195,16 @@
                     <div class="about_content mt-45 wow fadeInLeftBig" data-wow-duration="1.3s"
                         data-wow-delay="0.5s">
                         <div class="section_title">
-                            <h4 class="title">Discover New Experience!</h4>
-                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sediam nonumy eirmod tempor
-                                invidunt ut labore et dolore malquyam erat, sed diam voluptua. At vero eos et accusam et
-                                justo doloes et ea rebum. Stet clita kasd gubergren, nod sea takmaa santus est Lorem
-                                ipsum dolor sit amet. Lorem ipsum dolor sitdse ametr consetetur sadipscing elitr, sed
-                                diam nonumy eirmod tempor invidunt ut labore et dolore.</p>
+                            <h4 class="title">Discover the Ultimate Inventory Management Experience!</h4>
+                            <p>
+                                Streamline your culinary business operations with StockAssist. Our platform helps you
+                                effortlessly track inventory, receive real-time alerts for low stock levels, and
+                                generate comprehensive reports. Say goodbye to manual stock management and hello to
+                                efficiency and accuracy with StockAssist. Experience seamless inventory control tailored
+                                for your culinary needs.
+                            </p>
                         </div>
-                        <a class="main-btn" href="#">Discover</a>
+                        <a class="main-btn" href="/register">Discover More</a>
 
                     </div> <!-- about image -->
                 </div>
@@ -214,146 +214,16 @@
 
     <!--====== ABOUT PART ENDS ======-->
 
-    <!--====== PRICNG PART START ======-->
+    <!--====== NEWS PART START ======-->
 
-    <section id="pricing" class="pricing_area mt-80 pt-75 pb-80">
+    <section id="news" class="blog_area pt-80 pb-80">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-6">
                     <div class="section_title text-center pb-25">
-                        <h4 class="title">Choose a Plan</h4>
-                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sediam nonumy eirmod tempor invidunt
-                            ut labore et dolore.</p>
-                    </div> <!-- section title -->
-                </div>
-            </div> <!-- row -->
-            <div class="row justify-content-center">
-                <div class="col-lg-4 col-md-8 col-sm-10">
-                    <div class="single_pricing text-center pricing_color_1 mt-30 wow fadeInUp"
-                        data-wow-duration="1.3s" data-wow-delay="0.2s">
-                        <div class="pricing_top_bar">
-                            <h5 class="pricing_title">Startup</h5>
-                            <i class="lni lni-coffee-cup"></i>
-                            <span class="price">$9.00</span>
-                        </div>
-                        <div class="pricing_list">
-                            <ul>
-                                <li>24/7 Support</li>
-                                <li>Free Update</li>
-                                <li>unimited download</li>
-                            </ul>
-                        </div>
-                        <div class="pricing_btn">
-                            <a href="#" class="main-btn main-btn-2">Get Started</a>
-                        </div>
-                    </div> <!-- single pricing -->
-                </div>
-                <div class="col-lg-4 col-md-8 col-sm-10">
-                    <div class="single_pricing text-center pricing_active pricing_color_2 mt-30 wow fadeInUp"
-                        data-wow-duration="1.3s" data-wow-delay="0.5s">
-                        <div class="pricing_top_bar">
-                            <h5 class="pricing_title">Standard</h5>
-                            <i class="lni lni-crown"></i>
-                            <span class="price">$15.00</span>
-                        </div>
-                        <div class="pricing_list">
-                            <ul>
-                                <li>24/7 Support</li>
-                                <li>Free Update</li>
-                                <li>unimited download</li>
-                            </ul>
-                        </div>
-                        <div class="pricing_btn">
-                            <a href="#" class="main-btn">Get Started</a>
-                        </div>
-                    </div> <!-- single pricing -->
-                </div>
-                <div class="col-lg-4 col-md-8 col-sm-10">
-                    <div class="single_pricing text-center pricing_color_3 mt-30 wow fadeInUp"
-                        data-wow-duration="1.3s" data-wow-delay="0.8s">
-                        <div class="pricing_top_bar">
-                            <h5 class="pricing_title">Premium</h5>
-                            <i class="lni lni-diamond-alt"></i>
-                            <span class="price">$20.00</span>
-                        </div>
-                        <div class="pricing_list">
-                            <ul>
-                                <li>24/7 Support</li>
-                                <li>Free Update</li>
-                                <li>unimited download</li>
-                            </ul>
-                        </div>
-                        <div class="pricing_btn">
-                            <a href="#" class="main-btn main-btn-2">Get Started</a>
-                        </div>
-                    </div> <!-- single pricing -->
-                </div>
-            </div> <!-- row -->
-        </div> <!-- container -->
-    </section>
-
-    <!--====== PRICNG PART ENDS ======-->
-
-    <!--====== DOWNLOAD APP PART START ======-->
-
-    <section id="download" class="download_app_area pt-80 mb-80">
-        <div class="container">
-            <div class="download_app">
-                <div class="download_shape">
-                    <img src="assets/images/shape-5.svg" alt="shape">
-                </div>
-                <div class="download_shape_2">
-                    <img src="assets/images/shape-6.png" alt="shape">
-                </div>
-                <div class="download_app_content">
-                    <h3 class="download_title">Download The App</h3>
-                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sediam nonumy eirmod.</p>
-                    <ul>
-                        <li>
-                            <a class="d-flex align-items-center" href="#">
-                                <span class="icon">
-                                    <i class="lni lni-play-store"></i>
-                                </span>
-                                <span class="content media-body">
-                                    <h6 class="title">Play Store</h6>
-                                    <p>Download Now</p>
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="d-flex align-items-center" href="#">
-                                <span class="icon">
-                                    <i class="lni lni-apple"></i>
-                                </span>
-                                <span class="content">
-                                    <h6 class="title">App Store</h6>
-                                    <p>Download Now</p>
-                                </span>
-                            </a>
-                        </li>
-                    </ul>
-                </div> <!-- download app content -->
-            </div> <!-- download app -->
-        </div> <!-- container -->
-        <div class="download_app_image d-none d-lg-flex align-items-end">
-            <div class="image wow fadeInRightBig" data-wow-duration="1.3s" data-wow-delay="0.5s">
-                <img src="assets/images/download.png" alt="download">
-            </div> <!-- image -->
-        </div> <!-- download app image -->
-    </section>
-
-    <!--====== DOWNLOAD APP PART ENDS ======-->
-
-    <!--====== BLOG PART START ======-->
-
-    <section id="blog" class="blog_area pt-80 pb-80">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-6">
-                    <div class="section_title text-center pb-25">
-                        <h4 class="title">From The Blog</h4>
-                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sediam nonumy eirmod tempor invidunt
-                            ut labore et dolore.</p>
+                        <h4 class="title">Latest News</h4>
+                        <!-- <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sediam nonumy eirmod tempor invidunt
+                            ut labore et dolore.</p> -->
                     </div> <!-- section title -->
                 </div>
             </div> <!-- row -->
@@ -362,22 +232,20 @@
                     <div class="single_blog blog_1 mt-30 wow fadeInUp" data-wow-duration="1.3s"
                         data-wow-delay="0.2s">
                         <div class="blog_image">
-                            <img src="assets/images/blog-1.jpg" alt="blog">
+                            <img src="assets/img/article-thumb-1-short.jpg" alt="blog">
                         </div>
                         <div class="blog_content">
                             <div class="blog_meta d-flex justify-content-between">
                                 <div class="meta_date">
-                                    <span>20 December, 2023</span>
-                                </div>
-                                <div class="meta_like">
-                                    <ul>
-                                        <li><a href="#"><i class="lni lni-comments-alt"></i> 20</a></li>
-                                        <li><a href="#"><i class="lni lni-heart"></i> 15</a></li>
-                                    </ul>
+                                    <span>10 Mei, 2024</span>
                                 </div>
                             </div>
-                            <h4 class="blog_title"><a href="#">Unlimited featrues with free updates.</a></h4>
-                            <a href="#" class="main-btn">Read More</a>
+                            <h4 class="blog_title">
+                                <a href="/news/1">
+                                    Harga Cabai Rawit Merah Turun Jadi Segini
+                                </a>
+                            </h4>
+                            <a href="/news/1" class="main-btn">Read More</a>
                         </div>
                     </div> <!-- single blog -->
                 </div>
@@ -385,22 +253,20 @@
                     <div class="single_blog blog_2 mt-30 wow fadeInUp" data-wow-duration="1.3s"
                         data-wow-delay="0.5s">
                         <div class="blog_image">
-                            <img src="assets/images/blog-2.jpg" alt="blog">
+                            <img src="assets/img/article-thumb-2-short.jpg" alt="blog">
                         </div>
                         <div class="blog_content">
                             <div class="blog_meta d-flex justify-content-between">
                                 <div class="meta_date">
-                                    <span>20 December, 2023</span>
-                                </div>
-                                <div class="meta_like">
-                                    <ul>
-                                        <li><a href="#"><i class="lni lni-comments-alt"></i> 20</a></li>
-                                        <li><a href="#"><i class="lni lni-heart"></i> 15</a></li>
-                                    </ul>
+                                    <span>15 April, 2024</span>
                                 </div>
                             </div>
-                            <h4 class="blog_title"><a href="#">Easy to use and customize the App.</a></h4>
-                            <a href="#" class="main-btn">Read More</a>
+                            <h4 class="blog_title">
+                                <a href="/news/2">
+                                    Lebaran Telah Usai, Harga Cabai hingga Daging Sapi Mulai Turun
+                                </a>
+                            </h4>
+                            <a href="/news/2" class="main-btn">Read More</a>
                         </div>
                     </div> <!-- single blog -->
                 </div>
@@ -408,22 +274,20 @@
                     <div class="single_blog blog_3 mt-30 wow fadeInUp" data-wow-duration="1.3s"
                         data-wow-delay="0.8s">
                         <div class="blog_image">
-                            <img src="assets/images/blog-3.jpg" alt="blog">
+                            <img src="assets/img/article-thumb-3-short.jpg" alt="blog">
                         </div>
                         <div class="blog_content">
                             <div class="blog_meta d-flex justify-content-between">
                                 <div class="meta_date">
-                                    <span>20 December, 2023</span>
-                                </div>
-                                <div class="meta_like">
-                                    <ul>
-                                        <li><a href="#"><i class="lni lni-comments-alt"></i> 20</a></li>
-                                        <li><a href="#"><i class="lni lni-heart"></i> 15</a></li>
-                                    </ul>
+                                    <span>19 Maret, 2024</span>
                                 </div>
                             </div>
-                            <h4 class="blog_title"><a href="#">Super fast and strong security.</a></h4>
-                            <a href="#" class="main-btn">Read More</a>
+                            <h4 class="blog_title">
+                                <a href="/news/3">
+                                    Harga Bahan Pokok Jogja Hari Ini 19 Maret 2024: Cabai Turun, Minyak Naik!
+                                </a>
+                            </h4>
+                            <a href="/news/3" class="main-btn">Read More</a>
                         </div>
                     </div> <!-- single blog -->
                 </div>
@@ -431,7 +295,7 @@
         </div> <!-- container -->
     </section>
 
-    <!--====== BLOG PART ENDS ======-->
+    <!--====== NEWS PART ENDS ======-->
 
     <!--====== FOOTER PART START ======-->
 

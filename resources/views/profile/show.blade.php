@@ -15,7 +15,7 @@
                     @if (auth()->user()->photo)
                         <img class="rounded-full" src="{{ Storage::url(auth()->user()->photo) }}">
                     @else
-                        <img class="rounded-full" src="{{ asset('assets/img/no_profile.jpg') }}">
+                        <img class="rounded-full" src="assets/img/no_profile.jpg">
                     @endif
                 </div>
             </a>

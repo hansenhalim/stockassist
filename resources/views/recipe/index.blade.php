@@ -20,7 +20,7 @@
                         @if ($recipe->photo)
                             <img slot="start" class="rounded-full w-10" src="{{ Storage::url($recipe->photo) }}">
                         @else
-                            <img slot="start" class="rounded-full w-10" src="{{ asset('assets/img/no_img.jpg') }}">
+                            <img slot="start" class="rounded-full w-10" src="assets/img/no_img.jpg">
                         @endif
                     </md-list-item>
                 @endforeach

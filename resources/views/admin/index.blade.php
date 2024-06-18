@@ -39,7 +39,7 @@
                         @if ($admin->user->photo)
                             <img slot="start" class="rounded-full w-10" src="{{ Storage::url($admin->user->photo) }}">
                         @else
-                            <img slot="start" class="rounded-full w-10" src="{{ asset('assets/img/no_img.jpg') }}">
+                            <img slot="start" class="rounded-full w-10" src="assets/img/no_img.jpg">
                         @endif
                     </md-list-item>
                 @endforeach
