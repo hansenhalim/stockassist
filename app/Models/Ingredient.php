@@ -50,12 +50,14 @@ class Ingredient extends Model
 
     public function recalculateStats(): void
     {
-        $this->lead_time_avg = $this->getLeadTimeStats()['avg'];
-        $this->lead_time_min = $this->getLeadTimeStats()['min'];
-        $this->lead_time_sig = $this->getLeadTimeStats()['sig'];
+        $leadTimeStats = $this->getLeadTimeStats();
+        $demandStats = $this->getDemandStats();
 
-        $this->demand_avg = $this->getDemandStats()['avg'];
-        $this->demand_min = $this->getDemandStats()['min'];
+        $this->lead_time_avg = $leadTimeStats['avg'];
+        $this->lead_time_min = $leadTimeStats['min'];
+        $this->lead_time_sig = $leadTimeStats['sig'];
+        $this->demand_avg = $demandStats['avg'];
+        $this->demand_min = $demandStats['min'];
 
         // SS = Z * σLT * Davg
         $this->safety_stock = $this->service_level->ZScore() * $this->lead_time_sig * $this->demand_avg;
