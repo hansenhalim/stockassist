@@ -49,9 +49,12 @@
                 <md-icon slot="start" class="material-icons-outlined">bug_report</md-icon>
             </md-list-item>
             <md-divider></md-divider>
-            <md-list-item type="link" href="#">
-                <div slot="headline">Give feedback</div>
-                <md-icon slot="start" class="material-icons-outlined">thumb_up</md-icon>
+            <md-list-item type="link"
+                href="https://docs.google.com/forms/d/e/1FAIpQLSdpEwDmsl4Zjg_O2Rhc7To_j3I77rm__qetPY4qizHfsTMlRw/viewform?usp=sf_link"
+                target="_blank">
+                <div slot="headline" style="color: var(--md-sys-color-primary);">Give feedback</div>
+                <md-icon slot="start" class="material-icons-outlined"
+                    style="color: var(--md-sys-color-primary);">thumb_up</md-icon>
             </md-list-item>
             <md-divider></md-divider>
             <form action="{{ route('logout') }}" method="post">
