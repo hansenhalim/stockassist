@@ -12,11 +12,12 @@
         <label for="photo">
             <div class="relative rounded-3xl shadow-md overflow-hidden">
                 @if ($shop->photo)
-                    <div class="h-56 bg-center bg-cover"
+                    <div id="previewPhoto" class="h-56 bg-center bg-cover"
                         style="background-image: url('{{ Storage::url($shop->photo) }}');">
                     </div>
                 @else
-                    <div class="h-56 bg-center bg-cover" style="background-image: url('/assets/img/no_img.jpg');">
+                    <div id="previewPhoto" class="h-56 bg-center bg-cover"
+                        style="background-image: url('/assets/img/no_img.jpg');">
                     </div>
                 @endif
                 <div class="bg-black opacity-50 absolute top-0 w-full h-full">
@@ -63,4 +64,14 @@
             </div>
         </form>
     </div>
+
+    <script>
+        photo.onchange = evt => {
+            const [file] = photo.files;
+            if (file) {
+                const imageUrl = URL.createObjectURL(file);
+                previewPhoto.style.backgroundImage = `url(${imageUrl})`;
+            }
+        };
+    </script>
 </x-app-layout>

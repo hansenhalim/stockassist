@@ -11,7 +11,8 @@
     <div class="mx-auto px-4 mb-8">
         <label for="photo">
             <div class="relative rounded-3xl shadow-md overflow-hidden">
-                <div class="h-56 bg-center bg-cover" style="background-image: url('/assets/img/no_img.jpg');">
+                <div id="previewPhoto" class="h-56 bg-center bg-cover"
+                    style="background-image: url('/assets/img/no_img.jpg');">
                 </div>
                 <div class="bg-black opacity-50 absolute top-0 w-full h-full"></div>
                 <div
@@ -35,12 +36,24 @@
             @enderror
 
             @error('barcode')
-                <md-outlined-text-field name="barcode" value="{{ old('barcode') }}" label="Barcode" class="mt-4 w-full"
-                    error error-text="{{ $message }}"></md-outlined-text-field>
+                <md-outlined-text-field id="barcodeInput" name="barcode" value="{{ old('barcode') }}" label="Barcode"
+                    class="mt-4 w-full" error error-text="{{ $message }}">
+                    <md-icon-button id="scanBtn" class="hidden" type="button" slot="trailing-icon"
+                        onclick="getCameraStream()">
+                        <md-icon class="material-icons">qr_code_scanner</md-icon>
+                    </md-icon-button>
+                </md-outlined-text-field>
             @else
-                <md-outlined-text-field name="barcode" value="{{ old('barcode') }}" label="Barcode"
-                    class="mt-4 w-full"></md-outlined-text-field>
+                <md-outlined-text-field id="barcodeInput" name="barcode" value="{{ old('barcode') }}" label="Barcode"
+                    class="mt-4 w-full">
+                    <md-icon-button id="scanBtn" class="hidden" type="button" slot="trailing-icon"
+                        onclick="getCameraStream()">
+                        <md-icon class="material-icons">qr_code_scanner</md-icon>
+                    </md-icon-button>
+                </md-outlined-text-field>
             @enderror
+
+            <video id="scanner" autoplay class="hidden w-full"></video>
 
             @error('description')
                 <md-outlined-text-field name="description" value="{{ old('description') }}" label="Description"
@@ -81,4 +94,56 @@
             </div>
         </form>
     </div>
+
+    <script>
+        photo.onchange = evt => {
+            const [file] = photo.files;
+            if (file) {
+                const imageUrl = URL.createObjectURL(file);
+                previewPhoto.style.backgroundImage = `url(${imageUrl})`;
+            }
+        };
+
+        if (("BarcodeDetector" in globalThis)) {
+            scanBtn.classList.remove('hidden');
+
+            const barcodeDetector = new BarcodeDetector({
+                formats: ['ean_13', 'ean_8', 'upc_a', 'upc_e']
+            })
+
+            scanner.addEventListener('play', () => {
+                const detectLoop = () => {
+                    if (scanner.paused || scanner.ended) return;
+
+                    barcodeDetector
+                        .detect(scanner)
+                        .then((barcodes) => {
+                            barcodes.forEach((barcode) => {
+                                scanner.pause();
+                                scanner.classList.add('hidden');
+                                scanBtn.classList.remove('hidden');
+                                barcodeInput.value = barcode.rawValue;
+                            });
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                        });
+
+                    requestAnimationFrame(detectLoop);
+                };
+                requestAnimationFrame(detectLoop);
+            });
+        }
+
+        async function getCameraStream() {
+            scanner.srcObject = await navigator.mediaDevices.getUserMedia({
+                video: {
+                    facingMode: 'environment'
+                }
+            });
+
+            scanner.classList.remove('hidden');
+            scanBtn.classList.add('hidden');
+        }
+    </script>
 </x-app-layout>
