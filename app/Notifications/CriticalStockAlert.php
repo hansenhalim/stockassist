@@ -26,7 +26,8 @@ class CriticalStockAlert extends Notification
     {
         return [
             'ingredient_id' => $this->ingredient->id,
-            'message' => "Urgent: The remaining stock for the ingredient '{$this->ingredient->name}' is critically low at {$this->ingredient->remaining_amount}. Immediate action is required.",
+            'title' => 'Critical Stock Alert',
+            'message' => "The remaining stock for the ingredient '{$this->ingredient->name}' is critically low at {$this->ingredient->remaining_amount}. Immediate action is required.",
         ];
     }
 }

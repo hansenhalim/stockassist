@@ -26,7 +26,8 @@ class OverStockWarning extends Notification
     {
         return [
             'ingredient_id' => $this->ingredient->id,
-            'message' => "Notice: The stock for the ingredient '{$this->ingredient->name}' is over the desired level with {$this->ingredient->remaining_amount} units remaining. Consider reducing future orders.",
+            'title' => 'Over Stock Warning',
+            'message' => "The stock for the ingredient '{$this->ingredient->name}' is over the desired level with {$this->ingredient->remaining_amount} units remaining. Consider reducing future orders.",
         ];
     }
 }

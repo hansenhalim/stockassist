@@ -32,20 +32,20 @@
                 <div class="text-center flex-1">
                     <div class="md-typescale-body-small">Lead Time</div>
                     <div class="md-typescale-title-medium">
-                        {{ $ingredient->lead_time_avg ? number_format($ingredient->lead_time_avg) : 'n/a' }}&nbsp;days
+                        {{ $ingredient->lead_time_avg ? number_format($ingredient->lead_time_avg) : '-' }}&nbsp;days
                     </div>
                 </div>
                 <div class="text-center flex-1 border-x"
                     style="border-color: var(--md-sys-color-on-secondary-container);">
                     <div class="md-typescale-body-small">Avg Demand</div>
                     <div class="md-typescale-title-medium">
-                        {{ $ingredient->demand_avg ? number_format($ingredient->demand_avg) : 'n/a' }}&nbsp;{{ $ingredient->unit_of_measure }}
+                        {{ $ingredient->demand_avg ? number_format($ingredient->demand_avg) : '-' }}&nbsp;{{ $ingredient->unit_of_measure }}
                     </div>
                 </div>
                 <div class="text-center flex-1">
                     <div class="md-typescale-body-small">Safety Stock</div>
                     <div class="md-typescale-title-medium">
-                        {{ $ingredient->safety_stock ? number_format($ingredient->safety_stock) : 'n/a' }}&nbsp;{{ $ingredient->unit_of_measure }}
+                        {{ $ingredient->safety_stock ? number_format($ingredient->safety_stock) : '-' }}&nbsp;{{ $ingredient->unit_of_measure }}
                     </div>
                 </div>
             </div>
@@ -55,20 +55,20 @@
                 <div class="text-center flex-1">
                     <div class="md-typescale-body-small">Reorder Point</div>
                     <div class="md-typescale-title-medium">
-                        {{ $ingredient->reorder_point ? number_format($ingredient->reorder_point) : 'n/a' }}&nbsp;{{ $ingredient->unit_of_measure }}
+                        {{ $ingredient->reorder_point ? number_format($ingredient->reorder_point) : '-' }}&nbsp;{{ $ingredient->unit_of_measure }}
                     </div>
                 </div>
                 <div class="text-center flex-1 border-x"
                     style="border-color: var(--md-sys-color-on-secondary-container);">
                     <div class="md-typescale-body-small">Reorder Qty</div>
                     <div class="md-typescale-title-medium">
-                        {{ $ingredient->order_quantity ? number_format($ingredient->order_quantity) : 'n/a' }}&nbsp;{{ $ingredient->unit_of_measure }}
+                        {{ $ingredient->order_quantity ? number_format($ingredient->order_quantity) : '-' }}&nbsp;{{ $ingredient->unit_of_measure }}
                     </div>
                 </div>
                 <div class="text-center flex-1">
                     <div class="md-typescale-body-small">Max Stock</div>
                     <div class="md-typescale-title-medium">
-                        {{ $ingredient->inventory_level_max ? number_format($ingredient->inventory_level_max) : 'n/a' }}&nbsp;{{ $ingredient->unit_of_measure }}
+                        {{ $ingredient->inventory_level_max ? number_format($ingredient->inventory_level_max) : '-' }}&nbsp;{{ $ingredient->unit_of_measure }}
                     </div>
                 </div>
             </div>

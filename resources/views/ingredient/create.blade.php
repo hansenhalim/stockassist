@@ -135,15 +135,21 @@
             });
         }
 
-        async function getCameraStream() {
-            scanner.srcObject = await navigator.mediaDevices.getUserMedia({
-                video: {
-                    facingMode: 'environment'
-                }
-            });
-
-            scanner.classList.remove('hidden');
-            scanBtn.classList.add('hidden');
+        function getCameraStream() {
+            navigator.mediaDevices
+                .getUserMedia({
+                    video: {
+                        facingMode: 'environment'
+                    }
+                })
+                .then((stream) => {
+                    scanner.srcObject = stream;
+                    scanner.classList.remove('hidden');
+                    scanBtn.classList.add('hidden');
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
         }
     </script>
 </x-app-layout>

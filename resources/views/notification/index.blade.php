@@ -13,7 +13,11 @@
             <md-list>
                 @foreach ($notifications as $notification)
                     <md-list-item href="#">
-                        <div slot="headline">{{ $notification->data['message'] }}</div>
+                        <div slot="headline">{{ $notification->data['title'] }}</div>
+
+                        <div slot="supporting-text" class="line-clamp-2" onclick="this.classList.toggle('line-clamp-2')">
+                            {{ $notification->data['message'] }}
+                        </div>
 
                         <md-icon slot="start" class="material-icons-outlined">info</md-icon>
                     </md-list-item>

@@ -26,7 +26,8 @@ class LowStockAlert extends Notification
     {
         return [
             'ingredient_id' => $this->ingredient->id,
-            'message' => "Alert: The remaining stock for the ingredient '{$this->ingredient->name}' is low at {$this->ingredient->remaining_amount}. Please consider reordering soon.",
+            'title' => 'Low Stock Alert',
+            'message' => "The remaining stock for the ingredient '{$this->ingredient->name}' is low at {$this->ingredient->remaining_amount}. Please consider reordering soon.",
         ];
     }
 }
