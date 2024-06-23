@@ -20,7 +20,16 @@
                 <md-filled-tonal-button href="{{ route('incoming-inventory-items.index') }}" class="mt-2">
                     Add item
                     <div slot="icon" class="w-6 h-6">
-                        <md-icon class="material-icons">add</md-icon>
+                        <md-icon class="material-icons-outlined">add</md-icon>
+                    </div>
+                </md-filled-tonal-button>
+                <div class="md-typescale-body-large" style="color: var(--md-sys-color-outline);">
+                    or
+                </div>
+                <md-filled-tonal-button type="submit" class="mt-1" disabled>
+                    Auto stock
+                    <div slot="icon" class="w-6 h-6">
+                        <md-icon class="material-icons-outlined">auto_awesome</md-icon>
                     </div>
                 </md-filled-tonal-button>
             </div>
