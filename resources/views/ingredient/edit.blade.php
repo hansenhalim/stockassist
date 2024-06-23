@@ -43,12 +43,24 @@
             @enderror
 
             @error('barcode')
-                <md-outlined-text-field name="barcode" value="{{ old('barcode', $ingredient->barcode) }}" label="Barcode"
-                    class="mt-4 w-full" error error-text="{{ $message }}"></md-outlined-text-field>
+                <md-outlined-text-field id="barcodeInput" name="barcode" value="{{ old('barcode', $ingredient->barcode) }}"
+                    label="Barcode" class="mt-4 w-full" error error-text="{{ $message }}">
+                    <md-icon-button id="scanBtn" class="hidden" type="button" slot="trailing-icon"
+                        onclick="getCameraStream()">
+                        <md-icon class="material-icons">qr_code_scanner</md-icon>
+                    </md-icon-button>
+                </md-outlined-text-field>
             @else
-                <md-outlined-text-field name="barcode" value="{{ old('barcode', $ingredient->barcode) }}" label="Barcode"
-                    class="mt-4 w-full"></md-outlined-text-field>
+                <md-outlined-text-field id="barcodeInput" name="barcode" value="{{ old('barcode', $ingredient->barcode) }}"
+                    label="Barcode" class="mt-4 w-full">
+                    <md-icon-button id="scanBtn" class="hidden" type="button" slot="trailing-icon"
+                        onclick="getCameraStream()">
+                        <md-icon class="material-icons">qr_code_scanner</md-icon>
+                    </md-icon-button>
+                </md-outlined-text-field>
             @enderror
+
+            <video id="scanner" autoplay class="hidden w-full"></video>
 
             @error('description')
                 <md-outlined-text-field name="description" value="{{ old('description', $ingredient->description) }}"
@@ -99,5 +111,53 @@
                 previewPhoto.style.backgroundImage = `url(${imageUrl})`;
             }
         };
+
+        if (("BarcodeDetector" in globalThis)) {
+            scanBtn.classList.remove('hidden');
+
+            const barcodeDetector = new BarcodeDetector({
+                formats: ['ean_13', 'ean_8', 'upc_a', 'upc_e']
+            })
+
+            scanner.addEventListener('play', () => {
+                const detectLoop = () => {
+                    if (scanner.paused || scanner.ended) return;
+
+                    barcodeDetector
+                        .detect(scanner)
+                        .then((barcodes) => {
+                            barcodes.forEach((barcode) => {
+                                scanner.pause();
+                                scanner.classList.add('hidden');
+                                scanBtn.classList.remove('hidden');
+                                barcodeInput.value = barcode.rawValue;
+                            });
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                        });
+
+                    requestAnimationFrame(detectLoop);
+                };
+                requestAnimationFrame(detectLoop);
+            });
+        }
+
+        function getCameraStream() {
+            navigator.mediaDevices
+                .getUserMedia({
+                    video: {
+                        facingMode: 'environment'
+                    }
+                })
+                .then((stream) => {
+                    scanner.srcObject = stream;
+                    scanner.classList.remove('hidden');
+                    scanBtn.classList.add('hidden');
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        }
     </script>
 </x-app-layout>
