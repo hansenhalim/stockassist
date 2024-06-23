@@ -14,8 +14,7 @@
                 <div class="h-56 bg-center bg-cover" style="background-image: url('{{ Storage::url($recipe->photo) }}');">
                 </div>
             @else
-                <div class="h-56 bg-center bg-cover"
-                    style="background-image: url('{{ asset('assets/img/no_img.jpg') }}');">
+                <div class="h-56 bg-center bg-cover" style="background-image: url('/assets/img/no_img.jpg');">
                 </div>
             @endif
         </div>

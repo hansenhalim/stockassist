@@ -15,7 +15,7 @@
         </md-tabs>
 
         <div id="firstTab">
-            <img src="{{ asset('assets/img/graph.webp') }}" alt="">
+            <img src="/assets/img/graph.webp" alt="">
 
             <div class="flex p-4 mt-2 rounded-3xl"
                 style="background-color: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary);">
@@ -85,8 +85,7 @@
                         style="background-image: url('{{ Storage::url($ingredient->photo) }}');">
                     </div>
                 @else
-                    <div class="h-56 bg-center bg-cover"
-                        style="background-image: url('{{ asset('assets/img/no_img.jpg') }}');">
+                    <div class="h-56 bg-center bg-cover" style="background-image: url('/assets/img/no_img.jpg');">
                     </div>
                 @endif
             </div>

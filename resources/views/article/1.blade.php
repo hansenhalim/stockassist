@@ -8,7 +8,7 @@
         </div>
     </x-slot>
 
-    <div class="h-56 bg-center bg-cover" style="background-image: url('{{ asset('assets/img/article-1.jpg') }}');"></div>
+    <div class="h-56 bg-center bg-cover" style="background-image: url('/assets/img/article-1.jpg');"></div>
 
     <div class="mx-auto px-4 mb-8 mt-4">
         <div class="md-typescale-headline-medium">Harga Cabai Rawit Merah Turun Jadi Segini</div>
