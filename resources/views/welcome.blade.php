@@ -139,40 +139,37 @@
                     <div class="single_features mt-30 features_1 text-center wow fadeInUp" data-wow-duration="1.3s"
                         data-wow-delay="0.2s">
                         <div class="features_icon">
-                            <i class="lni lni-code"></i>
+                            <i class="lni lni-warning"></i>
                         </div>
                         <div class="features_content">
-                            <h4 class="features_title">Bootstrap</h4>
-                            <p>Lorem ipsum dolor sit ame consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-                                invidunt ut.</p>
+                            <h4 class="features_title">Real-Time Alerts</h4>
+                            <p>Get instant notifications for low stock levels.</p>
                         </div>
-                    </div> <!-- single featuresow -->
+                    </div> <!-- single features -->
                 </div>
                 <div class="col-lg-4 col-md-7 col-sm-8">
                     <div class="single_features mt-30 features_2 text-center wow fadeInUp" data-wow-duration="1.3s"
                         data-wow-delay="0.5s">
                         <div class="features_icon">
-                            <i class="lni lni-layers"></i>
+                            <i class="lni lni-map-marker"></i>
                         </div>
                         <div class="features_content">
-                            <h4 class="features_title">HTML5</h4>
-                            <p>Lorem ipsum dolor sit ame consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-                                invidunt ut.</p>
+                            <h4 class="features_title">Effortless Tracking</h4>
+                            <p>Track your inventory with ease and precision.</p>
                         </div>
-                    </div> <!-- single featuresow -->
+                    </div> <!-- single features -->
                 </div>
                 <div class="col-lg-4 col-md-7 col-sm-8">
                     <div class="single_features mt-30 features_3 text-center wow fadeInUp" data-wow-duration="1.3s"
                         data-wow-delay="0.9s">
                         <div class="features_icon">
-                            <i class="lni lni-exit-down"></i>
+                            <i class="lni lni-stats-up"></i>
                         </div>
                         <div class="features_content">
-                            <h4 class="features_title">Free</h4>
-                            <p>Lorem ipsum dolor sit ame consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-                                invidunt ut.</p>
+                            <h4 class="features_title">Comprehensive Reports</h4>
+                            <p>Generate detailed inventory reports effortlessly.</p>
                         </div>
-                    </div> <!-- single featuresow -->
+                    </div> <!-- single features -->
                 </div>
             </div> <!-- row -->
         </div> <!-- container -->
@@ -197,11 +194,9 @@
                         <div class="section_title">
                             <h4 class="title">Discover the Ultimate Inventory Management Experience!</h4>
                             <p>
-                                Streamline your culinary business operations with StockAssist. Our platform helps you
-                                effortlessly track inventory, receive real-time alerts for low stock levels, and
-                                generate comprehensive reports. Say goodbye to manual stock management and hello to
-                                efficiency and accuracy with StockAssist. Experience seamless inventory control tailored
-                                for your culinary needs.
+                                Streamline your culinary business with StockAssist. Effortlessly track inventory, get
+                                real-time low stock alerts, and generate reports. Say goodbye to manual stock management
+                                and hello to efficiency with StockAssist. Tailored for your culinary needs.
                             </p>
                         </div>
                         <a class="main-btn" href="/register">Discover More</a>
